@@ -43,7 +43,7 @@ Describe 'Import_Pester' {
 Describe 'Invoke_Pester_Tests_v4' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
@@ -129,7 +129,7 @@ Describe 'Invoke_Pester_Tests_v4' {
 Describe 'Invoke_Pester_Tests_v5' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
@@ -248,7 +248,7 @@ Describe 'Invoke_Pester_Tests_v5' {
 Describe 'Fail_Build_If_Pester_Tests_Failed' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
@@ -314,7 +314,7 @@ Describe 'Fail_Build_If_Pester_Tests_Failed' {
 Describe 'Pester_If_Code_Coverage_Under_Threshold' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
@@ -448,7 +448,7 @@ Describe 'Pester_If_Code_Coverage_Under_Threshold' {
 Describe 'Pester_Run_Times' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 

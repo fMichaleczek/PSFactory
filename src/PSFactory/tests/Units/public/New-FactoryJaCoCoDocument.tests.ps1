@@ -26,7 +26,7 @@ AfterAll {
 
 Describe 'New-FactoryJaCoCoDocument' {
     BeforeAll {
-        . $PSScriptRoot/../TestHelpers/Get-XmlAttribute.ps1
+        . $PSScriptRoot/../helpers/Get-XmlAttribute.ps1
     }
 
     Context 'When calculating statistics for a single package' {

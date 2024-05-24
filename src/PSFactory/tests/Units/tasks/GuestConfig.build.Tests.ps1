@@ -29,7 +29,7 @@ Describe 'GuestConfig' {
 Describe 'build_guestconfiguration_packages' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'GuestConfig.build.PSFactory.ib.tasks'
 

@@ -29,7 +29,7 @@ Describe 'ChocolateyPackage' {
 Describe 'copy_chocolatey_source_to_staging' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
@@ -61,7 +61,7 @@ Describe 'copy_chocolatey_source_to_staging' {
 Describe 'copy_paths_to_choco_staging' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
@@ -163,7 +163,7 @@ Describe 'copy_paths_to_choco_staging' {
 Describe 'upate_choco_nuspec_data' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
@@ -260,7 +260,7 @@ Describe 'upate_choco_nuspec_data' {
 Describe 'Build_Chocolatey_Package' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
@@ -403,7 +403,7 @@ Describe 'Build_Chocolatey_Package' {
 Describe 'Push_Chocolatey_Package' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 

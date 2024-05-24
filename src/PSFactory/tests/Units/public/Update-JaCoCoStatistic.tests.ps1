@@ -26,7 +26,7 @@ AfterAll {
 
 Describe 'Update-JaCoCoStatistic' {
     BeforeAll {
-        . $PSScriptRoot/../TestHelpers/Get-XmlAttribute.ps1
+        . $PSScriptRoot/../helpers/Get-XmlAttribute.ps1
 
         $mockXmlDocument = @"
 <?xml version="1.0" encoding="us-ascii" standalone="no"?>

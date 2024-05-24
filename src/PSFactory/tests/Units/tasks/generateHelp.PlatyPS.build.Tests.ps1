@@ -36,7 +36,7 @@ Describe 'generateHelp.PlatyPS' {
 # Describe 'Generate_MAML_from_built_module' {
 #     BeforeAll {
 #         # Dot-source mocks
-#         . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+#         . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
 #         $taskAlias = Get-Alias -Name 'generateHelp.PlatyPS.build.PSFactory.ib.tasks'
 

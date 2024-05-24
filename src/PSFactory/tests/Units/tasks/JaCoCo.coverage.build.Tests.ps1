@@ -29,7 +29,7 @@ Describe 'JaCoCo.coverage' {
 Describe 'Merge_CodeCoverage_Files' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.PSFactory.ib.tasks'
 
@@ -139,7 +139,7 @@ Describe 'Merge_CodeCoverage_Files' {
 Describe 'Convert_Pester_Coverage' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.PSFactory.ib.tasks'
 

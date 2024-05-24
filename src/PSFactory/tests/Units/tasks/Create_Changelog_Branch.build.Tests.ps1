@@ -32,7 +32,7 @@ Describe 'Create_Changelog_Branch' {
     Context 'When no release tag is found' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
             Mock -CommandName PSFactory\Invoke-FactoryGit
 
@@ -65,7 +65,7 @@ Describe 'Create_Changelog_Branch' {
     Context 'When creating change log PR' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
             Mock -CommandName PSFactory\Invoke-FactoryGit
 

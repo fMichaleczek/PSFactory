@@ -32,7 +32,7 @@ Describe 'Create_Release_Git_Tag' {
     Context 'When creating a preview release tag' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
             function script:git
             {
@@ -91,7 +91,7 @@ Describe 'Create_Release_Git_Tag' {
     Context 'When commit already got a tag' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
             # Stub for git executable
             function script:git

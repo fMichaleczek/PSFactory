@@ -131,7 +131,7 @@ Describe 'Set-FactoryTaskVariable' {
     Context 'When called without any parameter' {
         BeforeAll {
             # Dot-source mocks (this is also used in unit tests for build tasks)
-            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
         }
 
         It 'Should run the scripts and return correct values for variables' {

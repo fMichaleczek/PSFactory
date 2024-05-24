@@ -29,7 +29,7 @@ Describe 'release.module' {
 Describe 'Create_changelog_release_output' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
 
@@ -245,7 +245,7 @@ Describe 'Create_changelog_release_output' {
 Describe 'publish_nupkg_to_gallery' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
 
@@ -316,7 +316,7 @@ Describe 'publish_nupkg_to_gallery' {
 Describe 'package_module_nupkg' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
 
@@ -449,7 +449,7 @@ Describe 'package_module_nupkg' {
 Describe 'publish_module_to_gallery' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
 

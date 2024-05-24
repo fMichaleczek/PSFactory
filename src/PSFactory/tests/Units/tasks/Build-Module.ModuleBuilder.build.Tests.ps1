@@ -29,7 +29,7 @@ Describe 'Build-Module.ModuleBuilder' {
 Describe 'Build_ModuleOutput_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $BuildInfo = @{
             CopyPaths = @('folder1','folder2')
@@ -116,7 +116,7 @@ Describe 'Build_ModuleOutput_ModuleBuilder' {
 Describe 'Build_NestedModules_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $BuildInfo = @{
             CopyPaths = @('folder1','folder2')
@@ -543,7 +543,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
 Describe 'Build_DscResourcesToExport_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
 

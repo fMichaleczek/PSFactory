@@ -3,16 +3,16 @@
 #          ModuleBuilder Configuration             #
 ####################################################
 # Path to the Module Manifest to build (where path will be resolved from)
-# SourcePath: ./PSFactory/PSFactory.psd1
+# SourcePath: ./src/PSFactory/PSFactory.psd1
 # Output Directory where ModuleBuilder will build the Module, relative to module manifest
 # OutputDirectory: ../output/PSFactory
 CopyPaths:
   #- HelperSubmodule # This will be built as submodule instead
   # - DSCResources
-  - ../.build/tasks
+  - ../../.build/tasks
   - scripts
   - en-US
-  - Templates
+  - templates
 Encoding: UTF8
 
 # Suffix to add to Root module PSM1 after merge (here, the Set-Alias exporting IB tasks)
@@ -65,9 +65,9 @@ Pester:
       OutputEncoding: ascii
   # Will look at every *.ps1 & *.psm1 under ModulePath, excepts when $_.FullName -match (Join-Path $ProjectPath $ExcludeFromCodeCoverageItem)
   ExcludeFromCodeCoverage:
-    - Templates
+    - templates
     - Modules/DscResource.Common
-    - Assets
+    - assets
     # This is deprecated Pester 4 HQRM test, the HQRM test for Pester 5 has been
     # moved to module DscResource.Test.
     - tasks/DscResource.Test.build.ps1
@@ -175,8 +175,8 @@ TaskHeader: |
 GitHubConfig:
   GitHubFilesToAdd:
     - 'CHANGELOG.md'
-  GitHubConfigUserName: gaelcolas
-  GitHubConfigUserEmail: gaelcolas@synedgy.com
+  GitHubConfigUserName: fmichaleczek
+  GitHubConfigUserEmail: fmichaleczek@gmail.com
   UpdateChangelogOnPrerelease: false
 
 #SetPSModulePath:

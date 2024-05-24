@@ -29,7 +29,7 @@ Describe 'DeployAll.PSDeploy' {
 Describe 'Deploy_with_PSDeploy' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
 
         $taskAlias = Get-Alias -Name 'DeployAll.PSDeploy.build.PSFactory.ib.tasks'
 

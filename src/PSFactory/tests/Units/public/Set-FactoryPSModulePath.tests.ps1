@@ -1,5 +1,5 @@
 BeforeAll {
-    Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath '..\TestHelpers\SetPSFactoryTaskVariableTestHelpers.psm1') -Force
+    Import-Module -Name (Join-Path -Path $PSScriptRoot -ChildPath '..\helpers\SetPSFactoryTaskVariableTestHelpers.psm1') -Force
 
     if (-not (Get-Variable -Name IsWindows -ErrorAction SilentlyContinue))
     {
