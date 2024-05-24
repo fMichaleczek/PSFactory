@@ -14,7 +14,7 @@ task CleanAll Clean, CleanModule
 
 # Synopsis: Deleting the content of the Build Output folder, except ./modules
 task Clean {
-    $OutputDirectory =  Get-SamplerAbsolutePath -Path $OutputDirectory -RelativeTo $BuildRoot
+    $OutputDirectory =  Get-FactoryAbsolutePath -Path $OutputDirectory -RelativeTo $BuildRoot
     $FolderToExclude = Split-Path -Leaf -Path $RequiredModulesDirectory
 
     Write-Build -Color Green "Removing $OutputDirectory\* excluding $FolderToExclude"
@@ -24,7 +24,7 @@ task Clean {
 
 # Synopsis: Removes the Modules from OutputDirectory\Modules folder, might fail if there's an handle on one file.
 task CleanModule {
-    $OutputDirectory =  Get-SamplerAbsolutePath -Path $OutputDirectory -RelativeTo $BuildRoot
+    $OutputDirectory =  Get-FactoryAbsolutePath -Path $OutputDirectory -RelativeTo $BuildRoot
 
     Write-Build -Color Green "Removing $OutputDirectory\*"
 

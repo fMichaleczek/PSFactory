@@ -50,27 +50,27 @@ function Get-GenerateHelpPlatyPSVariables
 {
     param ()
 
-    $script:PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $script:PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder       = '$PesterOutputFolder"
 
-    $script:HelpSourceFolder = Get-SamplerAbsolutePath -Path $HelpSourceFolder -RelativeTo $ProjectPath
+    $script:HelpSourceFolder = Get-FactoryAbsolutePath -Path $HelpSourceFolder -RelativeTo $ProjectPath
     "`tHelp Source Folder         = '$HelpSourceFolder'"
 
-    $script:HelpOutputFolder =  Get-SamplerAbsolutePath -Path $HelpOutputFolder -RelativeTo $OutputDirectory
+    $script:HelpOutputFolder =  Get-FactoryAbsolutePath -Path $HelpOutputFolder -RelativeTo $OutputDirectory
     "`tHelp output Folder         = '$HelpOutputFolder'"
 
     if ($ModuleVersion)
     {
-        $script:HelpOutputVersionFolder = Get-SamplerAbsolutePath -Path $ModuleVersion -RelativeTo $HelpOutputFolder
+        $script:HelpOutputVersionFolder = Get-FactoryAbsolutePath -Path $ModuleVersion -RelativeTo $HelpOutputFolder
     }
 
     "`tHelp output Version Folder = '$HelpOutputVersionFolder'"
 
-    $script:HelpOutputCultureFolder = Get-SamplerAbsolutePath -Path $HelpCultureInfo -RelativeTo $HelpOutputVersionFolder
+    $script:HelpOutputCultureFolder = Get-FactoryAbsolutePath -Path $HelpCultureInfo -RelativeTo $HelpOutputVersionFolder
     "`tHelp output Culture path   = '$HelpOutputCultureFolder'"
 
-    $script:DocOutputFolder = Get-SamplerAbsolutePath -Path 'docs' -RelativeTo $OutputDirectory
+    $script:DocOutputFolder = Get-FactoryAbsolutePath -Path 'docs' -RelativeTo $OutputDirectory
     "`tDocs output folder path    = '$DocOutputFolder'"
 
     $null = [bool]::TryParse($CopyHelpMamlToBuiltModuleBase, [ref]$script:CopyHelpMamlToBuiltModuleBase)
@@ -79,9 +79,9 @@ function Get-GenerateHelpPlatyPSVariables
 
 
 # Synopsis: Generate MAML from the built module (and add to module Base).
-Task Generate_MAML_from_built_module {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+task Generate_MAML_from_built_module {
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Get-GenerateHelpPlatyPSVariables
 
@@ -123,9 +123,9 @@ Task Generate_MAML_from_built_module {
 }
 
 # Synopsis: Generate (if absent) or Update the Markdown help source files for each locale folder (i.e. docs/en-US).
-Task Update_markdown_help_source {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+task Update_markdown_help_source {
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Get-GenerateHelpPlatyPSVariables
 
@@ -145,7 +145,7 @@ Task Update_markdown_help_source {
         $AlphabeticParamOrder = $true
         $WithModulePage = $true
         $ExcludeDontShow = $true
-        $MarkdownHelpMetadataAsString = '@{GeneratedBy = "Sampler update_help_source task"}'
+        $MarkdownHelpMetadataAsString = '@{GeneratedBy = "PSFactory update_help_source task"}'
 
         $generateHelpCommands = @"
             `$env:PSModulePath = '$Env:PSModulePath'
@@ -184,9 +184,9 @@ Task Update_markdown_help_source {
 }
 
 # Synopsis: Generates the MAML for each Locale found under the Help source folder (i.e. docs/en-US).
-Task Generate_MAML_from_markdown_help_source {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+task Generate_MAML_from_markdown_help_source {
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Get-GenerateHelpPlatyPSVariables
 

@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -19,7 +19,7 @@ AfterAll {
 Describe 'SetPsModulePath' -Tag x {
 
     BeforeAll {
-        $taskAlias = Get-Alias -Name 'SetPsModulePath.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'SetPsModulePath.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             #OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -28,14 +28,14 @@ Describe 'SetPsModulePath' -Tag x {
 
     It 'Should have exported the alias correct' {
 
-        $taskAlias.Name | Should -Be 'SetPsModulePath.build.Sampler.ib.tasks'
+        $taskAlias.Name | Should -Be 'SetPsModulePath.build.PSFactory.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'SetPsModulePath.build.ps1'
-        $taskAlias.Definition | Should -Match 'Sampler[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]SetPsModulePath\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]SetPsModulePath\.build\.ps1'
     }
 
     Context 'When setting the PSModulePath' {
         BeforeAll {
-            Mock -CommandName Set-SamplerPSModulePath
+            Mock -CommandName Set-FactoryPSModulePath
         }
 
         It 'Should run the build task without throwing' {
@@ -43,14 +43,14 @@ Describe 'SetPsModulePath' -Tag x {
                 Invoke-Build -Task 'Set_PSModulePath' -File $taskAlias.Definition @mockTaskParameters
             } | Should -Not -Throw
 
-            Assert-MockCalled -CommandName Set-SamplerPSModulePath -Exactly -Times 1 -Scope It
+            Assert-MockCalled -CommandName Set-FactoryPSModulePath -Exactly -Times 1 -Scope It
         }
     }
 }
 
 Describe 'CleanModule' {
     BeforeAll {
-        $taskAlias = Get-Alias -Name 'Clean.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Clean.ModuleBuilder.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -73,7 +73,7 @@ Describe 'CleanModule' {
 
 Describe 'CleanAll' {
     BeforeAll {
-        $taskAlias = Get-Alias -Name 'Clean.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Clean.ModuleBuilder.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'

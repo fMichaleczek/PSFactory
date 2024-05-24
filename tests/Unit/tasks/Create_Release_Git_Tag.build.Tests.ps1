@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -20,19 +20,19 @@ Describe 'Create_Release_Git_Tag' {
     BeforeAll {
         $buildTaskName = 'Create_Release_Git_Tag'
 
-        $taskAlias = Get-Alias -Name "$buildTaskName.build.Sampler.ib.tasks"
+        $taskAlias = Get-Alias -Name "$buildTaskName.build.PSFactory.ib.tasks"
     }
 
     It 'Should have exported the alias correct' {
-        $taskAlias.Name | Should -Be 'Create_Release_Git_Tag.build.Sampler.ib.tasks'
+        $taskAlias.Name | Should -Be 'Create_Release_Git_Tag.build.PSFactory.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'Create_Release_Git_Tag.build.ps1'
-        $taskAlias.Definition | Should -Match 'Sampler[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Create_Release_Git_Tag\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Create_Release_Git_Tag\.build\.ps1'
     }
 
     Context 'When creating a preview release tag' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
             function script:git
             {
@@ -41,9 +41,9 @@ Describe 'Create_Release_Git_Tag' {
 
             Mock -CommandName git
 
-            Mock -CommandName Sampler\Invoke-SamplerGit
+            Mock -CommandName PSFactory\Invoke-FactoryGit
 
-            Mock -CommandName Sampler\Invoke-SamplerGit -ParameterFilter {
+            Mock -CommandName PSFactory\Invoke-FactoryGit -ParameterFilter {
                 $Argument -contains 'rev-parse'
             } -MockWith {
                 return '0c23efc'
@@ -91,7 +91,7 @@ Describe 'Create_Release_Git_Tag' {
     Context 'When commit already got a tag' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+            . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
             # Stub for git executable
             function script:git
@@ -103,9 +103,9 @@ Describe 'Create_Release_Git_Tag' {
                 return 'v2.0.0'
             }
 
-            Mock -CommandName Sampler\Invoke-SamplerGit
+            Mock -CommandName PSFactory\Invoke-FactoryGit
 
-            Mock -CommandName Sampler\Invoke-SamplerGit -ParameterFilter {
+            Mock -CommandName PSFactory\Invoke-FactoryGit -ParameterFilter {
                 $Argument -contains 'rev-parse'
             } -MockWith {
                 return '0c23efc'

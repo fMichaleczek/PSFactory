@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -33,7 +33,7 @@ Describe 'Get-PesterOutputFileFileName' {
             PowerShellVersion = '7.2'
         }
 
-        $result = Sampler\Get-PesterOutputFileFileName @getPesterOutputFileFileNameParameters
+        $result = PSFactory\Get-PesterOutputFileFileName @getPesterOutputFileFileNameParameters
 
         $result | Should -Be 'MyModule_v2.0.0.Windows.7.2.xml'
     }

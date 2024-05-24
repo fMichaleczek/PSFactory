@@ -18,11 +18,11 @@ param (
 task Deploy_with_PSDeploy {
     if ([System.String]::IsNullOrEmpty($ProjectName))
     {
-        $ProjectName = Get-SamplerProjectName -BuildRoot $BuildRoot
+        $ProjectName = Get-FactoryProjectName -BuildRoot $BuildRoot
     }
 
-    $BuildOutput = Get-SamplerAbsolutePath -Path $BuildOutput -RelativeTo $BuildRoot
-    $DeployFile = Get-SamplerAbsolutePath -Path $DeployConfig -RelativeTo $BuildRoot
+    $BuildOutput = Get-FactoryAbsolutePath -Path $BuildOutput -RelativeTo $BuildRoot
+    $DeployFile = Get-FactoryAbsolutePath -Path $DeployConfig -RelativeTo $BuildRoot
     "Deploying Module based on $DeployConfig config"
 
     $InvokePSDeployArgs = @{

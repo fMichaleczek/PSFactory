@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,20 +18,20 @@ AfterAll {
 
 Describe 'JaCoCo.coverage' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.PSFactory.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'JaCoCo.coverage.build.Sampler.ib.tasks'
+        $taskAlias.Name | Should -Be 'JaCoCo.coverage.build.PSFactory.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'JaCoCo.coverage.build.ps1'
-        $taskAlias.Definition | Should -Match 'Sampler[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]JaCoCo\.coverage\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]JaCoCo\.coverage\.build\.ps1'
     }
 }
 
 Describe 'Merge_CodeCoverage_Files' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -139,9 +139,9 @@ Describe 'Merge_CodeCoverage_Files' {
 Describe 'Convert_Pester_Coverage' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'JaCoCo.coverage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -224,7 +224,7 @@ Describe 'Convert_Pester_Coverage' {
                     return 70
                 }
 
-                Mock -CommandName Get-SamplerAbsolutePath -ParameterFilter {
+                Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
                     $Path -match 'testResults'
                 } -MockWith {
                     return $TestDrive | Join-Path -ChildPath 'testResults'
@@ -234,7 +234,7 @@ Describe 'Convert_Pester_Coverage' {
                     return 'MyModuleCoverage.xml'
                 }
 
-                Mock -CommandName Get-SamplerCodeCoverageOutputFile -MockWith {
+                Mock -CommandName Get-FactoryCodeCoverageOutputFile -MockWith {
                     # Create the folder structure in the test drive.
                     New-Item -Path $PesterOutputFolder -ItemType Directory -Force | Out-Null
 
@@ -287,15 +287,15 @@ Describe 'Convert_Pester_Coverage' {
 
                 Mock -CommandName Convert-LineNumber
 
-                Mock -CommandName New-SamplerJaCoCoDocument -MockWith {
+                Mock -CommandName New-FactoryJaCoCoDocument -MockWith {
                     return [Xml] '<xml></xml>'
                 }
 
-                Mock -CommandName Out-SamplerXml -ParameterFilter {
+                Mock -CommandName Out-FactoryXml -ParameterFilter {
                     $Path -match 'source_coverage\.xml'
                 }
 
-                Mock -CommandName Out-SamplerXml -ParameterFilter {
+                Mock -CommandName Out-FactoryXml -ParameterFilter {
                     $Path -match '\.xml\.bak'
                 }
 
@@ -307,7 +307,7 @@ Describe 'Convert_Pester_Coverage' {
                     return [Xml] '<xml></xml>'
                 }
 
-                Mock -CommandName Out-SamplerXml -ParameterFilter {
+                Mock -CommandName Out-FactoryXml -ParameterFilter {
                     $Path -match 'CodeCov_MyModuleCoverage\.xml'
                 }
             }
@@ -317,7 +317,7 @@ Describe 'Convert_Pester_Coverage' {
                     Invoke-Build -Task 'Convert_Pester_Coverage' -File $taskAlias.Definition @mockTaskParameters
                 } | Should -Not -Throw
 
-                Should -Invoke -CommandName New-SamplerJaCoCoDocument -Exactly -Times 1 -Scope It
+                Should -Invoke -CommandName New-FactoryJaCoCoDocument -Exactly -Times 1 -Scope It
             }
         }
     }
@@ -329,7 +329,7 @@ Describe 'Convert_Pester_Coverage' {
                     return 70
                 }
 
-                Mock -CommandName Get-SamplerAbsolutePath -ParameterFilter {
+                Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
                     $Path -match 'testResults'
                 } -MockWith {
                     return $TestDrive | Join-Path -ChildPath 'testResults'
@@ -339,7 +339,7 @@ Describe 'Convert_Pester_Coverage' {
                     return 'MyModuleCoverage.xml'
                 }
 
-                Mock -CommandName Get-SamplerCodeCoverageOutputFile -MockWith {
+                Mock -CommandName Get-FactoryCodeCoverageOutputFile -MockWith {
                     # Create the folder structure in the test drive.
                     New-Item -Path $PesterOutputFolder -ItemType Directory -Force | Out-Null
 
@@ -393,15 +393,15 @@ Describe 'Convert_Pester_Coverage' {
 
                 Mock -CommandName Convert-LineNumber
 
-                Mock -CommandName New-SamplerJaCoCoDocument -MockWith {
+                Mock -CommandName New-FactoryJaCoCoDocument -MockWith {
                     return [Xml] '<xml></xml>'
                 }
 
-                Mock -CommandName Out-SamplerXml -ParameterFilter {
+                Mock -CommandName Out-FactoryXml -ParameterFilter {
                     $Path -match 'source_coverage\.xml'
                 }
 
-                Mock -CommandName Out-SamplerXml -ParameterFilter {
+                Mock -CommandName Out-FactoryXml -ParameterFilter {
                     $Path -match '\.xml\.bak'
                 }
 
@@ -413,7 +413,7 @@ Describe 'Convert_Pester_Coverage' {
                     return [Xml] '<xml></xml>'
                 }
 
-                Mock -CommandName Out-SamplerXml -ParameterFilter {
+                Mock -CommandName Out-FactoryXml -ParameterFilter {
                     $Path -match 'CodeCov_MyModuleCoverage\.xml'
                 }
             }
@@ -423,7 +423,7 @@ Describe 'Convert_Pester_Coverage' {
                     Invoke-Build -Task 'Convert_Pester_Coverage' -File $taskAlias.Definition @mockTaskParameters
                 } | Should -Not -Throw
 
-                Should -Invoke -CommandName New-SamplerJaCoCoDocument -Exactly -Times 1 -Scope It
+                Should -Invoke -CommandName New-FactoryJaCoCoDocument -Exactly -Times 1 -Scope It
             }
         }
     }

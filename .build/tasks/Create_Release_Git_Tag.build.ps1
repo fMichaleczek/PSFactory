@@ -45,7 +45,7 @@
 
     .NOTES
         This is a build task that is primarily meant to be run by Invoke-Build but
-        wrapped by the Sampler project's build.ps1 (https://github.com/gaelcolas/Sampler).
+        wrapped by the PSFactory project's build.ps1 (https://github.com/fmichaleczek/PSFactory).
 #>
 param
 (
@@ -103,13 +103,13 @@ task Create_Release_Git_Tag {
         return
     }
 
-    . Set-SamplerTaskVariable
+    . Set-FactoryTaskVariable
 
     <#
         This will return the tag on the HEAD commit, or blank if it
         fails (the error that is catched to $null).
 
-        This call should not use Invoke-SamplerGit since it should not throw
+        This call should not use Invoke-FactoryGit since it should not throw
         on error, but return $null if failing.
     #>
     try
@@ -148,19 +148,19 @@ task Create_Release_Git_Tag {
 
         Write-Build DarkGray "`tSetting git configuration."
 
-        Sampler\Invoke-SamplerGit -Argument @('config', 'user.name', $GitConfigUserName)
-        Sampler\Invoke-SamplerGit -Argument @('config', 'user.email', $GitConfigUserEmail)
+        PSFactory\Invoke-FactoryGit -Argument @('config', 'user.name', $GitConfigUserName)
+        PSFactory\Invoke-FactoryGit -Argument @('config', 'user.email', $GitConfigUserEmail)
 
         # Make empty line in output
         ''
 
         Write-Build DarkGray ("`tGetting HEAD commit for the default branch '{0}." -f $MainGitBranch)
 
-        $defaultBranchHeadCommit = Sampler\Invoke-SamplerGit -Argument @('rev-parse', "origin/$MainGitBranch")
+        $defaultBranchHeadCommit = PSFactory\Invoke-FactoryGit -Argument @('rev-parse', "origin/$MainGitBranch")
 
         Write-Build DarkGray ("`tCreating tag '{0}' on the commit '{1}'." -f $releaseTag, $defaultBranchHeadCommit)
 
-        Sampler\Invoke-SamplerGit -Argument @('tag', $releaseTag, $defaultBranchHeadCommit)
+        PSFactory\Invoke-FactoryGit -Argument @('tag', $releaseTag, $defaultBranchHeadCommit)
 
         Write-Build DarkGray ("`tPushing created tag '{0}' to the default branch '{1}'." -f $releaseTag, $MainGitBranch)
 
@@ -177,7 +177,7 @@ task Create_Release_Git_Tag {
 
         $pushArguments += @('-c', 'http.sslbackend="schannel"', 'push', 'origin', '--tags')
 
-        Sampler\Invoke-SamplerGit -Argument $pushArguments
+        PSFactory\Invoke-FactoryGit -Argument $pushArguments
 
         <#
             Wait for a few seconds so the tag have time to propegate.

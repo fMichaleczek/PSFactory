@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,17 +18,17 @@ AfterAll {
 
 Describe 'Invoke-Pester' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias.Name | Should -Be 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'Invoke-Pester.pester.build.ps1'
-        $taskAlias.Definition | Should -Match 'Sampler[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Invoke-Pester\.pester\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Invoke-Pester\.pester\.build\.ps1'
     }
 }
 
 Describe 'Import_Pester' {
     BeforeAll {
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
         Mock -CommandName Import-Module
     }
@@ -43,9 +43,9 @@ Describe 'Import_Pester' {
 Describe 'Invoke_Pester_Tests_v4' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -129,9 +129,9 @@ Describe 'Invoke_Pester_Tests_v4' {
 Describe 'Invoke_Pester_Tests_v5' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -248,9 +248,9 @@ Describe 'Invoke_Pester_Tests_v5' {
 Describe 'Fail_Build_If_Pester_Tests_Failed' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -314,9 +314,9 @@ Describe 'Fail_Build_If_Pester_Tests_Failed' {
 Describe 'Pester_If_Code_Coverage_Under_Threshold' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -448,9 +448,9 @@ Describe 'Pester_If_Code_Coverage_Under_Threshold' {
 Describe 'Pester_Run_Times' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Invoke-Pester.pester.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'

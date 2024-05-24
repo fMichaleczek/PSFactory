@@ -46,14 +46,14 @@ param
 
 # Synopsis: Making sure the Module meets some quality standard (help, tests)
 task Invoke_DscResource_Tests {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $DscTestOutputFolder = Get-SamplerAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
+    $DscTestOutputFolder = Get-FactoryAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
 
     "`tDSC Test Output Folder   = '$DscTestOutputFolder'"
 
-    $builtDscResourcesFolder = Get-SamplerAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
+    $builtDscResourcesFolder = Get-FactoryAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
 
     "`tBuilt DSC Resource Path  = '$builtDscResourcesFolder'"
 
@@ -241,14 +241,14 @@ task Fail_Build_If_DscResource_Tests_Failed {
     "Asserting that no test failed"
     ""
 
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $DscTestOutputFolder = Get-SamplerAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
+    $DscTestOutputFolder = Get-FactoryAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
 
     $os = Get-OperatingSystemShortName
 
-    $builtDscResourcesFolder = Get-SamplerAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
+    $builtDscResourcesFolder = Get-FactoryAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
 
     "`tBuilt DSC Resource Path  = '$builtDscResourcesFolder'"
 
@@ -272,10 +272,10 @@ task Fail_Build_If_DscResource_Tests_Failed {
 
 # Synopsis: Uploading Unit Test results to AppVeyor
 task Upload_DscResourceTest_Results_To_AppVeyor -If { (property BuildSystem 'unknown') -eq 'AppVeyor' } {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $DscTestOutputFolder = Get-SamplerAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
+    $DscTestOutputFolder = Get-FactoryAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
 
     if (-not (Test-Path -Path $DscTestOutputFolder))
     {
@@ -286,7 +286,7 @@ task Upload_DscResourceTest_Results_To_AppVeyor -If { (property BuildSystem 'unk
 
     $os = Get-OperatingSystemShortName
 
-    $builtDscResourcesFolder = Get-SamplerAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
+    $builtDscResourcesFolder = Get-FactoryAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
 
     "`tBuilt DSC Resource Path  = '$builtDscResourcesFolder'"
 

@@ -166,10 +166,10 @@ process
     # Execute the Build process from the .build.ps1 path.
     Push-Location -Path $PSScriptRoot -StackName 'BeforeBuild'
 
-    if (Test-Path -Path 'Sampler')
+    if (Test-Path -Path 'PSFactory')
     {
-        # We are in the Sampler project, load functions instead of Sampler module.
-        Get-ChildItem -Path "Sampler/P*/*.ps1" |
+        # We are in the PSFactory project, load functions instead of PSFactory module.
+        Get-ChildItem -Path "PSFactory/P*/*.ps1" |
             ForEach-Object -Process {
                 . $_.FullName
             }
@@ -545,5 +545,5 @@ begin
         return
     }
 
-    Set-Alias -Name 'Set-SamplerTaskVariable' -Value "$PSScriptRoot/Sampler/scripts/Set-SamplerTaskVariable.ps1"
+    Set-Alias -Name 'Set-FactoryTaskVariable' -Value "$PSScriptRoot/PSFactory/scripts/Set-FactoryTaskVariable.ps1"
 }

@@ -54,7 +54,7 @@
 
     .NOTES
         This is a build task that is primarily meant to be run by Invoke-Build but
-        wrapped by the Sampler project's build.ps1 (https://github.com/gaelcolas/Sampler).
+        wrapped by the PSFactory project's build.ps1 (https://github.com/fmichaleczek/PSFactory).
 #>
 param
 (
@@ -111,9 +111,9 @@ param
 
 # Synopsis: Creates a branch to update the changelog with the released version
 task Create_Changelog_Branch {
-    . Set-SamplerTaskVariable
+    . Set-FactoryTaskVariable
 
-    $ChangelogPath = Get-SamplerAbsolutePath -Path $ChangelogPath -RelativeTo $ProjectPath
+    $ChangelogPath = Get-FactoryAbsolutePath -Path $ChangelogPath -RelativeTo $ProjectPath
     "`Changelog Path                 = '$ChangelogPath'"
 
     foreach ($changelogConfigKey in @('UpdateChangelogOnPrerelease', 'FilesToAdd'))
@@ -148,9 +148,9 @@ task Create_Changelog_Branch {
 
     Write-Build DarkGray "`tSetting git configuration."
 
-    Sampler\Invoke-SamplerGit -Argument @('config', 'user.name', $GitConfigUserName)
-    Sampler\Invoke-SamplerGit -Argument @('config', 'user.email', $GitConfigUserEmail)
-    Sampler\Invoke-SamplerGit -Argument @('config', 'pull.rebase', 'true')
+    PSFactory\Invoke-FactoryGit -Argument @('config', 'user.name', $GitConfigUserName)
+    PSFactory\Invoke-FactoryGit -Argument @('config', 'user.email', $GitConfigUserEmail)
+    PSFactory\Invoke-FactoryGit -Argument @('config', 'pull.rebase', 'true')
 
     Write-Build DarkGray ("`tPulling latest commits and tags from branch '{0}'." -f $MainGitBranch)
 
@@ -168,18 +168,18 @@ task Create_Changelog_Branch {
     # Track this branch on the remote 'origin
     $pullArguments += @('-c', 'http.sslbackend="schannel"', 'pull', 'origin', $MainGitBranch, '--tag')
 
-    Sampler\Invoke-SamplerGit -Argument $pullArguments
+    PSFactory\Invoke-FactoryGit -Argument $pullArguments
 
     # Make empty line in output
     ""
 
     Write-Build DarkGray ("`tGetting HEAD commit for the default branch '{0}." -f $MainGitBranch)
 
-    $defaultBranchHeadCommit = Sampler\Invoke-SamplerGit -Argument @('rev-parse', "origin/$MainGitBranch")
+    $defaultBranchHeadCommit = PSFactory\Invoke-FactoryGit -Argument @('rev-parse', "origin/$MainGitBranch")
 
     Write-Build DarkGray ("`tGet tags at commit '{0}'." -f $defaultBranchHeadCommit)
 
-    $tagsAtCommit = Sampler\Invoke-SamplerGit -Argument @('tag', '-l', '--points-at', $defaultBranchHeadCommit)
+    $tagsAtCommit = PSFactory\Invoke-FactoryGit -Argument @('tag', '-l', '--points-at', $defaultBranchHeadCommit)
 
     Write-Build DarkGray ("`t`tFound tags: {0}" -f ($tagsAtCommit -join ' | '))
 
@@ -214,15 +214,15 @@ task Create_Changelog_Branch {
 
     Write-Build DarkGray "`tCreating branch $branchName."
 
-    Sampler\Invoke-SamplerGit -Argument @('checkout', '-B', $branchName)
+    PSFactory\Invoke-FactoryGit -Argument @('checkout', '-B', $branchName)
 
     Write-Build DarkGray "`tUpdating Changelog file."
 
     Update-Changelog -ReleaseVersion ($tagVersion -replace '^v') -LinkMode 'None' -Path $ChangelogPath -ErrorAction 'SilentlyContinue'
 
-    Sampler\Invoke-SamplerGit -Argument @('add', $ChangelogFilesToAdd)
+    PSFactory\Invoke-FactoryGit -Argument @('add', $ChangelogFilesToAdd)
 
-    Sampler\Invoke-SamplerGit -Argument @('commit', '-m', "Updating Changelog since $tagVersion +semver:skip")
+    PSFactory\Invoke-FactoryGit -Argument @('commit', '-m', "Updating Changelog since $tagVersion +semver:skip")
 
     Write-Build DarkGray ("`tPushing commit on branch '{0}' to the repository." -f $branchName)
 
@@ -240,7 +240,7 @@ task Create_Changelog_Branch {
     # Track this branch on the remote 'origin
     $pushArguments += @('-c', 'http.sslbackend="schannel"', 'push', '-u', 'origin', $BranchName)
 
-    Sampler\Invoke-SamplerGit -Argument $pushArguments
+    PSFactory\Invoke-FactoryGit -Argument $pushArguments
 
     Write-Build Green ('Created and pushed the changelog branch ''{0}''.' -f $BranchName)
 }

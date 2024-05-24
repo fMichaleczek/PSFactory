@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -65,7 +65,7 @@ Describe Add-Sample {
             # Test drive does not exist during discovery phase so it needs to be set here.
             $AddSampleParameters.DestinationPath = $TestDrive
 
-            { Sampler\Add-Sample @AddSampleParameters } | Should -Not -Throw
+            { PSFactory\Add-Sample @AddSampleParameters } | Should -Not -Throw
 
             Should -Invoke -CommandName Invoke-Plaster -Exactly -Times 1 -Scope It
         }

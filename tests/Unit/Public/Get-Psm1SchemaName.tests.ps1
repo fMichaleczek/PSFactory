@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -65,11 +65,11 @@ function MockConfigurationName {
         }
 
         It 'Should not return anything' {
-            Sampler\Get-Psm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+            PSFactory\Get-Psm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
         }
 
         It 'Should throw' {
-            { Sampler\Get-Psm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
+            { PSFactory\Get-Psm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
         }
     }
 
@@ -102,11 +102,11 @@ configuration MockConfigurationName2 {
         }
 
         It 'Should not return anything' {
-            Sampler\Get-Psm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+            PSFactory\Get-Psm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
         }
 
         It 'Should throw' {
-            { Sampler\Get-Psm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
+            { PSFactory\Get-Psm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
         }
     }
 
@@ -129,7 +129,7 @@ configuration MockConfigurationName {
         }
 
         It 'Should return the correct name of the configuration' {
-            $result = Sampler\Get-Psm1SchemaName -Path $TestDrive
+            $result = PSFactory\Get-Psm1SchemaName -Path $TestDrive
 
             $result | Should -Be MockConfigurationName
         }

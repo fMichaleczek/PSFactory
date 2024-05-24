@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,20 +18,20 @@ AfterAll {
 
 Describe 'ChocolateyPackage' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias.Name | Should -Be 'ChocolateyPackage.build.PSFactory.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'ChocolateyPackage.build.ps1'
-        $taskAlias.Definition | Should -Match 'Sampler[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]ChocolateyPackage\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]ChocolateyPackage\.build\.ps1'
     }
 }
 
 Describe 'copy_chocolatey_source_to_staging' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             SourcePath = Join-Path -Path $TestDrive -ChildPath 'MyModule/source'
@@ -61,9 +61,9 @@ Describe 'copy_chocolatey_source_to_staging' {
 Describe 'copy_paths_to_choco_staging' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             SourcePath = Join-Path -Path $TestDrive -ChildPath 'MyModule/source'
@@ -163,9 +163,9 @@ Describe 'copy_paths_to_choco_staging' {
 Describe 'upate_choco_nuspec_data' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             SourcePath = Join-Path -Path $TestDrive -ChildPath 'MyModule/source'
@@ -260,9 +260,9 @@ Describe 'upate_choco_nuspec_data' {
 Describe 'Build_Chocolatey_Package' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             SourcePath = Join-Path -Path $TestDrive -ChildPath 'MyModule/source'
@@ -403,9 +403,9 @@ Describe 'Build_Chocolatey_Package' {
 Describe 'Push_Chocolatey_Package' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'ChocolateyPackage.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             SourcePath = Join-Path -Path $TestDrive -ChildPath 'MyModule/source'

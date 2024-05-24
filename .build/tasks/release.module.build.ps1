@@ -101,10 +101,10 @@ param
 
 # Synopsis: Create ReleaseNotes from changelog and update the Changelog for release
 task Create_changelog_release_output {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $ChangeLogOutputPath = Get-SamplerAbsolutePath -Path 'CHANGELOG.md' -RelativeTo $OutputDirectory
+    $ChangeLogOutputPath = Get-FactoryAbsolutePath -Path 'CHANGELOG.md' -RelativeTo $OutputDirectory
 
     "`tChangeLogOutputPath   = '$ChangeLogOutputPath'"
 
@@ -208,8 +208,8 @@ task Create_changelog_release_output {
 
 # Synopsis: Publish Nuget package to a gallery.
 task publish_nupkg_to_gallery -if ($GalleryApiToken -and ((Get-Command -Name 'nuget' -ErrorAction 'SilentlyContinue') -or (Get-Command -Name 'dotnet' -ErrorAction 'SilentlyContinue'))) {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Import-Module -Name 'ModuleBuilder' -ErrorAction 'Stop'
 
@@ -244,8 +244,8 @@ task publish_nupkg_to_gallery -if ($GalleryApiToken -and ((Get-Command -Name 'nu
 
 # Synopsis: Packaging the module by Publishing to output folder (incl dependencies)
 task package_module_nupkg {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     #region Set output/ as PSRepository
     # Force registering the output repository mapping to the Project's output path
@@ -288,7 +288,7 @@ task package_module_nupkg {
     }
 
     # load module manifest
-    $ModuleInfo = Get-SamplerModuleInfo -ModuleManifestPath $builtModuleManifest
+    $ModuleInfo = Get-FactoryModuleInfo -ModuleManifestPath $builtModuleManifest
 
     # Publish dependencies (from environment) so we can publish the built module
     foreach ($module in $ModuleInfo.RequiredModules)
@@ -337,8 +337,8 @@ task package_module_nupkg {
 
 # Synopsis: Publish a built PowerShell module to a gallery.
 task publish_module_to_gallery -if ($GalleryApiToken -and (Get-Command -Name 'Publish-Module' -ErrorAction 'SilentlyContinue')) {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Import-Module -Name 'ModuleBuilder' -ErrorAction 'Stop'
 

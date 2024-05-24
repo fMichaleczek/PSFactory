@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -26,7 +26,7 @@ AfterAll {
 
 Describe 'Get-BuiltModuleVersion' {
     BeforeAll {
-        Mock -CommandName Get-SamplerBuiltModuleManifest -MockWith {
+        Mock -CommandName Get-FactoryBuiltModuleManifest -MockWith {
             return (Join-Path -Path $TestDrive -ChildPath 'MyModule.psd1')
         }
     }
@@ -41,7 +41,7 @@ Describe 'Get-BuiltModuleVersion' {
         }
 
         It 'Should return the correct semantic version' {
-            $result = Sampler\Get-BuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
+            $result = PSFactory\Get-BuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
 
             $result | Should -Be '2.1.1'
         }
@@ -62,7 +62,7 @@ Describe 'Get-BuiltModuleVersion' {
         }
 
         It 'Should return the correct semantic version' {
-            $result = Sampler\Get-BuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
+            $result = PSFactory\Get-BuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
 
             $result | Should -Be '2.1.1-preview.1'
         }

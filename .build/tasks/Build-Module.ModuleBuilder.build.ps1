@@ -38,9 +38,9 @@ param
 )
 
 # Synopsis: Build the Module based on its Build.psd1 definition
-Task Build_ModuleOutput_ModuleBuilder {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable -AsNewBuild
+task Build_ModuleOutput_ModuleBuilder {
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable -AsNewBuild
 
     Import-Module -Name ModuleBuilder -ErrorAction 'Stop'
 
@@ -126,9 +126,9 @@ Task Build_ModuleOutput_ModuleBuilder {
     }
 }
 
-Task Build_NestedModules_ModuleBuilder {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+task Build_NestedModules_ModuleBuilder {
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Import-Module -Name 'ModuleBuilder' -ErrorAction 'Stop'
 
@@ -206,7 +206,7 @@ Task Build_NestedModules_ModuleBuilder {
                         set to the path to the source nested module manifest.
                     #>
                     $nestedModuleSourceManifest = $ExecutionContext.InvokeCommand.ExpandString($cmdParam[$paramName])
-                    $nestedModuleSourceManifest = Get-SamplerAbsolutePath -Path $nestedModuleSourceManifest -RelativeTo $buildRoot
+                    $nestedModuleSourceManifest = Get-FactoryAbsolutePath -Path $nestedModuleSourceManifest -RelativeTo $buildRoot
 
                     # If the BuildInfo has been defined with the SourcePath folder, Append the Module Manifest
                     if (([System.io.FileInfo]$nestedModuleSourceManifest).Extension -ne '.psd1')
@@ -234,7 +234,7 @@ Task Build_NestedModules_ModuleBuilder {
 
                 if ($paramName -ne 'SemVer')
                 {
-                    $cmdParam[$paramName] = Get-SamplerAbsolutePath -Path $cmdParam[$paramName] -RelativeTo $BuildRoot
+                    $cmdParam[$paramName] = Get-FactoryAbsolutePath -Path $cmdParam[$paramName] -RelativeTo $BuildRoot
                     if (-not (Test-Path -Path $cmdParam[$paramName]))
                     {
                         $null = New-Item -Path $cmdParam[$paramName] -ItemType Directory -Force -ErrorAction Stop
@@ -301,7 +301,7 @@ Task Build_NestedModules_ModuleBuilder {
         Write-Build -Color 'Green' -Text "Done `r`n"
     }
 
-    $ModuleInfo = Get-SamplerModuleInfo -ModuleManifestPath $builtModuleManifest
+    $ModuleInfo = Get-FactoryModuleInfo -ModuleManifestPath $builtModuleManifest
 
     # Add to NestedModules to ModuleManifest
     if ($ModuleInfo.ContainsKey('NestedModules') -and $nestedModulesToAdd)
@@ -324,13 +324,13 @@ Task Build_NestedModules_ModuleBuilder {
     }
 }
 
-Task Build_DscResourcesToExport_ModuleBuilder {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+task Build_DscResourcesToExport_ModuleBuilder {
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     Import-Module -Name 'ModuleBuilder' -ErrorAction 'Stop'
 
-    $builtDscResourcesFolder = Get-SamplerAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
+    $builtDscResourcesFolder = Get-FactoryAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
 
     "`tBuilt DSC Resource Path  = '$builtDscResourcesFolder'"
 
@@ -411,7 +411,7 @@ Task Build_DscResourcesToExport_ModuleBuilder {
         }
     }
 
-    $ModuleInfo = Get-SamplerModuleInfo -ModuleManifestPath $builtModuleManifest
+    $ModuleInfo = Get-FactoryModuleInfo -ModuleManifestPath $builtModuleManifest
 
     # Add to DscResourcesToExport to ModuleManifest
     if ($ModuleInfo.ContainsKey('DscResourcesToExport') -and $DSCResourcesToAdd)
@@ -438,4 +438,4 @@ Task Build_DscResourcesToExport_ModuleBuilder {
     }
 }
 
-Task Build_Module_ModuleBuilder Build_ModuleOutput_ModuleBuilder, Build_DscResourcesToExport_ModuleBuilder
+task Build_Module_ModuleBuilder Build_ModuleOutput_ModuleBuilder, Build_DscResourcesToExport_ModuleBuilder

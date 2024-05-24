@@ -55,8 +55,8 @@ param
 
 # Synopsis: Merging several code coverage files together.
 task Merge_CodeCoverage_Files {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     $osShortName = Get-OperatingSystemShortName
 
@@ -64,7 +64,7 @@ task Merge_CodeCoverage_Files {
 
     $moduleFileName = '{0}.psm1' -f $ProjectName
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder            = '$PesterOutputFolder'"
 
@@ -98,7 +98,7 @@ task Merge_CodeCoverage_Files {
             PesterOutputFolder = $PesterOutputFolder
         }
 
-        $CodeCoverageOutputFile = Get-SamplerCodeCoverageOutputFile @getCodeCoverageOutputFile
+        $CodeCoverageOutputFile = Get-FactoryCodeCoverageOutputFile @getCodeCoverageOutputFile
 
         if (-not $CodeCoverageOutputFile)
         {
@@ -114,7 +114,7 @@ task Merge_CodeCoverage_Files {
             $CodeCoverageMergedOutputFile = $BuildInfo.CodeCoverage.CodeCoverageMergedOutputFile
         }
 
-        $CodeCoverageMergedOutputFile = Get-SamplerAbsolutePath -Path $CodeCoverageMergedOutputFile -RelativeTo $PesterOutputFolder
+        $CodeCoverageMergedOutputFile = Get-FactoryAbsolutePath -Path $CodeCoverageMergedOutputFile -RelativeTo $PesterOutputFolder
 
         "`tCode Coverage Merge Output File = $CodeCoverageMergedOutputFile"
 
@@ -243,8 +243,8 @@ function Start-CodeCoverageMerge
 
 # Synopsis: Convert JaCoCo coverage so it supports a built module by way of ModuleBuilder.
 task Convert_Pester_Coverage {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     $GetCodeCoverageThresholdParameters = @{
         RuntimeCodeCoverageThreshold = $CodeCoverageThreshold
@@ -260,7 +260,7 @@ task Convert_Pester_Coverage {
 
     "`tCode Coverage Threshold  = '$CodeCoverageThreshold'"
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
     "`tPester Output Folder     = '$PesterOutputFolder'"
 
     $osShortName = Get-OperatingSystemShortName
@@ -285,7 +285,7 @@ task Convert_Pester_Coverage {
         PesterOutputFolder = $PesterOutputFolder
     }
 
-    $CodeCoverageOutputFile = Get-SamplerCodeCoverageOutputFile @getCodeCoverageOutputFile
+    $CodeCoverageOutputFile = Get-FactoryCodeCoverageOutputFile @getCodeCoverageOutputFile
 
     if (-not $CodeCoverageOutputFile)
     {
@@ -437,13 +437,13 @@ task Convert_Pester_Coverage {
 
     Write-Build -Color 'DarkGray' -Text "`tBuilding new code coverage file against source."
 
-    $coverageXml = New-SamplerJaCoCoDocument -MissedCommands $missedCommands -HitCommands $hitCommands -PackageName $SourcePath -PackageDisplayName $ModuleVersionFolder
+    $coverageXml = New-FactoryJaCoCoDocument -MissedCommands $missedCommands -HitCommands $hitCommands -PackageName $SourcePath -PackageDisplayName $ModuleVersionFolder
 
     $newCoverageFilePath = Join-Path -Path $PesterOutputFolder -ChildPath 'source_coverage.xml'
 
     Write-Build -Color 'DarkGray' -Text "`tWriting converted code coverage file to '$newCoverageFilePath'."
 
-    Out-SamplerXml -Path $newCoverageFilePath -XmlDocument $coverageXml -Encoding $CodeCoverageOutputFileEncoding
+    Out-FactoryXml -Path $newCoverageFilePath -XmlDocument $coverageXml -Encoding $CodeCoverageOutputFileEncoding
 
     Write-Build -Color 'DarkGray' -Text "`tImporting original code coverage file '$CodeCoverageOutputFile'."
 
@@ -465,7 +465,7 @@ task Convert_Pester_Coverage {
 
     Write-Build -Color 'DarkGray' -Text "`tWriting a backup of original code coverage file to '$codeCoverageOutputBackupFile'."
 
-    Out-SamplerXml -Path $codeCoverageOutputBackupFile -XmlDocument $originalXml -Encoding $CodeCoverageOutputFileEncoding
+    Out-FactoryXml -Path $codeCoverageOutputBackupFile -XmlDocument $originalXml -Encoding $CodeCoverageOutputFileEncoding
 
     Write-Build -Color 'DarkGray' -Text "`tRemoving XML node from original code coverage."
 
@@ -499,7 +499,7 @@ task Convert_Pester_Coverage {
 
     Write-Build -Color 'DarkGray' -Text "`tWriting back updated code coverage file to '$CodeCoverageOutputFile'."
 
-    Out-SamplerXml -Path $CodeCoverageOutputFile -XmlDocument $targetXmlDocument -Encoding $CodeCoverageOutputFileEncoding
+    Out-FactoryXml -Path $CodeCoverageOutputFile -XmlDocument $targetXmlDocument -Encoding $CodeCoverageOutputFileEncoding
 
     Write-Build -Color Green -Text 'Code Coverage successfully converted.'
 }

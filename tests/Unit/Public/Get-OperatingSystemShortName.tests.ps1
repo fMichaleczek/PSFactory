@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -56,7 +56,7 @@ Describe 'Get-OperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = Sampler\Get-OperatingSystemShortName
+            $result = PSFactory\Get-OperatingSystemShortName
 
             $result | Should -Be 'Windows'
         }
@@ -83,7 +83,7 @@ Describe 'Get-OperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = Sampler\Get-OperatingSystemShortName
+            $result = PSFactory\Get-OperatingSystemShortName
 
             $result | Should -Be 'Windows'
         }
@@ -110,7 +110,7 @@ Describe 'Get-OperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = Sampler\Get-OperatingSystemShortName
+            $result = PSFactory\Get-OperatingSystemShortName
 
             $result | Should -Be 'MacOS'
         }
@@ -137,7 +137,7 @@ Describe 'Get-OperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = Sampler\Get-OperatingSystemShortName
+            $result = PSFactory\Get-OperatingSystemShortName
 
             $result | Should -Be 'Linux'
         }

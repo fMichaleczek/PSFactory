@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -63,7 +63,7 @@ Describe New-SampleModule {
         It 'New-Sample module should call Invoke-Plaster with test case <TestCaseName>' -ForEach $testCases {
             $NewSampleModuleParameters.DestinationPath = $TestDrive
 
-            { Sampler\New-SampleModule @NewSampleModuleParameters  } | Should -Not -Throw
+            { PSFactory\New-SampleModule @NewSampleModuleParameters  } | Should -Not -Throw
 
             Should -Invoke -CommandName Invoke-Plaster -Scope It -Times 1
         }

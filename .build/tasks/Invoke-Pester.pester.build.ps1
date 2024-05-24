@@ -84,10 +84,10 @@ task Invoke_Pester_Tests_v4 {
         return
     }
 
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder     = '$PesterOutputFolder"
 
@@ -183,7 +183,7 @@ task Invoke_Pester_Tests_v4 {
         ForEach-Object -Process {
             if ($_ -is [System.Collections.Hashtable])
             {
-                Convert-SamplerHashtableToString -Hashtable $_
+                Convert-FactoryHashtableToString -Hashtable $_
             }
             else
             {
@@ -245,7 +245,7 @@ task Invoke_Pester_Tests_v4 {
         PesterOutputFolder = $PesterOutputFolder
     }
 
-    $CodeCoverageOutputFile = Get-SamplerCodeCoverageOutputFile @getCodeCoverageOutputFile
+    $CodeCoverageOutputFile = Get-FactoryCodeCoverageOutputFile @getCodeCoverageOutputFile
 
     if (-not $CodeCoverageOutputFile)
     {
@@ -264,7 +264,7 @@ task Invoke_Pester_Tests_v4 {
     "`tCodeCoverageOutputFile          = $($pesterParams['CodeCoverageOutputFile'])"
     "`tCodeCoverageOutputFileFormat    = $($pesterParams['CodeCoverageOutputFileFormat'])"
 
-    $codeCoverageOutputFileEncoding = Get-SamplerCodeCoverageOutputFileEncoding -BuildInfo $BuildInfo
+    $codeCoverageOutputFileEncoding = Get-FactoryCodeCoverageOutputFileEncoding -BuildInfo $BuildInfo
 
     if ($codeCoverageThreshold -gt 0 -and $codeCoverageOutputFileEncoding)
     {
@@ -319,7 +319,7 @@ task Invoke_Pester_Tests_v4 {
             {
                 foreach ($scriptItem in $PesterScript)
                 {
-                    Write-Build -Color 'DarkGray' -Text "      ... $(Convert-SamplerHashtableToString -Hashtable $scriptItem)"
+                    Write-Build -Color 'DarkGray' -Text "      ... $(Convert-FactoryHashtableToString -Hashtable $scriptItem)"
 
                     $pesterParams.Script += $scriptItem
                 }
@@ -362,10 +362,10 @@ task Fail_Build_If_Pester_Tests_Failed {
     "Asserting that no test failed"
     ""
 
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder     = '$PesterOutputFolder'"
 
@@ -440,10 +440,10 @@ task Invoke_Pester_Tests_v5 {
         return
     }
 
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder    = '$PesterOutputFolder"
 
@@ -499,7 +499,7 @@ Consider updating the build configuration to the new advanced configuration opti
 # PESTER CONFIG START
 Pester:
   # Pester Advanced configuration.
-  # If a key is not set it will be using Sampler pipeline default value.
+  # If a key is not set it will be using PSFactory pipeline default value.
   Configuration:
     Run:
       Path:
@@ -524,7 +524,7 @@ Pester:
       OutputPath:
       OutputEncoding:
       TestSuiteName:
-  # Sampler pipeline configuration
+  # PSFactory pipeline configuration
   ExcludeFromCodeCoverage:
     $($buildConfigExcludeFromCodeCoverage)
 # PESTER CONFIG END
@@ -642,7 +642,7 @@ Pester:
 
     $defaultPesterParameters.Configuration.TestResult.Enabled = $true
     $defaultPesterParameters.Configuration.TestResult.OutputFormat = 'NUnitXml'
-    $defaultPesterParameters.Configuration.TestResult.OutputPath = Get-SamplerAbsolutePath -Path "NUnitXml_$pesterOutputFileFileName" -RelativeTo $PesterOutputFolder
+    $defaultPesterParameters.Configuration.TestResult.OutputPath = Get-FactoryAbsolutePath -Path "NUnitXml_$pesterOutputFileFileName" -RelativeTo $PesterOutputFolder
     $defaultPesterParameters.Configuration.TestResult.OutputEncoding = 'UTF8'
     $defaultPesterParameters.Configuration.TestResult.TestSuiteName = $ProjectName
 
@@ -775,13 +775,13 @@ Pester:
 
     if ($PesterConfigurationCodeCoverageOutputPath)
     {
-        $PesterConfigurationCodeCoverageOutputPath = Get-SamplerAbsolutePath -Path $PesterConfigurationCodeCoverageOutputPath -RelativeTo $PesterOutputFolder
+        $PesterConfigurationCodeCoverageOutputPath = Get-FactoryAbsolutePath -Path $PesterConfigurationCodeCoverageOutputPath -RelativeTo $PesterOutputFolder
         $pesterParameters.Configuration.CodeCoverage.OutputPath = $PesterConfigurationCodeCoverageOutputPath
     }
 
     if ($PesterConfigurationTestResultOutputPath)
     {
-        $PesterConfigurationTestResultOutputPath = Get-SamplerAbsolutePath -Path $PesterConfigurationTestResultOutputPath -RelativeTo $PesterOutputFolder
+        $PesterConfigurationTestResultOutputPath = Get-FactoryAbsolutePath -Path $PesterConfigurationTestResultOutputPath -RelativeTo $PesterOutputFolder
         $pesterParameters.Configuration.TestResult.OutputPath = $PesterConfigurationTestResultOutputPath
     }
 
@@ -932,12 +932,12 @@ task Pester_If_Code_Coverage_Under_Threshold {
         return
     }
 
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
     "`tCode Coverage Threshold    = '$CodeCoverageThreshold'"
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder       = '$PesterOutputFolder'"
 
@@ -1023,10 +1023,10 @@ task Pester_If_Code_Coverage_Under_Threshold {
 
 # Synopsis: Uploading Unit Test results to AppVeyor.
 task Upload_Test_Results_To_AppVeyor -If { (property BuildSystem 'unknown') -eq 'AppVeyor' } {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     "`tPester Output Folder     = '$PesterOutputFolder'"
 
@@ -1086,10 +1086,10 @@ task Pester_Run_Times {
         return
     }
 
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable
 
-    $PesterOutputFolder = Get-SamplerAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
+    $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
 
     $getPesterOutputFileFileNameParameters = @{
         ProjectName       = $ProjectName

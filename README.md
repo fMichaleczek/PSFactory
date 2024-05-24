@@ -1,15 +1,15 @@
-# Sampler Module [![Azure DevOps builds](https://img.shields.io/azure-devops/build/Synedgy/524b41a5-5330-4967-b2de-bed8fd44da08/1)](https://synedgy.visualstudio.com/Sampler/_build?definitionId=1&_a=summary)
+# PSFactory Module [![Azure DevOps builds](https://img.shields.io/azure-devops/build/Synedgy/524b41a5-5330-4967-b2de-bed8fd44da08/1)](https://synedgy.visualstudio.com/PSFactory/_build?definitionId=1&_a=summary)
 
-[![PowerShell Gallery (with prereleases)](https://img.shields.io/powershellgallery/vpre/Sampler?label=Sampler%20Preview)](https://www.powershellgallery.com/packages/Sampler/)
-[![PowerShell Gallery](https://img.shields.io/powershellgallery/v/Sampler?label=Sampler)](https://www.powershellgallery.com/packages/Sampler/)
-[![Azure DevOps tests](https://img.shields.io/azure-devops/tests/SynEdgy/Sampler/1)](https://synedgy.visualstudio.com/Sampler/_test/analytics?definitionId=1&contextType=build)
-![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/Synedgy/Sampler/1)
-![PowerShell Gallery](https://img.shields.io/powershellgallery/p/Sampler)
+[![PowerShell Gallery (with prereleases)](https://img.shields.io/powershellgallery/vpre/PSFactory?label=PSFactory%20Preview)](https://www.powershellgallery.com/packages/PSFactory/)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/v/PSFactory?label=PSFactory)](https://www.powershellgallery.com/packages/PSFactory/)
+[![Azure DevOps tests](https://img.shields.io/azure-devops/tests/SynEdgy/PSFactory/1)](https://synedgy.visualstudio.com/PSFactory/_test/analytics?definitionId=1&contextType=build)
+![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/Synedgy/PSFactory/1)
+![PowerShell Gallery](https://img.shields.io/powershellgallery/p/PSFactory)
 
 This project is used to scaffold a PowerShell module project, complete with
 PowerShell build and deploy pipeline automation.
 
-The Sampler module in itself serves several purposes:
+The PSFactory module in itself serves several purposes:
 
 - Quickly scaffold a PowerShell module project that can build and enforce some good practices.
 - Provide a minimum set of [InvokeBuild](https://github.com/nightroman/Invoke-Build)
@@ -26,17 +26,17 @@ tasks that help you build, test, pack and publish your module.
 
 Check the video for a quick intro:
 
-> _Note: The video was made when Sampler was in early stages. Since that time_
+> _Note: The video was made when PSFactory was in early stages. Since that time_
 > _there have been a lot of improvements and changes, so please read the_
 > _documentation below._
 
-[![Sampler demo video](https://img.youtube.com/vi/bbpFBsl8K9k/0.jpg)](https://www.youtube.com/watch?v=bbpFBsl8K9k&ab_channel=DSCCommunity)
+[![PSFactory demo video](https://img.youtube.com/vi/bbpFBsl8K9k/0.jpg)](https://www.youtube.com/watch?v=bbpFBsl8K9k&ab_channel=DSCCommunity)
 
 ## Prerequisites
 
 ### Resolving dependencies
 
-The Sampler templates is configured to use PSResourceGet as the method of
+The PSFactory templates is configured to use PSResourceGet as the method of
 resolving dependencies. The property `UsePSResourceGet` is default configured
 to `$true` in the file Resolve-Dependency.psd1. If that configuration is
 removed or disabled (set to `$false`) then resolving dependencies will
@@ -241,7 +241,7 @@ the file `build.yaml` is where you configure and customize it.
 Creates a module with minimal structure and pipeline automation.
 
 ```powershell
-Install-Module -Name 'Sampler' -Scope 'CurrentUser'
+Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -259,7 +259,7 @@ New-SampleModule @newSampleModuleParameters
 Creates a simple module without the build automation.
 
 ```powershell
-Install-Module -Name 'Sampler' -Scope 'CurrentUser'
+Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -277,7 +277,7 @@ New-SampleModule @newSampleModuleParameters
 Creates a module with complete structure and example files.
 
 ```powershell
-Install-Module -Name 'Sampler' -Scope 'CurrentUser'
+Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -296,7 +296,7 @@ Creates a DSC module according to the DSC Community baseline with a pipeline
 for build, test, and release automation.
 
 ```powershell
-Install-Module -Name 'Sampler' -Scope 'CurrentUser'
+Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -314,12 +314,12 @@ New-SampleModule @newSampleModuleParameters
 Will prompt you for more details as to what you'd like to scaffold.
 
 ```powershell
-Install-Module -Name 'Sampler' -Scope 'CurrentUser'
+Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
 
-$samplerModule = Import-Module -Name Sampler -PassThru
+$factoryModule = Import-Module -Name PSFactory -PassThru
 
 $invokePlasterParameters = @{
-   TemplatePath    = Join-Path -Path $samplerModule.ModuleBase -ChildPath 'Templates/Sampler'
+   TemplatePath    = Join-Path -Path $factoryModule.ModuleBase -ChildPath 'Templates/PSFactory'
    DestinationPath   = 'C:\source'
    ModuleType        = 'CustomModule'
    ModuleName        = 'MyCustomModule'
@@ -527,11 +527,11 @@ This runs all the quality tests:
 
 To run a specific test file, again use the parameter `PesterPath` and
 optionally `CodeCoverageThreshold` set to `0` to turn off code coverage.
-This runs just the specific test file `New-SamplerXmlJaCoCoCounter.tests.ps1`:
+This runs just the specific test file `New-FactoryXmlJaCoCoCounter.tests.ps1`:
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-./build.ps1 -Tasks test -PesterPath ./tests/Unit/Private/New-SamplerXmlJaCoCoCounter.tests.ps1 -CodeCoverageThreshold 0
+./build.ps1 -Tasks test -PesterPath ./tests/Unit/Private/New-FactoryXmlJaCoCoCounter.tests.ps1 -CodeCoverageThreshold 0
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -603,15 +603,15 @@ environment like so:
 1. Hand over the task execution to `Invoke-Build` to run the configured
    workflow.
 
-## About Sampler build workflow
+## About PSFactory build workflow
 
-Let's look at the pipeline of the `Sampler` module itself to better understand
+Let's look at the pipeline of the `PSFactory` module itself to better understand
 how the pipeline automation is configured for a project created using a
-template from the Sampler module.
+template from the PSFactory module.
 
-> **NOTE:** Depending on the Sampler template used when creating a new project
+> **NOTE:** Depending on the PSFactory template used when creating a new project
 > there can be additional configuration options - but they can all be added
-> manually when those options are needed. The Sampler project itself does not use
+> manually when those options are needed. The PSFactory project itself does not use
 > all features available (an example is DSC resources documentation generation).
 
 ### Default Workflow Currently configured
@@ -652,13 +652,13 @@ The tasks `build` and `tests` are meta-tasks or workflow calling other tasks:
 ```
 
 Those tasks are imported from a module, in this case from
-the `.build/` folder, from this `Sampler` module,
+the `.build/` folder, from this `PSFactory` module,
 but for another module you would use this line in your `build.yml` config:
 
 ```yaml
 ModuleBuildTasks:
-  Sampler:
-    - '*.build.Sampler.ib.tasks' # this means: import (dot source) all aliases ending with .ib.tasks exported by 'Sampler' module
+  PSFactory:
+    - '*.build.PSFactory.ib.tasks' # this means: import (dot source) all aliases ending with .ib.tasks exported by 'PSFactory' module
 ```
 
 You can edit your `build.yml` to change the workflow, add a custom task,
@@ -684,7 +684,7 @@ _Guest Configuration_. This process will be replaced with a Plaster template.
 1. Start by creating a new project using the template `dsccommunity`.
 
    ```powershell
-   Install-Module -Name 'Sampler' -Scope 'CurrentUser'
+   Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
 
    $newSampleModuleParameters = @{
       DestinationPath   = 'C:\source'
@@ -820,7 +820,7 @@ Refer to the comment-based help for more information about these commands.
 ### `Add-Sample`
 
 This command is used to invoke a plaster template built-in the
-Sampler module. With this function you can bootstrap your module project
+PSFactory module. With this function you can bootstrap your module project
 by adding classes, functions and associated tests, examples and configuration
 elements.
 
@@ -845,7 +845,7 @@ Add-Sample -Sample PublicFunction -PublicFunctionName Get-MyStuff
 This example adds a public function to the module (in the current folder),
 with a sample unit test that test the public function.
 
-### `Invoke-SamplerGit`
+### `Invoke-FactoryGit`
 
 This command executes git with the provided arguments and throws an error
 if the call failed.
@@ -854,7 +854,7 @@ if the call failed.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Invoke-SamplerGit [-Argument] <string[]> [<CommonParameters>]
+Invoke-FactoryGit [-Argument] <string[]> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -865,7 +865,7 @@ Invoke-SamplerGit [-Argument] <string[]> [<CommonParameters>]
 #### Example
 
 ```powershell
-Invoke-SamplerGit -Argument @('config', 'user.name', 'MyName')
+Invoke-FactoryGit -Argument @('config', 'user.name', 'MyName')
 ```
 
 Calls git to set user name in the git config.
@@ -905,11 +905,11 @@ See section [Usage](#usage).
 ## Commands for Build Tasks
 
 These commands are primarily meant to be used in tasks that exist either
-in Sampler or in third-party modules.
+in PSFactory or in third-party modules.
 
 Refer to the comment-based help for more information about these commands.
 
-### `Convert-SamplerHashtableToString`
+### `Convert-FactoryHashtableToString`
 
 Convert a Hashtable to a string representation. For instance, calling the
 function with this hashtable:
@@ -928,7 +928,7 @@ a=1; b=2; c=3; d={dd=abcd}
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Convert-SamplerHashtableToString [[-Hashtable] <Hashtable>] [<CommonParameters>]
+Convert-FactoryHashtableToString [[-Hashtable] <Hashtable>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -939,7 +939,7 @@ Convert-SamplerHashtableToString [[-Hashtable] <Hashtable>] [<CommonParameters>]
 #### Example
 
 ```powershell
-Convert-SamplerhashtableToString -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
+Convert-FactoryhashtableToString -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
 ```
 
 This example will return the string representation of the provided hashtable.
@@ -947,7 +947,7 @@ This example will return the string representation of the provided hashtable.
 ### `Get-BuiltModuleVersion`
 
 Will read the properties `ModuleVersion` and `PrivateData.PSData.Prerelease` tag
-of the module manifest for a module that has been built by Sampler. The command
+of the module manifest for a module that has been built by PSFactory. The command
 looks into the **OutputDirectory** where the project's module should have been
 built.
 
@@ -1118,13 +1118,13 @@ Get-OperatingSystemShortName [<CommonParameters>]
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-PesterOutputFileFileName -ProjectName 'Sampler' -ModuleVersion '0.110.4-preview001' -OsShortName 'Windows' -PowerShellVersion '5.1'
+Get-PesterOutputFileFileName -ProjectName 'PSFactory' -ModuleVersion '0.110.4-preview001' -OsShortName 'Windows' -PowerShellVersion '5.1'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
-This example will return the string `Sampler_v0.110.4-preview001.Windows.5.1.xml`.
+This example will return the string `PSFactory_v0.110.4-preview001.Windows.5.1.xml`.
 
-### `Get-SamplerAbsolutePath`
+### `Get-FactoryAbsolutePath`
 
 This command will resolve the absolute value of a path, whether it's
 potentially relative to another path, relative to the current working
@@ -1141,7 +1141,7 @@ The path does not need to exist, but the command will use the right
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerAbsolutePath [[-Path] <String>] [[-RelativeTo] <String>] [<CommonParameters>]
+Get-FactoryAbsolutePath [[-Path] <String>] [[-RelativeTo] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1152,18 +1152,18 @@ Get-SamplerAbsolutePath [[-Path] <String>] [[-RelativeTo] <String>] [<CommonPara
 #### Example
 
 ```powershell
-Get-SamplerAbsolutePath -Path '/src' -RelativeTo 'C:\Windows'
+Get-FactoryAbsolutePath -Path '/src' -RelativeTo 'C:\Windows'
 ```
 
 This example will return the string `C:\src` on Windows.
 
 ```powershell
-Get-SamplerAbsolutePath -Path 'MySubFolder' -RelativeTo '/src'
+Get-FactoryAbsolutePath -Path 'MySubFolder' -RelativeTo '/src'
 ```
 
 This example will return the string `C:\src\MySubFolder` on Windows.
 
-### `Get-SamplerBuiltModuleBase`
+### `Get-FactoryBuiltModuleBase`
 
 This command returns the module base of the built module.
 
@@ -1171,7 +1171,7 @@ This command returns the module base of the built module.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerBuiltModuleBase [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
+Get-FactoryBuiltModuleBase [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
   [-ModuleName] <String> [-VersionedOutputDirectory] [[-ModuleVersion] <String>]
   [<CommonParameters>]
 ```
@@ -1185,13 +1185,13 @@ Get-SamplerBuiltModuleBase [-OutputDirectory] <String> [[-BuiltModuleSubdirector
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-SamplerBuiltModuleBase -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
+Get-FactoryBuiltModuleBase -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the string `C:\src\output\Module\stuff\3.1.2`.
 
-### `Get-SamplerBuiltModuleManifest`
+### `Get-FactoryBuiltModuleManifest`
 
 This command returns the path to the built module's manifest.
 
@@ -1199,7 +1199,7 @@ This command returns the path to the built module's manifest.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerBuiltModuleManifest [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
+Get-FactoryBuiltModuleManifest [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
   [-ModuleName] <String> [-VersionedOutputDirectory] [[-ModuleVersion] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1212,13 +1212,13 @@ Get-SamplerBuiltModuleManifest [-OutputDirectory] <String> [[-BuiltModuleSubdire
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-SamplerBuiltModuleManifest -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
+Get-FactoryBuiltModuleManifest -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the string `C:\src\output\Module\stuff\3.1.2\stuff.psd1`.
 
-### `Get-SamplerCodeCoverageOutputFile`
+### `Get-FactoryCodeCoverageOutputFile`
 
 This command resolves the code coverage output file path from the project's
 build configuration.
@@ -1227,7 +1227,7 @@ build configuration.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerCodeCoverageOutputFile [-BuildInfo] <PSObject> [-PesterOutputFolder] <String>
+Get-FactoryCodeCoverageOutputFile [-BuildInfo] <PSObject> [-PesterOutputFolder] <String>
   [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1240,13 +1240,13 @@ Get-SamplerCodeCoverageOutputFile [-BuildInfo] <PSObject> [-PesterOutputFolder] 
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-SamplerCodeCoverageOutputFile -BuildInfo $buildInfo -PesterOutputFolder 'C:\src\MyModule\Output\testResults'
+Get-FactoryCodeCoverageOutputFile -BuildInfo $buildInfo -PesterOutputFolder 'C:\src\MyModule\Output\testResults'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the code coverage output file path.
 
-### `Get-SamplerCodeCoverageOutputFileEncoding`
+### `Get-FactoryCodeCoverageOutputFileEncoding`
 
 This command resolves the code coverage output file encoding from the project's
 build configuration.
@@ -1255,7 +1255,7 @@ build configuration.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerCodeCoverageOutputFileEncoding [-BuildInfo] <PSObject> [<CommonParameters>]
+Get-FactoryCodeCoverageOutputFileEncoding [-BuildInfo] <PSObject> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1267,13 +1267,13 @@ Get-SamplerCodeCoverageOutputFileEncoding [-BuildInfo] <PSObject> [<CommonParame
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-SamplerCodeCoverageOutputFileEncoding -BuildInfo $buildInfo
+Get-FactoryCodeCoverageOutputFileEncoding -BuildInfo $buildInfo
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the code coverage output file encoding.
 
-### `Get-SamplerModuleInfo`
+### `Get-FactoryModuleInfo`
 
 This command loads a module manifest and returns the hashtable.
 This implementation works around the issue where Windows PowerShell has
@@ -1284,7 +1284,7 @@ _PowerShell extension_.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerModuleInfo [-ModuleManifestPath] <String> [<CommonParameters>]
+Get-FactoryModuleInfo [-ModuleManifestPath] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1296,13 +1296,13 @@ Get-SamplerModuleInfo [-ModuleManifestPath] <String> [<CommonParameters>]
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-SamplerModuleInfo -ModuleManifestPath 'C:\src\MyProject\output\MyProject\MyProject.psd1'
+Get-FactoryModuleInfo -ModuleManifestPath 'C:\src\MyProject\output\MyProject\MyProject.psd1'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the module manifest's hashtable.
 
-### `Get-SamplerModuleRootPath`
+### `Get-FactoryModuleRootPath`
 
 This command reads the module manifest (.psd1) and if the `ModuleRoot` property
 is defined it will resolve its absolute path based on the module manifest's
@@ -1313,7 +1313,7 @@ return `$null`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerModuleRootPath [-ModuleManifestPath] <String> [<CommonParameters>]
+Get-FactoryModuleRootPath [-ModuleManifestPath] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1325,13 +1325,13 @@ Get-SamplerModuleRootPath [-ModuleManifestPath] <String> [<CommonParameters>]
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-SamplerModuleRootPath -ModuleManifestPath C:\src\MyModule\output\MyModule\2.3.4\MyModule.psd1
+Get-FactoryModuleRootPath -ModuleManifestPath C:\src\MyModule\output\MyModule\2.3.4\MyModule.psd1
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the path to module script file, e.g. `C:\src\MyModule\output\MyModule\2.3.4\MyModule.psm1`.
 
-### `Get-SamplerProjectName`
+### `Get-FactoryProjectName`
 
 This command returns the project name based on the module manifest, if no
 module manifest is available it will return `$null`.
@@ -1340,7 +1340,7 @@ module manifest is available it will return `$null`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerProjectName [-BuildRoot] <String> [<CommonParameters>]
+Get-FactoryProjectName [-BuildRoot] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1351,12 +1351,12 @@ Get-SamplerProjectName [-BuildRoot] <String> [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-SamplerProjectName -BuildRoot 'C:\src\MyModule'
+Get-FactoryProjectName -BuildRoot 'C:\src\MyModule'
 ```
 
 This example will return the project name of the module in the path `C:\src\MyModule`.
 
-### `Get-SamplerSourcePath`
+### `Get-FactorySourcePath`
 
 This command returns the project's source path based on the module manifest,
 if no module manifest is available it will return `$null`.
@@ -1365,7 +1365,7 @@ if no module manifest is available it will return `$null`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-SamplerSourcePath [-BuildRoot] <String> [<CommonParameters>]
+Get-FactorySourcePath [-BuildRoot] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1376,7 +1376,7 @@ Get-SamplerSourcePath [-BuildRoot] <String> [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-SamplerSourcePath -BuildRoot 'C:\src\MyModule'
+Get-FactorySourcePath -BuildRoot 'C:\src\MyModule'
 ```
 
 This example will return the project's source path of the module in the
@@ -1413,7 +1413,7 @@ Merge-JaCoCoReport -OriginalDocument 'C:\src\MyModule\Output\JaCoCoRun_linux.xml
 This example will merge the JaCoCo report `JaCoCoRun_windows.xml` into the
 JaCoCo report `JaCoCoRun_linux.xml` and then return the resulting JaCoCo report.
 
-### `New-SamplerJaCoCoDocument`
+### `New-FactoryJaCoCoDocument`
 
 This command creates a new JaCoCo XML document based on the provided missed
 and hit lines. This command is usually used together with the output object
@@ -1424,7 +1424,7 @@ from Pester that also have been passed through ModuleBuilder's command
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-New-SamplerJaCoCoDocument [-MissedCommands] <Object[]> [-HitCommands] <Object[]>
+New-FactoryJaCoCoDocument [-MissedCommands] <Object[]> [-HitCommands] <Object[]>
   [-PackageName] <String> [[-PackageDisplayName] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1446,7 +1446,7 @@ $pesterObject.CodeCoverage.MissedCommands |
 $pesterObject.CodeCoverage.HitCommands |
    Convert-LineNumber -ErrorAction 'Stop' -PassThru | Out-Null
 
-New-SamplerJaCoCoDocument `
+New-FactoryJaCoCoDocument `
    -MissedCommands $pesterObject.CodeCoverage.MissedCommands `
    -HitCommands $pesterObject.CodeCoverage.HitCommands `
    -PackageName 'source'
@@ -1460,7 +1460,7 @@ the built module script file to the source script files.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-New-SamplerJaCoCoDocument `
+New-FactoryJaCoCoDocument `
    -MissedCommands @{
          Class            = 'ResourceBase'
          Function         = 'Compare'
@@ -1482,7 +1482,7 @@ New-SamplerJaCoCoDocument `
 This example will create a new JaCoCo report based on the two hashtables
 containing hit or missed line.
 
-### `Out-SamplerXml`
+### `Out-FactoryXml`
 
 This command outputs an XML document to the file specified in the parameter
 **Path**.
@@ -1491,7 +1491,7 @@ This command outputs an XML document to the file specified in the parameter
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Out-SamplerXml [-XmlDocument] <XmlDocument> [-Path] <String> [[-Encoding] <String>]
+Out-FactoryXml [-XmlDocument] <XmlDocument> [-Path] <String> [[-Encoding] <String>]
   [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1504,14 +1504,14 @@ None.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Out-SamplerXml -Path 'C:\temp\my.xml' -XmlDocument '<?xml version="1.0"?><a><b /></a>' -Encoding 'UTF8'
+Out-FactoryXml -Path 'C:\temp\my.xml' -XmlDocument '<?xml version="1.0"?><a><b /></a>' -Encoding 'UTF8'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will create a new XML file based on the XML document passed
 in the parameter **XmlDocument**.
 
-### `Set-SamplerTaskVariable`
+### `Set-FactoryTaskVariable`
 
 This is an alias that points to a script file that is meant to be dot-sourced
 from (in) a build task. The script will set common task variables for a build
@@ -1519,21 +1519,21 @@ task. This function should normally never be called outside of a build task, but
 an exception can be tests; tests can call the alias to set the values prior to
 running tests.
 
-> **Note:** Running the command `Get-Help -Name 'Set-SamplerTaskVariable'` will
+> **Note:** Running the command `Get-Help -Name 'Set-FactoryTaskVariable'` will
 > only return help for the alias. To see the comment-based help for the script,
 > run:
 >
 > ```powershell
-> Import-Module -Name Sampler
+> Import-Module -Name PSFactory
 >
-> Get-Help -Name (Get-Alias -Name 'Set-SamplerTaskVariable').Definition -Detailed
+> Get-Help -Name (Get-Alias -Name 'Set-FactoryTaskVariable').Definition -Detailed
 > ```
 
 #### Syntax
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Set-SamplerTaskVariable [-AsNewBuild] [<CommonParameters>]
+Set-FactoryTaskVariable [-AsNewBuild] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1546,7 +1546,7 @@ for more information about the variables that are set.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-. Set-SamplerTaskVariable
+. Set-FactoryTaskVariable
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1555,7 +1555,7 @@ by not checking after the module manifest in the built module.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-. Set-SamplerTaskVariable -AsNewBuild
+. Set-FactoryTaskVariable -AsNewBuild
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1876,7 +1876,7 @@ of the build task.
 
 ```yaml
 ####################################################
-#           Setting Sampler PSModulePath           #
+#           Setting PSFactory PSModulePath           #
 ####################################################
 SetPSModulePath:
   PSModulePath: C:\Users\Install\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules;c:\Users\Install\.vscode\extensions\ms-vscode.powershell-2022.5.1\modules;

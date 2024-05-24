@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'Sampler'
+    $script:moduleName = 'PSFactory'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,18 +18,18 @@ AfterAll {
 
 Describe 'Build-Module.ModuleBuilder' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'Build-Module.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias.Name | Should -Be 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'Build-Module.ModuleBuilder.build.ps1'
-        $taskAlias.Definition | Should -Match 'Sampler[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Build-Module\.ModuleBuilder\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Build-Module\.ModuleBuilder\.build\.ps1'
     }
 }
 
 Describe 'Build_ModuleOutput_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
         $BuildInfo = @{
             CopyPaths = @('folder1','folder2')
@@ -97,7 +97,7 @@ Describe 'Build_ModuleOutput_ModuleBuilder' {
 
         Mock -CommandName Update-Metadata -RemoveParameterValidation 'Path'
 
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -116,13 +116,13 @@ Describe 'Build_ModuleOutput_ModuleBuilder' {
 Describe 'Build_NestedModules_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
         $BuildInfo = @{
             CopyPaths = @('folder1','folder2')
         }
 
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -133,7 +133,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
 
     Context 'When build configuration does not contain nested module' {
         BeforeAll {
-            Mock -CommandName Get-SamplerModuleInfo -MockWith {
+            Mock -CommandName Get-FactoryModuleInfo -MockWith {
                 return @{
                     NestedModules = @()
                 }
@@ -159,7 +159,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -190,7 +190,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -222,7 +222,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -250,7 +250,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -279,7 +279,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -316,7 +316,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                             }
                         }
 
-                        Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                        Mock -CommandName Get-FactoryModuleInfo -MockWith {
                             return @{
                                 NestedModules = @()
                             }
@@ -372,7 +372,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                             }
                         }
 
-                        Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                        Mock -CommandName Get-FactoryModuleInfo -MockWith {
                             return @{
                                 NestedModules = @()
                             }
@@ -434,7 +434,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -491,7 +491,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                     }
                 }
 
-                Mock -CommandName Get-SamplerModuleInfo -MockWith {
+                Mock -CommandName Get-FactoryModuleInfo -MockWith {
                     return @{
                         NestedModules = @('PreviousNestedModule')
                     }
@@ -543,9 +543,9 @@ Describe 'Build_NestedModules_ModuleBuilder' {
 Describe 'Build_DscResourcesToExport_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../TestHelpers/MockSetSamplerTaskVariable
+        . $PSScriptRoot/../TestHelpers/MockSetPSFactoryTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.Sampler.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -561,7 +561,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
             # Need to create the folder so mock for Get-ChildItem work.
             New-Item -Path $mockModuleDSCResourcePath -ItemType Directory -Force | Out-Null
 
-            Mock -CommandName Get-SamplerAbsolutePath -ParameterFilter {
+            Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
                 $Path -eq 'DSCResources'
             } -MockWith {
                 return $mockModuleDSCResourcePath
@@ -588,7 +588,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 }
             }
 
-            Mock -CommandName Get-SamplerModuleInfo -MockWith {
+            Mock -CommandName Get-FactoryModuleInfo -MockWith {
                 return @{
                     DscResourcesToExport = @()
                 }
@@ -622,7 +622,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
             # Need to create the folder so mock for Get-ChildItem work.
             New-Item -Path $mockModuleDSCResourcePath -ItemType Directory -Force | Out-Null
 
-            Mock -CommandName Get-SamplerAbsolutePath -ParameterFilter {
+            Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
                 $Path -eq 'DSCResources'
             } -MockWith {
                 return $mockModuleDSCResourcePath
@@ -646,7 +646,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 'MyResource'
             }
 
-            Mock -CommandName Get-SamplerModuleInfo -MockWith {
+            Mock -CommandName Get-FactoryModuleInfo -MockWith {
                 return @{
                     DscResourcesToExport = @()
                 }
@@ -678,7 +678,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
             # Mock a path that does not exist
             $mockModuleDSCResourcePath = $TestDrive | Join-Path -ChildPath 'NoModule' | Join-Path -ChildPath 'DSCResources'
 
-            Mock -CommandName Get-SamplerAbsolutePath -ParameterFilter {
+            Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
                 $Path -eq 'DSCResources'
             } -MockWith {
                 return $mockModuleDSCResourcePath
@@ -686,7 +686,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
 
             <#
                 Be careful to make sure this only mock Test-Path in the task, not
-                any Test-Path that exist in Set-SamplerTaskVariable
+                any Test-Path that exist in Set-FactoryTaskVariable
             #>
             Mock -CommandName Test-Path -MockWith {
                 return $true
@@ -704,7 +704,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 return $null
             }
 
-            Mock -CommandName Get-SamplerModuleInfo -MockWith {
+            Mock -CommandName Get-FactoryModuleInfo -MockWith {
                 return @{
                     DscResourcesToExport = @()
                 }

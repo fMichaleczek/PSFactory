@@ -19,7 +19,7 @@
     ModuleBuilder               = 'latest'
     MarkdownLinkCheck           = 'latest'
     ChangelogManagement         = 'latest'
-    'Sampler.GitHubTasks'       = 'latest'
+    'PSFactory.GitHubTasks'       = 'latest'
     'DscResource.Test'          = 'latest'
     'DscResource.AnalyzerRules' = 'latest'
     xDscResourceDesigner        = 'latest'

@@ -56,13 +56,13 @@ Describe 'Resolve dependencies' {
                 Set-Location $using:PWD
 
                 <#
-                    Remove the real Sampler output folder paths from PSModulePath so that
+                    Remove the real PSFactory output folder paths from PSModulePath so that
                     the command Get-FastModulePlan does not find modules installed.
                 #>
                 $env:PSModulePath = (
                     $env:PSModulePath -split [System.IO.Path]::PathSeparator |
                         Where-Object -FilterScript {
-                            $_ -notlike '*Sampler*'
+                            $_ -notlike '*PSFactory*'
                         }
                 ) -join [System.IO.Path]::PathSeparator
 
@@ -129,7 +129,7 @@ Describe 'Resolve dependencies' {
     ModuleBuilder               = 'latest'
     MarkdownLinkCheck           = 'latest'
     ChangelogManagement         = 'latest'
-    'Sampler.GitHubTasks'       = 'latest'
+    'PSFactory.GitHubTasks'       = 'latest'
     'DscResource.Test'          = 'latest'
     'DscResource.AnalyzerRules' = 'latest'
     xDscResourceDesigner        = 'latest'

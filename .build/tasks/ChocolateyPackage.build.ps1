@@ -63,9 +63,9 @@ param
 )
 
 task copy_chocolatey_source_to_staging {
-    . Set-SamplerTaskVariable -AsNewBuild
-    $ChocolateyBuildOutput = Get-SamplerAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
-    $ChocolateyPackageSource = Get-SamplerAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
+    . Set-FactoryTaskVariable -AsNewBuild
+    $ChocolateyBuildOutput = Get-FactoryAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
+    $ChocolateyPackageSource = Get-FactoryAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
 
     "        ChocolateyPackageSource = $ChocolateyPackageSource"
     "        ChocolateyBuildOuptut = $ChocolateyBuildOutput"
@@ -81,10 +81,10 @@ task copy_chocolatey_source_to_staging {
 }
 
 task copy_paths_to_choco_staging {
-    . Set-SamplerTaskVariable -AsNewBuild
+    . Set-FactoryTaskVariable -AsNewBuild
 
-    $ChocolateyBuildOutput = Get-SamplerAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
-    $ChocolateyPackageSource = Get-SamplerAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
+    $ChocolateyBuildOutput = Get-FactoryAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
+    $ChocolateyPackageSource = Get-FactoryAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
 
     "        ChocolateyPackageSource    = $ChocolateyPackageSource"
     "        ChocolateyBuildOuptut      = $ChocolateyBuildOutput"
@@ -102,13 +102,13 @@ task copy_paths_to_choco_staging {
     foreach ($stagedPackage in $stagedPackages)
     {
         $packageName = $stagedPackage.BaseName
-        $packagePath = Get-SamplerAbsolutePath -Path $packageName -RelativeTo $ChocolateyBuildOutput
+        $packagePath = Get-FactoryAbsolutePath -Path $packageName -RelativeTo $ChocolateyBuildOutput
         Write-Build DarkGray "`tCopying folders to '$packageName'..."
         foreach ($copyItem in $copyToPackage)
         {
             $CopyFoldersToChocoParams = @{
-                Path = Get-SamplerAbsolutePath -Path $ExecutionContext.InvokeCommand.ExpandString($copyItem.source) -RelativeTo $BuildRoot
-                Destination = Get-SamplerAbsolutePath -Path $ExecutionContext.InvokeCommand.ExpandString($copyItem.destination) -RelativeTo $packagePath
+                Path = Get-FactoryAbsolutePath -Path $ExecutionContext.InvokeCommand.ExpandString($copyItem.source) -RelativeTo $BuildRoot
+                Destination = Get-FactoryAbsolutePath -Path $ExecutionContext.InvokeCommand.ExpandString($copyItem.destination) -RelativeTo $packagePath
             }
 
             Write-Build DarkGray "`t... '$($CopyFoldersToChocoParams['Path'])' to '$($CopyFoldersToChocoParams['destination'])'."
@@ -154,14 +154,14 @@ task copy_paths_to_choco_staging {
 }
 
 task upate_choco_nuspec_data {
-    . Set-SamplerTaskVariable -AsNewBuild
-    $ChocolateyBuildOutput = Get-SamplerAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
-    $ChocolateyPackageSource = Get-SamplerAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
+    . Set-FactoryTaskVariable -AsNewBuild
+    $ChocolateyBuildOutput = Get-FactoryAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
+    $ChocolateyPackageSource = Get-FactoryAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
 
     "        ChocolateyPackageSource = $ChocolateyPackageSource"
     "        ChocolateyBuildOuptut = $ChocolateyBuildOutput"
 
-    $ChangeLogOutputPath = Get-SamplerAbsolutePath -Path 'CHANGELOG.md' -RelativeTo $OutputDirectory
+    $ChangeLogOutputPath = Get-FactoryAbsolutePath -Path 'CHANGELOG.md' -RelativeTo $OutputDirectory
 
     if (-not ($ReleaseNotes = (Get-Content -raw $ReleaseNotesPath -ErrorAction SilentlyContinue)))
     {
@@ -227,9 +227,9 @@ task Build_Chocolatey_Package {
 
     $null = Get-Command -Name choco -ErrorAction Stop
 
-    . Set-SamplerTaskVariable -AsNewBuild
-    $ChocolateyBuildOutput = Get-SamplerAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
-    $ChocolateyPackageSource = Get-SamplerAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
+    . Set-FactoryTaskVariable -AsNewBuild
+    $ChocolateyBuildOutput = Get-FactoryAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
+    $ChocolateyPackageSource = Get-FactoryAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
 
     "        ChocolateyPackageSource = $ChocolateyPackageSource"
     "        ChocolateyBuildOuptut = $ChocolateyBuildOutput"
@@ -265,9 +265,9 @@ task Push_Chocolatey_Package {
 
     $null = Get-Command -Name choco -ErrorAction Stop
 
-    . Set-SamplerTaskVariable -AsNewBuild
-    $ChocolateyBuildOutput = Get-SamplerAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
-    $ChocolateyPackageSource = Get-SamplerAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
+    . Set-FactoryTaskVariable -AsNewBuild
+    $ChocolateyBuildOutput = Get-FactoryAbsolutePath -Path $ChocolateyBuildOutput -RelativeTo $OutputDirectory
+    $ChocolateyPackageSource = Get-FactoryAbsolutePath -Path $ChocolateyPackageSource -RelativeTo $SourcePath
 
     "        ChocolateyPackageSource   = '$ChocolateyPackageSource'"
     "        ChocolateyBuildOuptut     = '$ChocolateyBuildOutput'"

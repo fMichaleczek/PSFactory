@@ -43,8 +43,8 @@ param
 
 # SYNOPSIS: Building the Azure Policy Guest Configuration Packages
 task build_guestconfiguration_packages {
-    # Get the vales for task variables, see https://github.com/gaelcolas/Sampler#task-variables.
-    . Set-SamplerTaskVariable -AsNewBuild
+    # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
+    . Set-FactoryTaskVariable -AsNewBuild
 
     if (-not (Split-Path -IsAbsolute $GCPackagesPath))
     {
@@ -128,7 +128,7 @@ task build_guestconfiguration_packages {
         }
 
         Write-Verbose -Message "Package Name '$GCPackageName' with Configuration '$MOFFile', OutputDirectory $OutputDirectory, GCPackagesOutputPath '$GCPackagesOutputPath'."
-        $GCPackageOutput = Get-SamplerAbsolutePath -Path $GCPackagesOutputPath -RelativeTo $OutputDirectory
+        $GCPackageOutput = Get-FactoryAbsolutePath -Path $GCPackagesOutputPath -RelativeTo $OutputDirectory
 
         $NewGCPackageParams = @{
             Configuration = [string]$MOFFile
@@ -172,7 +172,7 @@ task build_guestconfiguration_packages {
         if ($ModuleVersion)
         {
             $GCPackageWithVersionZipName = ('{0}_{1}.zip' -f $GCPackageName,$ModuleVersion)
-            $GCPackageOutputPath = Get-SamplerAbsolutePath -Path $GCPackagesOutputPath -RelativeTo $OutputDirectory
+            $GCPackageOutputPath = Get-FactoryAbsolutePath -Path $GCPackagesOutputPath -RelativeTo $OutputDirectory
             $versionedGCPackageName = Join-Path -Path $GCPackageOutputPath -ChildPath $GCPackageWithVersionZipName
             Write-Build DarkGray "`t Renaming Zip as '$versionedGCPackageName'."
             $ZippedGCPackagePath = Move-Item -Path $ZippedGCPackage.Path -Destination $versionedGCPackageName -Force -PassThru

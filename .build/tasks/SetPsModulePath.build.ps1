@@ -20,9 +20,9 @@ SetPSModulePath:
 
 #>
 
-Task Set_PSModulePath {
+task Set_PSModulePath {
 
-    . Set-SamplerTaskVariable
+    . Set-FactoryTaskVariable
 
     $param = $PSBoundParameters
 
@@ -55,7 +55,7 @@ Task Set_PSModulePath {
     $param.BuiltModuleSubdirectory = $BuiltModuleSubdirectory
     $param.RequiredModulesDirectory = $RequiredModulesDirectory
 
-    $newPSModulePath = Set-SamplerPSModulePath @param -PassThru
+    $newPSModulePath = Set-FactoryPSModulePath @param -PassThru
     Write-Build darkGray "`t...The new 'PSModulePath' is '$newPSModulePath'"
 
 }
