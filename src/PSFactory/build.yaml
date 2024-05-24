@@ -9,9 +9,9 @@
 CopyPaths:
   #- HelperSubmodule # This will be built as submodule instead
   # - DSCResources
-  - ../../.build/tasks
-  - scripts
   - en-US
+  - scripts
+  - tasks
   - templates
 Encoding: UTF8
 

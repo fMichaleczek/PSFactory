@@ -25,8 +25,8 @@ coverage:
         threshold: 5
 
 fixes:
-  - '^\d+\.\d+\.\d+\/tasks::.build/tasks'  # move path "X.Y.Z/tasks" => ".build/tasks"
-  - '^PSFactory\/tasks::.build/tasks'  # move path "PSFactory/tasks" => ".build/tasks"
+  - '^\d+\.\d+\.\d+\/tasks::src/PSFactory/tasks'  # move path "X.Y.Z/tasks" => "src/PSFactory/tasks"
+  - '^PSFactory\/tasks::src/PSFactory/tasks'      # move path "PSFactory/tasks" => "src/PSFactory/tasks"
 
 ignore:
-  - '.build\tasks\DscResource.Test.build.ps1' # Deprecated HQRM tasks
+  - 'src/PSFactory/tasks/DscResource.Test.build.ps1' # Deprecated HQRM tasks

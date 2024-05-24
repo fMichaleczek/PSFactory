@@ -1,34 +1,36 @@
-# This file is not needed, a COMPILED version will be built by ModuleBuilder
-##Import Enum
+# This file will not be keep, at build time, an automatic module script will be created.
+[CmdletBinding()]
+param()
 
-foreach ($Enum in (Get-ChildItem "$PSScriptRoot\Enum" -ErrorAction SilentlyContinue))
-{
-    . $Enum
-}
+$intPaths = "$PSScriptRoot/enums", "$PSScriptRoot/classes", "$PSScriptRoot/internal"
+$pubPaths = "$PSScriptRoot/public"
 
-##Import Classes
+Write-Verbose "[*] Searching script files..."
+$intFiles = Get-ChildItem -Path $intPaths -Filter *.ps1 -ErrorAction SilentlyContinue
+$pubFiles = Get-ChildItem -Path $pubPaths -Filter *.ps1 -ErrorAction SilentlyContinue
+$files = @($intFiles) + @($pubFiles)
+Write-Verbose "[-] Found $($files.Count) script file(s)."
 
-foreach ($class in (Get-ChildItem "$PSScriptRoot\Classes" -ErrorAction SilentlyContinue))
-{
-    . $Class
-}
-
-#Get public and private function definition files.
-$Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
-$Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
-
-#Dot source the files
-foreach ($import in @($Public + $Private))
+Write-Verbose "[*] Importing script files..."
+foreach ($file in $files.FullName)
 {
     try
     {
-        Write-Verbose "Importing $($Import.FullName)"
-        . $import.FullName
+        Write-Verbose "`t - [*] Importing file '$file'"
+        . $file
     }
     catch
     {
-        Write-Error -Message "Failed to import function $($import.fullName): $_"
+        Write-Error -Message "Failed to import file '$file', error: $_"
     }
 }
 
-Export-ModuleMember -Function $Public.Basename
+Write-Verbose "[*] Exporting Module Member..."
+if ($Debug)
+{
+    Export-ModuleMember -Function * -Alias * -Variable *
+}
+else
+{
+    Export-ModuleMember -Function $pubFiles.BaseName
+}
