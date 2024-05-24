@@ -1,0 +1,9 @@
+---
+
+SkipPublish: true
+
+PublishModuleWhatIf:
+
+PSModuleFeed: PSGallery
+GalleryApiToken:
+NuGetPublishSource: https://www.powershellgallery.com/

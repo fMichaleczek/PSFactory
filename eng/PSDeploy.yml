@@ -1,0 +1,4 @@
+---
+
+DeploymentTags:
+DeployConfig: Deploy.PSDeploy.ps1

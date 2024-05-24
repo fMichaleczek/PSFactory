@@ -1,0 +1,10 @@
+---
+
+ChocolateyPackageSource: Chocolatey
+ChocolateyBuildOutput: choco
+ChocolateyPackageId: *
+ChocolateyPackageVersion:
+
+ChocoPushSource:
+ChocoPushSourceApiKey:
+SkipChocoPush:

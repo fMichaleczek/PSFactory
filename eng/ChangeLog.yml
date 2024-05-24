@@ -1,0 +1,7 @@
+---
+
+UpdateChangelogOnPrerelease: false
+ChangelogUpdateChangelogOnPrerelease: false
+ChangelogPath: CHANGELOG.md
+ChangelogFilesToAdd:
+  - CHANGELOG.md

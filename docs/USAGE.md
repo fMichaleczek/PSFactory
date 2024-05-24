@@ -944,7 +944,7 @@ Format-FactoryHashtable -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
 
 This example will return the string representation of the provided hashtable.
 
-### `Get-BuiltModuleVersion`
+### `Get-FactoryBuiltModuleVersion`
 
 Will read the properties `ModuleVersion` and `PrivateData.PSData.Prerelease` tag
 of the module manifest for a module that has been built by PSFactory. The command
@@ -955,7 +955,7 @@ built.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-BuiltModuleVersion [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
+Get-FactoryBuiltModuleVersion [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
   [-ModuleName] <String> [-VersionedOutputDirectory] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -967,24 +967,24 @@ Get-BuiltModuleVersion [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <
 #### Example
 
 ```powershell
-Get-BuiltModuleVersion -OutputDirectory 'output' -ProjectName 'MyModuleName'
+Get-FactoryBuiltModuleVersion -OutputDirectory 'output' -ProjectName 'MyModuleName'
 ```
 
 This example will return the module version of the built module 'MyModuleName'.
 
-### `Get-ClassBasedResourceName`
+### `Get-FactoryClassBasedResourceName`
 
 This command returns all the class-based DSC resource names in a script file.
 The script file is parsed for classes with the `[DscResource()]` attribute.
 
 > **Note:** For MOF-based DSC resources, look at the command
->[`Get-MofSchemaName`](#get-mofschemaname).
+>[`Get-FactoryMofSchemaName`](#Get-FactoryMofSchemaName).
 
 #### Syntax
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-ClassBasedResourceName [-Path] <String> [<CommonParameters>]
+Get-FactoryClassBasedResourceName [-Path] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -995,7 +995,7 @@ Get-ClassBasedResourceName [-Path] <String> [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-ClassBasedResourceName -Path 'source/Classes/MyDscResource.ps1'
+Get-FactoryClassBasedResourceName -Path 'source/Classes/MyDscResource.ps1'
 ```
 
 This example will return the class-based DSC resource names in the script
@@ -1007,7 +1007,7 @@ Import-Module -Name 'MyResourceModule'
 
 $module = Get-Module -Name 'MyResourceModule'
 
-Get-ClassBasedResourceName -Path (Join-Path -Path $module.ModuleBase -ChildPath $module.RootModule)
+Get-FactoryClassBasedResourceName -Path (Join-Path -Path $module.ModuleBase -ChildPath $module.RootModule)
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1041,7 +1041,7 @@ Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold 0
 This example will override the code coverage threshold in the build
 configuration and return the value pass in the parameter **RuntimeCodeCoverageThreshold**.
 
-### `Get-MofSchemaName`
+### `Get-FactoryMofSchemaName`
 
 This command looks within a DSC resource's .MOF schema file to find the name
 and friendly name of the class.
@@ -1050,7 +1050,7 @@ and friendly name of the class.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-MofSchemaName [-Path] <String> [<CommonParameters>]
+Get-FactoryMofSchemaName [-Path] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1066,7 +1066,7 @@ FriendlyName | `[System.String]` | The friendly name of the class
 #### Example
 
 ```powershell
-Get-MofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
+Get-FactoryMofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
 ```
 
 This example will return a hashtable containing the name and friendly name
@@ -1563,7 +1563,7 @@ Call the scriptblock set script variables. The parameter **AsNewBuild** tells
 the script to skip variables that can only be set when the module has been
 built.
 
-### `Split-ModuleVersion`
+### `Split-FactoryModuleVersion`
 
 This command parses a SemVer2 version string, and also a version string returned
 by a certain property of GitVersion (containing additional metadata).
@@ -1572,7 +1572,7 @@ by a certain property of GitVersion (containing additional metadata).
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Split-ModuleVersion [[-ModuleVersion] <String>] [<CommonParameters>]
+Split-FactoryModuleVersion [[-ModuleVersion] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1590,7 +1590,7 @@ ModuleVersion | `[System.String]` | The full semantic version
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Split-ModuleVersion -ModuleVersion '1.15.0-pr0224-0022+Sha.47ae45eb2cfed02b249f239a7c55e5c71b26ab76.Date.2020-01-07'
+Split-FactoryModuleVersion -ModuleVersion '1.15.0-pr0224-0022+Sha.47ae45eb2cfed02b249f239a7c55e5c71b26ab76.Date.2020-01-07'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 

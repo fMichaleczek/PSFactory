@@ -1,0 +1,18 @@
+---
+
+RequiredModules:
+
+  - InvokeBuild:               latest
+  
+  - PSScriptAnalyzer:          latest
+  - Plaster:                   latest
+  - PlatyPS:                   latest
+  - ModuleBuilder:             latest
+  - ChangelogManagement:       latest
+  
+  - Pester:                    latest
+  - MarkdownLinkCheck:         latest
+  
+  - DscResource.Test:          latest
+  - DscResource.AnalyzerRules: latest
+  - xDscResourceDesigner:      latest

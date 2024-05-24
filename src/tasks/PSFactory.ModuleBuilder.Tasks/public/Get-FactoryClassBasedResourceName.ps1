@@ -7,18 +7,18 @@
         This command returns all Class-based Resource Names in a file,
         by parsing the file and looking for classes with the [DscResource()] attribute.
 
-        For MOF-based DSC Resources, look at the `Get-MofSchemaName` function.
+        For MOF-based DSC Resources, look at the `Get-FactoryMofSchemaName` function.
 
     .PARAMETER Path
         Path of the file to parse and search the Class-Based DSC Resources.
 
     .EXAMPLE
-        Get-ClassBasedResourceName -Path source/Classes/MyDscResource.ps1
+        Get-FactoryClassBasedResourceName -Path source/Classes/MyDscResource.ps1
 
-        Get-ClassBasedResourceName -Path (Join-Path -Path (Get-Module MyResourceModule).ModuleBase -ChildPath (Get-Module MyResourceModule).RootModule)
+        Get-FactoryClassBasedResourceName -Path (Join-Path -Path (Get-Module MyResourceModule).ModuleBase -ChildPath (Get-Module MyResourceModule).RootModule)
 
 #>
-function Get-ClassBasedResourceName
+function Get-FactoryClassBasedResourceName
 {
    [CmdletBinding()]
    [OutputType([String[]])]

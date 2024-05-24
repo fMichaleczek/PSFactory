@@ -28,10 +28,10 @@
         Name of the Module to retrieve the version from its manifest (See Get-FactoryProjectName).
 
     .EXAMPLE
-        Get-BuiltModuleVersion -OutputDirectory 'output' -ProjectName PSFactory
+        Get-FactoryBuiltModuleVersion -OutputDirectory 'output' -ProjectName PSFactory
 
 #>
-function Get-BuiltModuleVersion
+function Get-FactoryBuiltModuleVersion
 {
     [CmdletBinding()]
     [OutputType([System.String])]
@@ -72,7 +72,7 @@ function Get-BuiltModuleVersion
         $ModuleVersion = $ModuleVersion + '-' + $moduleInfo.PrivateData.PSData.Prerelease
     }
 
-    $moduleVersionParts = Split-ModuleVersion -ModuleVersion $ModuleVersion
+    $moduleVersionParts = Split-FactoryModuleVersion -ModuleVersion $ModuleVersion
 
     Write-Verbose -Message (
         "Current module version is '{0}'." -f $moduleVersionParts.ModuleVersion

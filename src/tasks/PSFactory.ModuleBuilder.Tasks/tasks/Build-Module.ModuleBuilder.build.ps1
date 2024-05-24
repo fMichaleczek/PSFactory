@@ -341,7 +341,7 @@ task Build_DscResourcesToExport_ModuleBuilder {
     {
         Write-Build -Color Yellow -Text "Looking for class-based DSC Resources in in '$builtModuleRootScriptPath'"
 
-        $builtClassDscResourcesNames = Get-ClassBasedResourceName -Path $builtModuleRootScriptPath
+        $builtClassDscResourcesNames = Get-FactoryClassBasedResourceName -Path $builtModuleRootScriptPath
 
         if ($builtClassDscResourcesNames)
         {
@@ -360,7 +360,7 @@ task Build_DscResourcesToExport_ModuleBuilder {
         {
             try
             {
-                $builtMofDscResourcesNames = $mofPath.FullName | Get-MofSchemaName | ForEach-Object -Process {
+                $builtMofDscResourcesNames = $mofPath.FullName | Get-FactoryMofSchemaName | ForEach-Object -Process {
                     if ([System.String]::IsNullOrEmpty($_['FriendlyName']))
                     {
                         $_.Name
@@ -396,7 +396,7 @@ task Build_DscResourcesToExport_ModuleBuilder {
     {
         if ($mofPath = $builtMofDscFolder | Get-ChildItem -Filter *.schema.psm1 -File)
         {
-            $builtMofDscResourcesNames = $mofPath.FullName | Get-Psm1SchemaName -ErrorAction Stop
+            $builtMofDscResourcesNames = $mofPath.FullName | Get-FactoryPsm1SchemaName -ErrorAction Stop
         }
         else
         {

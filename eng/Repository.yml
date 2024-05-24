@@ -1,0 +1,11 @@
+---
+
+Gallery: PSGallery
+
+#RegisterGallery:
+#    #Name: MyPrivateFeedName
+#    GallerySourceLocation: 'https://azdoserver.company.local/<org_name>/<project_name>/_packaging/<feed_name>/nuget/v2'
+#    GalleryPublishLocation: 'https://azdoserver.company.local/<org_name>/<project_name>/_packaging/<feed_name>/nuget/v2'
+#    GalleryScriptSourceLocation: 'https://azdoserver.company.local/<org_name>/<project_name>/_packaging/<feed_name>/nuget/v2'
+#    GalleryScriptPublishLocation: 'https://azdoserver.company.local/<org_name>/<project_name>/_packaging/<feed_name>/nuget/v2'
+#    #InstallationPolicy: Trusted

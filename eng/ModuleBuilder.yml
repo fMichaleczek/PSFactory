@@ -1,0 +1,40 @@
+---
+
+# Path to the Module Manifest to build (where path will be resolved from)
+# SourcePath: ./src/PSFactory/PSFactory.psd1
+
+# Output Directory where ModuleBuilder will build the Module, relative to module manifest
+# OutputDirectory: ../output/PSFactory
+
+CopyPaths:
+  #- HelperSubmodule # This will be built as submodule instead
+  # - DSCResources
+  - en-US
+  - scripts
+  - tasks
+  - templates
+
+Encoding: UTF8
+
+# Suffix to add to Root module PSM1 after merge (here, the Set-Alias exporting IB tasks)
+suffix: suffix.ps1
+
+VersionedOutputDirectory: true
+
+BuiltModuleSubdirectory: module
+
+
+####################################################
+#      ModuleBuilder Submodules Configuration      #
+####################################################
+
+# NestedModule:
+
+  # DscResource.Common:
+  #   CopyOnly: true
+  #   Path: ./output/RequiredModules/DscResource.Common # relative to $buildroot, default to '$sourcePath/Modules/$NestedModuleName'
+  #   # Destination: './output/$ProjectName/$ModuleVersionFolder/Modules/$NestedModuleName' # or override with path relative to $buildroot
+  #   AddToManifest: false
+  #   # include: '*.*'
+  #   Exclude: PSGetModuleInfo.xml
+    #Filter:

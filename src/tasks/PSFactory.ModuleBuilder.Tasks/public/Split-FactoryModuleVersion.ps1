@@ -21,14 +21,14 @@
         Full SemVer version string with (optional) metadata and prerelease tag to be parsed.
 
     .EXAMPLE
-        Split-ModuleVersion -ModuleVersion '1.15.0-pr0224-0022+Sha.47ae45eb2cfed02b249f239a7c55e5c71b26ab76.Date.2020-01-07'
+        Split-FactoryModuleVersion -ModuleVersion '1.15.0-pr0224-0022+Sha.47ae45eb2cfed02b249f239a7c55e5c71b26ab76.Date.2020-01-07'
 
         # Version PreReleaseString ModuleVersion
         # ------- ---------------- -------------
         # 1.15.0  pr0224           1.15.0-pr0224
 
 #>
-function Split-ModuleVersion
+function Split-FactoryModuleVersion
 {
     [CmdletBinding()]
     [OutputType([System.Management.Automation.PSCustomObject])]

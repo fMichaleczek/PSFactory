@@ -1,0 +1,5 @@
+---
+
+HelpSourceFolder: docs
+HelpOutputFolder: help
+CopyHelpMamlToBuiltModuleBase: false

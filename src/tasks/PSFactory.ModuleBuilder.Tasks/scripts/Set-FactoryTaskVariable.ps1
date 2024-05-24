@@ -199,11 +199,11 @@ else
 
     "`tBuilt Module Base          = '$BuiltModuleBase'"
 
-    $ModuleVersion = Get-BuiltModuleVersion @GetBuiltModuleManifestParams
+    $ModuleVersion = Get-FactoryBuiltModuleVersion @GetBuiltModuleManifestParams
 
     "`tModule Version             = '$ModuleVersion'"
 
-    $moduleVersionObject = Split-ModuleVersion -ModuleVersion $ModuleVersion
+    $moduleVersionObject = Split-FactoryModuleVersion -ModuleVersion $ModuleVersion
     $ModuleVersionFolder = $moduleVersionObject.Version
 
     "`tModule Version Folder      = '$ModuleVersionFolder'"

@@ -1,0 +1,6 @@
+---
+GitHubToken:
+GitHubConfigUserName: fmichaleczek
+GitHubConfigUserEmail: fmichaleczek@gmail.com
+GitHubFilesToAdd:
+    - 'CHANGELOG.md'

@@ -247,7 +247,7 @@ Describe 'Set-FactoryTaskVariable' {
                 $Path -eq $mockBuiltModuleBase
             }
 
-            Mock -CommandName Get-BuiltModuleVersion -MockWith {
+            Mock -CommandName Get-FactoryBuiltModuleVersion -MockWith {
                 return '1.0.0-preview'
             }
 

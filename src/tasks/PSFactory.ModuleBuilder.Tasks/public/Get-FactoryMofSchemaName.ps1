@@ -11,10 +11,10 @@
         Path to the DSC Resource Schema MOF.
 
     .EXAMPLE
-        Get-MofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
+        Get-FactoryMofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
 
 #>
-function Get-MofSchemaName
+function Get-FactoryMofSchemaName
 {
     [CmdletBinding()]
     [OutputType([System.Collections.Hashtable])]

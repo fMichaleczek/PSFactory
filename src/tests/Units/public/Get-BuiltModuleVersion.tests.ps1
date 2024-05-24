@@ -24,7 +24,7 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-BuiltModuleVersion' {
+Describe 'Get-FactoryBuiltModuleVersion' {
     BeforeAll {
         Mock -CommandName Get-FactoryBuiltModuleManifest -MockWith {
             return (Join-Path -Path $TestDrive -ChildPath 'MyModule.psd1')
@@ -41,7 +41,7 @@ Describe 'Get-BuiltModuleVersion' {
         }
 
         It 'Should return the correct semantic version' {
-            $result = PSFactory\Get-BuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
+            $result = PSFactory\Get-FactoryBuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
 
             $result | Should -Be '2.1.1'
         }
@@ -62,7 +62,7 @@ Describe 'Get-BuiltModuleVersion' {
         }
 
         It 'Should return the correct semantic version' {
-            $result = PSFactory\Get-BuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
+            $result = PSFactory\Get-FactoryBuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
 
             $result | Should -Be '2.1.1-preview.1'
         }

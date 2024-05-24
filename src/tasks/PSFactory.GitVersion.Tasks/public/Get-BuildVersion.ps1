@@ -74,7 +74,7 @@ function Get-BuildVersion
         }
     }
 
-    $moduleVersionParts = Split-ModuleVersion -ModuleVersion $ModuleVersion
+    $moduleVersionParts = Split-FactoryModuleVersion -ModuleVersion $ModuleVersion
 
     Write-Verbose -Message (
         "Current module version is '{0}'." -f $moduleVersionParts.ModuleVersion

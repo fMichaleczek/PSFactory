@@ -1,0 +1,9 @@
+---
+
+MainGitBranch: main
+ReleaseBranch: main
+
+BasicAuthPAT: 
+
+GitConfigUserEmail: fmichaleczek@gmail.com
+GitConfigUserName: fmichaleczek

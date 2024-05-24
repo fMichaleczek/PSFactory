@@ -1,0 +1,12 @@
+---
+
+PSDependTarget: ./output/modules
+
+# Only works when using PowerShellGet, not with ModuleFast.
+MinimumPSDependVersion: 0.3.0
+
+#PSDependOptions:
+#    AddToPath: true
+#    Target: output\RequiredModules
+#    Parameters:
+#        Repository: PSGallery

@@ -24,7 +24,7 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-ClassBasedResourceName' {
+Describe 'Get-FactoryClassBasedResourceName' {
     BeforeAll {
         $classScriptFilePath = Join-Path -Path $TestDrive -ChildPath 'MockClassBasedResource.ps1'
 
@@ -63,7 +63,7 @@ class MockResourceName
 
     It 'Should return the correct resource name' {
 
-        $result = PSFactory\Get-ClassBasedResourceName -Path $classScriptFilePath
+        $result = PSFactory\Get-FactoryClassBasedResourceName -Path $classScriptFilePath
 
         $result | Should -Be 'MockResourceName'
     }

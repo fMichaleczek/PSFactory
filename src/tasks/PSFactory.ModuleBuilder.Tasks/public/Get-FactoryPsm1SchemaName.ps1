@@ -10,11 +10,11 @@
         Path to the DSC Resource *.schema.psm1 file.
 
     .EXAMPLE
-        Get-Psm1SchemaName -Path Source/DSCResources/MyCompositeResource/MyCompositeResource.schema.psm1
+        Get-FactoryPsm1SchemaName -Path Source/DSCResources/MyCompositeResource/MyCompositeResource.schema.psm1
 
 #>
 
-function Get-Psm1SchemaName
+function Get-FactoryPsm1SchemaName
 {
     [CmdletBinding()]
     [OutputType([string[]])]

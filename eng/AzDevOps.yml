@@ -1,0 +1,12 @@
+---
+
+PullRequestConfigBranchName: updateChangelogAfterv{0}
+PullRequestConfigInstance: 
+PullRequestConfigCollection:
+PullRequestConfigProject:
+PullRequestConfigRepositoryID:
+
+PullRequestConfigTitle: Updating Changelog since release of v{0} +semver:skip
+PullRequestConfigDescription: Updating Changelog since release of v{0} +semver:skip
+
+PullRequestConfigDebug: false

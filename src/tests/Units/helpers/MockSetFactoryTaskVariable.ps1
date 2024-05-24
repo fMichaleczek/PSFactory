@@ -117,7 +117,7 @@ Mock -CommandName Get-Item -MockWith {
     )
 }
 
-Mock -CommandName Get-BuiltModuleVersion -MockWith {
+Mock -CommandName Get-FactoryBuiltModuleVersion -MockWith {
     return '2.0.0'
 }
 

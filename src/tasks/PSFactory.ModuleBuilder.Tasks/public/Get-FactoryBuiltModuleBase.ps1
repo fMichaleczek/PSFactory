@@ -80,7 +80,7 @@ function Get-FactoryBuiltModuleBase
         }
         else
         {
-            $ModuleVersion = (Split-ModuleVersion -ModuleVersion $ModuleVersion).Version
+            $ModuleVersion = (Split-FactoryModuleVersion -ModuleVersion $ModuleVersion).Version
         }
 
         $BuiltModuleBase = Get-FactoryAbsolutePath -Path $ModuleVersion -RelativeTo $BuiltModulePath

@@ -228,7 +228,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Task `Build_ModuleOutput_ModuleBuilder`
   - Fixed #402: Using parameter `Filter` instead of `Include` to get MOF files.
-- `Get-MofSchemaName`
+- `Get-FactoryMofSchemaName`
   - Permanently skipped a test that the build worker `ubuntu-latest` were
     unable to run due to missing shared library 'libmi'.
 - Now the QA test that verifies that the Unreleased section header is present
@@ -277,7 +277,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `Get-MofSchemaName`
+- `Get-FactoryMofSchemaName`
   - Correctly throws an error if the schema MOF cannot be parsed.
 - Task `Convert_Pester_Coverage`
   - Removed one unused line of code.
@@ -285,7 +285,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     will output correctly in some circumstances.
 - `Set-FactoryTaskVariable`
   - Reverted code that was removed in pull request #383. The code is
-    necessary because how the commands `Get-BuiltModuleVersion`,
+    necessary because how the commands `Get-FactoryBuiltModuleVersion`,
     `Get-FactoryBuiltModuleManifest`, `Get-FactoryBuiltModuleBase`, and
     `Get-FactoryModuleRootPath` are currently built. The code that was
     reverted handles resolving the wildcard (`*`) in the returned paths
@@ -690,7 +690,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Made Format-FactoryHashtable public function.
 - Refactored a lot of Path resolution into PSFactory public function for consitency and re-usability.
 - Updated the Tasks to use those PSFactory functions.
-- Updated Get-BuiltModuleVersion to support $BuiltModuleSubdirectory as per #239.
+- Updated Get-FactoryBuiltModuleVersion to support $BuiltModuleSubdirectory as per #239.
 
 ### Added
 
@@ -794,7 +794,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added new template ClassFolderResource
-- Added new function Get-ClassBasedResourceName on Common.Functions.psm1 module.
+- Added new function Get-FactoryClassBasedResourceName on Common.Functions.psm1 module.
   It's used to find the class-based resource defined in psm1 file.
 - Added new task Build_DscResourcesToExport_ModuleBuilder.
   On build, it adds DscResources (class or Mof) in DscResourcesToExport manifest key.
@@ -970,7 +970,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   from the built module's module manifest ([issue #160](https://github.com/fmichaleczek/PSFactory/issues/160)).
 - The helper function `Get-ModuleVersion` was split into two cmdlets. A
   new helper function `Get-BuildVersion` that evaluates and returns the
-  next module version, and `Get-BuiltModuleVersion` that always returns the
+  next module version, and `Get-FactoryBuiltModuleVersion` that always returns the
   module's version from the built module manifest.
 
 ## [0.105.1] - 2020-04-24

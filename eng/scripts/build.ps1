@@ -166,10 +166,10 @@ process
     # Execute the Build process from the .build.ps1 path.
     Push-Location -Path $PSScriptRoot -StackName 'BeforeBuild'
 
-    if (Test-Path -Path 'PSFactory')
+    if (Test-Path -Path 'src/core/PSFactory')
     {
         # We are in the PSFactory project, load functions instead of PSFactory module.
-        Get-ChildItem -Path "PSFactory/P*/*.ps1" |
+        Get-ChildItem -Path "src/tasks/*/tasks/*.ps1" |
             ForEach-Object -Process {
                 . $_.FullName
             }

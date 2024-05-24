@@ -1,0 +1,19 @@
+---
+
+AllowPrerelease: false
+
+AllowOldPowerShellGetModule: true
+
+UseModuleFast: false
+ModuleFastVersion: 0.1.2
+ModuleFastBleedingEdge: true
+
+UsePSResourceGet: false
+PSResourceGetVersion: 1.0.1
+
+# PowerShellGet Compatibility module only works when using PSResourceGet or ModuleFast.
+UsePowerShellGetCompatibilityModule: false
+UsePowerShellGetCompatibilityModuleVersion: 3.0.23-beta23
+
+# Proxy: ''
+# ProxyCredential: $MyCredentialVariable

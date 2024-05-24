@@ -24,7 +24,7 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-MofSchemaName' {
+Describe 'Get-FactoryMofSchemaName' {
     Context 'When cannot determine operating system' {
         BeforeAll {
             InModuleScope -ScriptBlock {
@@ -50,7 +50,7 @@ Describe 'Get-MofSchemaName' {
         }
 
         It 'Should throw the correct error message' {
-            { PSFactory\Get-MofSchemaName -Path $TestDrive } | Should -Throw -ExpectedMessage 'Cannot set the temporary path. Unknown operating system.'
+            { PSFactory\Get-FactoryMofSchemaName -Path $TestDrive } | Should -Throw -ExpectedMessage 'Cannot set the temporary path. Unknown operating system.'
         }
     }
 
@@ -89,7 +89,7 @@ class DSC_MockResourceName : OMI_BaseResource
         }
 
         It 'Should return the correct property values' {
-            { PSFactory\Get-MofSchemaName -Path $TestDrive } | Should -Throw -ExpectedMessage 'Failed to import classes from file*Cim deserializer threw an error when deserializing file*'
+            { PSFactory\Get-FactoryMofSchemaName -Path $TestDrive } | Should -Throw -ExpectedMessage 'Failed to import classes from file*Cim deserializer threw an error when deserializing file*'
         }
     }
 
@@ -128,7 +128,7 @@ class DSC_MockResourceName : OMI_BaseResource
         }
 
         It 'Should return the correct property values' {
-            $result = PSFactory\Get-MofSchemaName -Path $TestDrive
+            $result = PSFactory\Get-FactoryMofSchemaName -Path $TestDrive
 
             $result.Name | Should -Be 'DSC_MockResourceName'
             $result.FriendlyName | Should -Be 'MockResourceName'
@@ -170,7 +170,7 @@ class DSC_MockResourceName : OMI_BaseResource
         }
 
         It 'Should return the correct property values' {
-            $result = PSFactory\Get-MofSchemaName -Path $TestDrive
+            $result = PSFactory\Get-FactoryMofSchemaName -Path $TestDrive
 
             $result.Name | Should -Be 'DSC_MockResourceName'
             $result.FriendlyName | Should -Be 'MockResourceName'
@@ -209,7 +209,7 @@ class DSC_MockResourceName : OMI_BaseResource
         }
 
         It 'Should return the correct property values' {
-            $result = PSFactory\Get-MofSchemaName -Path $TestDrive
+            $result = PSFactory\Get-FactoryMofSchemaName -Path $TestDrive
 
             $result.Name | Should -Be 'DSC_MockResourceName'
             $result.FriendlyName | Should -Be 'MockResourceName'
@@ -225,7 +225,7 @@ class DSC_MockResourceName : OMI_BaseResource
         }
 
         It 'Should return the correct property values' {
-            { PSFactory\Get-MofSchemaName -Path $TestDrive } | Should -Throw -ExpectedMessage 'NotImplemented: Currently there is an issue using the type*Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache*on macOS.*'
+            { PSFactory\Get-FactoryMofSchemaName -Path $TestDrive } | Should -Throw -ExpectedMessage 'NotImplemented: Currently there is an issue using the type*Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache*on macOS.*'
         }
     }
 }

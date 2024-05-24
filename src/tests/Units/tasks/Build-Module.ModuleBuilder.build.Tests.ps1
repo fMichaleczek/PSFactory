@@ -581,7 +581,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 }
             }
 
-            Mock -CommandName Get-MofSchemaName -MockWith {
+            Mock -CommandName Get-FactoryMofSchemaName -MockWith {
                 return @{
                     Name = 'MyResource'
                     FriendlyName = 'MyResourceFriendlyName'
@@ -642,7 +642,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 }
             }
 
-            Mock -CommandName Get-Psm1SchemaName -MockWith {
+            Mock -CommandName Get-FactoryPsm1SchemaName -MockWith {
                 'MyResource'
             }
 
@@ -694,7 +694,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 $Path -match 'MyModule\.psm1'
             }
 
-            Mock -CommandName Get-ClassBasedResourceName -MockWith {
+            Mock -CommandName Get-FactoryClassBasedResourceName -MockWith {
                 return 'MyClassDscResource'
             }
 
