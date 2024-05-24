@@ -52,29 +52,8 @@
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData       = @{
         PSData = @{
-            # Extension for Plaster Template discoverability with `Get-PlasterTemplate -IncludeInstalledModules`
-            Extensions   = @(
-                @{
-                    Module         = 'Plaster'
-                    minimumVersion = '1.1.3'
-                    Details        = @{
-                        TemplatePaths = @(
-                            'templates\Classes'
-                            'templates\ClassResource'
-                            'templates\Composite'
-                            'templates\Enum'
-                            'templates\MofResource'
-                            'templates\PrivateFunction'
-                            'templates\PublicCallPrivateFunctions'
-                            'templates\PublicFunction'
-                            'templates\PSFactory'
-                        )
-                    }
-                }
-            )
-
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags         = @('Template', 'Pipeline', 'Plaster', 'DesiredStateConfiguration', 'DSC', 'DSCResourceKit', 'DSCResource', 'Windows', 'MacOS', 'Linux')
+            Tags         = @('Pipeline', 'DesiredStateConfiguration', 'DSC', 'DSCResourceKit', 'DSCResource', 'Windows', 'MacOS', 'Linux')
 
             # A URL to the license for this module.
             LicenseUri   = 'https://github.com/fmichaleczek/PSFactory/blob/main/LICENSE.txt'
@@ -83,7 +62,7 @@
             ProjectUri   = 'https://github.com/fmichaleczek/PSFactory'
 
             # A URL to an icon representing this module.
-            IconUri      = 'https://raw.githubusercontent.com/fmichaleczek/PSFactory/main/assets/factory.png'
+            IconUri      = 'https://raw.githubusercontent.com/fmichaleczek/PSFactory/main/assets/PSFactory_512x512.png'
 
             # ReleaseNotes of this module
             ReleaseNotes = ''

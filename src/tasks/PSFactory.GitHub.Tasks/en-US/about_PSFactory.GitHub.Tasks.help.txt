@@ -1,5 +1,5 @@
 TOPIC
-    about_PSFactory.GitHubTasks
+    about_PSFactory.GitHub.Tasks
 
 SHORT DESCRIPTION
     PSFactory tasks for GitHub integrations

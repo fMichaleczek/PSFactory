@@ -1,7 +1,7 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule        = 'PSFactory.AzureDevOpsTasks.psm1'
+    RootModule        = 'PSFactory.AzDevOps.Tasks.psm1'
 
     # Version number of this module.
     ModuleVersion     = '0.0.1'
@@ -87,7 +87,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags                       = @('PSFactory', 'AzureDevOps', 'Invoke-Build')
+            Tags                       = @('PSFactory', 'AzureDevOps', 'AzDevOps', 'Invoke-Build')
 
             # A URL to the license for this module.
             LicenseUri   = 'https://github.com/fmichaleczek/PSFactory/blob/main/LICENSE.txt'
@@ -96,7 +96,7 @@
             ProjectUri   = 'https://github.com/fmichaleczek/PSFactory'
 
             # A URL to an icon representing this module.
-            IconUri      = 'https://raw.githubusercontent.com/fmichaleczek/PSFactory/main/assets/factory.png'
+            IconUri      = 'https://raw.githubusercontent.com/fmichaleczek/PSFactory/main/assets/PSFactory_512x512.png'
 
             ExternalModuleDependencies = @()
 

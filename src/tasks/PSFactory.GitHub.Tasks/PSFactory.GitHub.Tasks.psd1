@@ -1,7 +1,7 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule = 'PSFactory.GitHubTasks.psm1'
+    RootModule = 'PSFactory.GitHub.Tasks.psm1'
 
     # Version number of this module.
     ModuleVersion     = '0.0.1'
@@ -97,7 +97,7 @@
             ProjectUri   = 'https://github.com/fmichaleczek/PSFactory'
 
             # A URL to an icon representing this module.
-            IconUri      = 'https://raw.githubusercontent.com/fmichaleczek/PSFactory/main/src/PSFactory.GitHubTasks/assets/factory_GitHubTasks.png'
+            IconUri      = 'https://raw.githubusercontent.com/fmichaleczek/PSFactory/main/src/tasks/PSFactory.GitHub.Tasks/assets/PSFactory.GitHub.Tasks_512x512.png'
 
             # ReleaseNotes of this module
             ReleaseNotes = ''
