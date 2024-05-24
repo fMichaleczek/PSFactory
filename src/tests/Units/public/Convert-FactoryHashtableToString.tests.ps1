@@ -24,9 +24,9 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Convert-FactoryHashtableToString' {
+Describe 'Format-FactoryHashtable' {
     It 'Should convert the hashtable with a single value to the expected string' {
-        $result = PSFactory\Convert-FactoryHashtableToString -Hashtable @{
+        $result = PSFactory\Format-FactoryHashtable -Hashtable @{
             a = 1
         }
 
@@ -34,7 +34,7 @@ Describe 'Convert-FactoryHashtableToString' {
     }
 
     It 'Should convert the hashtable with two values to the expected string' {
-        $result = PSFactory\Convert-FactoryHashtableToString -Hashtable @{
+        $result = PSFactory\Format-FactoryHashtable -Hashtable @{
             a = 1
             b = 2
         }
@@ -43,7 +43,7 @@ Describe 'Convert-FactoryHashtableToString' {
     }
 
     It 'Should convert the hashtable with a single child hashtable to the expected string' {
-        $result = PSFactory\Convert-FactoryHashtableToString -Hashtable @{
+        $result = PSFactory\Format-FactoryHashtable -Hashtable @{
             d = @{
                 dd = 'abcd'
             }
@@ -53,7 +53,7 @@ Describe 'Convert-FactoryHashtableToString' {
     }
 
     It 'Should convert the hashtable with multiple values and levels to the expected string' {
-        $result = PSFactory\Convert-FactoryHashtableToString -Hashtable @{
+        $result = PSFactory\Format-FactoryHashtable -Hashtable @{
             a = 1
             b = 2
             c = 3

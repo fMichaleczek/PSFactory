@@ -24,7 +24,7 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-FactoryOperatingSystemShortName' {
+Describe 'Get-FactoryOS' {
     Context 'When running in Windows PowerShell on Windows' -Skip:($IsMacOS -or $IsLinux) {
         BeforeAll {
             InModuleScope -ScriptBlock {
@@ -56,7 +56,7 @@ Describe 'Get-FactoryOperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = PSFactory\Get-FactoryOperatingSystemShortName
+            $result = PSFactory\Get-FactoryOS
 
             $result | Should -Be 'Windows'
         }
@@ -83,7 +83,7 @@ Describe 'Get-FactoryOperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = PSFactory\Get-FactoryOperatingSystemShortName
+            $result = PSFactory\Get-FactoryOS
 
             $result | Should -Be 'Windows'
         }
@@ -110,7 +110,7 @@ Describe 'Get-FactoryOperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = PSFactory\Get-FactoryOperatingSystemShortName
+            $result = PSFactory\Get-FactoryOS
 
             $result | Should -Be 'MacOS'
         }
@@ -137,7 +137,7 @@ Describe 'Get-FactoryOperatingSystemShortName' {
         }
 
         It 'Should return the correct operating system short name' {
-            $result = PSFactory\Get-FactoryOperatingSystemShortName
+            $result = PSFactory\Get-FactoryOS
 
             $result | Should -Be 'Linux'
         }

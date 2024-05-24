@@ -7,15 +7,15 @@
         Gets whether the platform is Windows, Linux or MacOS.
 
     .EXAMPLE
-        Get-FactoryOperatingSystemShortName # no Parameter needed
+        Get-FactoryOS
 
     .NOTES
         General notes
 #>
-function Get-FactoryOperatingSystemShortName
+function Get-FactoryOS
 {
     [CmdletBinding()]
-    param ()
+    param()
 
     $osShortName = if ($IsWindows -or $PSVersionTable.PSVersion.Major -le 5)
     {

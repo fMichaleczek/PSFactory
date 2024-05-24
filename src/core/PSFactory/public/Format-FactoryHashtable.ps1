@@ -14,13 +14,13 @@
         Hashtable to convert to string.
 
     .EXAMPLE
-        Convert-FactoryhashtableToString -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
+        Format-FactoryHashtable -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
 
     .NOTES
         This command is not specific to PSFactory projects, but is named that way
         to avoid conflict with other modules.
 #>
-function Convert-FactoryHashtableToString
+function Format-FactoryHashtable
 {
     param
     (
@@ -37,7 +37,7 @@ function Convert-FactoryHashtableToString
         }
         elseif ($pair.Value -is [System.Collections.Hashtable])
         {
-            $str = "$($pair.Key)={$(Convert-FactoryHashtableToString -Hashtable $pair.Value)}"
+            $str = "$($pair.Key)={$(Format-FactoryHashtable -Hashtable $pair.Value)}"
         }
         else
         {

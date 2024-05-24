@@ -909,7 +909,7 @@ in PSFactory or in third-party modules.
 
 Refer to the comment-based help for more information about these commands.
 
-### `Convert-FactoryHashtableToString`
+### `Format-FactoryHashtable`
 
 Convert a Hashtable to a string representation. For instance, calling the
 function with this hashtable:
@@ -928,7 +928,7 @@ a=1; b=2; c=3; d={dd=abcd}
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Convert-FactoryHashtableToString [[-Hashtable] <Hashtable>] [<CommonParameters>]
+Format-FactoryHashtable [[-Hashtable] <Hashtable>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -939,7 +939,7 @@ Convert-FactoryHashtableToString [[-Hashtable] <Hashtable>] [<CommonParameters>]
 #### Example
 
 ```powershell
-Convert-FactoryhashtableToString -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
+Format-FactoryHashtable -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
 ```
 
 This example will return the string representation of the provided hashtable.
@@ -1072,7 +1072,7 @@ Get-MofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
 This example will return a hashtable containing the name and friendly name
 of the MOF-based resource **MyResource**.
 
-### `Get-FactoryOperatingSystemShortName`
+### `Get-FactoryOS`
 
 This command tells what the platform is; `Windows`, `Linux`, or `MacOS`.
 
@@ -1080,7 +1080,7 @@ This command tells what the platform is; `Windows`, `Linux`, or `MacOS`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryOperatingSystemShortName [<CommonParameters>]
+Get-FactoryOS [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1091,7 +1091,7 @@ Get-FactoryOperatingSystemShortName [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-FactoryOperatingSystemShortName
+Get-FactoryOS
 ```
 
 This example will return what platform it is run on.
@@ -1106,7 +1106,7 @@ The file name will be composed in the format:
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryOperatingSystemShortName [<CommonParameters>]
+Get-FactoryOS [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
