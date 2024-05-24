@@ -4,12 +4,12 @@
         Adding code elements (function, enum, class, DSC Resource, tests...) to a module's source.
 
     .DESCRIPTION
-        Add-Sample is an helper function to invoke a plaster template built-in the PSFactory module.
+        Add-FactoryBlueprint is an helper function to invoke a plaster template built-in the PSFactory module.
         With this function you can bootstrap your module project by adding classes, functions and
         associated tests, examples and configuration elements.
 
-    .PARAMETER Sample
-        Specifies a sample component based on the Plaster templates embedded with this module.
+    .PARAMETER Kind
+        Specifies a component based on the Plaster templates embedded with this module.
         The available types of module elements are:
             - Classes: A sample of 4 classes with inheritence and how to manage the orders to avoid parsing errors.
             - ClassResource: A Class-Based DSC Resources showing some best practices including tests, Reasons, localized strings.
@@ -26,12 +26,12 @@
         will find the source folder, the tests folder and other supporting files.
 
     .EXAMPLE
-        C:\src\MyModule> Add-Sample -Sample PublicFunction -PublicFunctionName Get-MyStuff
+        C:\src\MyModule> Add-FactoryBlueprint -Kind PublicFunction -PublicFunctionName Get-MyStuff
 
     .NOTES
         This module requires and uses Plaster.
 #>
-function Add-Sample
+function Add-FactoryBlueprint
 {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
@@ -59,7 +59,7 @@ function Add-Sample
             'ChocolateyPackage'
         )]
         [string]
-        $Sample,
+        $Kind,
 
         [Parameter()]
         [System.String]
@@ -70,12 +70,12 @@ function Add-Sample
     {
         $paramDictionary = New-Object -TypeName System.Management.Automation.RuntimeDefinedParameterDictionary
 
-        if ($null -eq $Sample)
+        if ($null -eq $Kind)
         {
             return
         }
 
-        $sampleTemplateFolder = Join-Path -Path 'Templates' -ChildPath $Sample
+        $sampleTemplateFolder = Join-Path -Path 'Templates' -ChildPath $Kind
         $templatePath = Join-Path -Path $MyInvocation.MyCommand.Module.ModuleBase -ChildPath $sampleTemplateFolder
 
         $previousErrorActionPreference = $ErrorActionPreference
@@ -228,10 +228,10 @@ function Add-Sample
         # Clone the the bound parameters.
         $plasterParameter = @{} + $PSBoundParameters
 
-        $null = $plasterParameter.Remove('Sample')
+        $null = $plasterParameter.Remove('Kind')
 
-        $sampleTemplateFolder = Join-Path -Path 'Templates' -ChildPath $Sample
-        $templatePath = Join-Path -Path $MyInvocation.MyCommand.Module.ModuleBase -ChildPath $sampleTemplateFolder
+        $kindTemplateFolder = Join-Path -Path 'Templates' -ChildPath $Kind
+        $templatePath = Join-Path -Path $MyInvocation.MyCommand.Module.ModuleBase -ChildPath $kindTemplateFolder
 
         $plasterParameter.Add('TemplatePath', $templatePath)
 

@@ -29,49 +29,41 @@ BeforeDiscovery {
         <#
             If the templates do not define those parameters, Invoke-Plaster will fail and this test will catch it.
             The template integration is done separately, hence why we don't need to test it here.
-            We only test that the Add-Sample parameters & parameter set work with the templates we have defined.
+            We only test that the New-FactoryProject parameters & parameter set work with the template we have defined.
         #>
         @{
-            TestCaseName = 'Build'
-            NewPSFactoryPipelineParameters = @{
-                Pipeline = 'Build'
-                ProjectName =  'MyBuild'
-                License = 'true'
-                LicenseType = 'MIT'
-                SourceDirectory = 'Source'
-                MainGitBranch = 'main'
-                ModuleDescription = 'some desc'
-                CustomRepo = 'PSGallery'
-                Features = 'All'
+            TestCaseName = 'CompleteSample_NoLicense'
+            NewSampleModuleParameters = @{
+                ModuleName      = 'MyModule'
+                ModuleVersion   = '0.0.1'
+                ModuleAuthor    = "test user"
+                LicenseType     = 'None'
+                ModuleType      = 'CompleteSample'
             }
         }
         @{
-            TestCaseName = 'ChocolateyPipeline'
-            NewPSFactoryPipelineParameters = @{
-                Pipeline = 'ChocolateyPipeline'
-                ProjectName =  'MyChoco'
-                License = 'true'
-                LicenseType = 'MIT'
-                SourceDirectory = 'Source'
-                MainGitBranch = 'main'
-                ModuleDescription = 'some desc'
-                CustomRepo = 'PSGallery'
-                Features = 'All'
+            TestCaseName = 'SimpleModule_MIT'
+            NewSampleModuleParameters = @{
+                ModuleName      = 'MyModule'
+                ModuleVersion   = '0.0.1'
+                ModuleAuthor    = "test user"
+                LicenseType     = 'MIT'
+                ModuleType      = 'SimpleModule'
             }
         }
     )
 }
 
-Describe New-FactoryPipeline {
-    Context 'invoke plaster with correct parameters for template' {
+Describe New-FactoryProject {
+    Context 'Invoke plaster with correct parameters for template' {
         BeforeAll {
             Mock -CommandName Invoke-Plaster
         }
 
-        It 'New-FactoryPipeline should call Invoke-Plaster with test case <TestCaseName>' -ForEach $testCases {
-            $NewPSFactoryPipelineParameters.DestinationPath = $TestDrive
+        It 'New-Sample module should call Invoke-Plaster with test case <TestCaseName>' -ForEach $testCases {
+            $NewSampleModuleParameters.DestinationPath = $TestDrive
 
-            { PSFactory\New-FactoryPipeline @NewPSFactoryPipelineParameters  } | Should -Not -Throw
+            { PSFactory\New-FactoryProject @NewSampleModuleParameters  } | Should -Not -Throw
 
             Should -Invoke -CommandName Invoke-Plaster -Scope It -Times 1
         }

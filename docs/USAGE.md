@@ -214,7 +214,7 @@ if you plan to use the deploy pipelines in the CI.
 
 ### How to create a new project
 
-To create a new project the command `New-SampleModule` should be used. Depending
+To create a new project the command `New-FactoryProject` should be used. Depending
 on the template used with the command the content in project will contain
 different sample content while some also adds additional pipeline jobs. But all
 templates (except one) will have the basic tasks to have a working pipeline including
@@ -251,7 +251,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModule Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `SimpleModule_NoBuild`
@@ -269,7 +269,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModuleNoBuild Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `CompleteSample`
@@ -287,7 +287,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyCompleteSample Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `dsccommunity`
@@ -306,7 +306,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyDscModule Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `CustomModule`
@@ -694,7 +694,7 @@ _Guest Configuration_. This process will be replaced with a Plaster template.
       ModuleDescription = 'MyGCPackages Description'
    }
 
-   New-SampleModule @newSampleModuleParameters
+   New-FactoryProject @newSampleModuleParameters
    ```
 
 1. In the file `build.yaml` add the following top-level key:
@@ -817,7 +817,7 @@ _Guest Configuration_. This process will be replaced with a Plaster template.
 
 Refer to the comment-based help for more information about these commands.
 
-### `Add-Sample`
+### `Add-FactoryBlueprint`
 
 This command is used to invoke a plaster template built-in the
 PSFactory module. With this function you can bootstrap your module project
@@ -828,7 +828,7 @@ elements.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Add-Sample [[-Sample] <String>] [[-DestinationPath] <String>] [<CommonParameters>]
+Add-FactoryBlueprint [[-Kind] <String>] [[-DestinationPath] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -839,7 +839,7 @@ None.
 #### Example
 
 ```powershell
-Add-Sample -Sample PublicFunction -PublicFunctionName Get-MyStuff
+Add-FactoryBlueprint -Kind PublicFunction -PublicFunctionName Get-MyStuff
 ```
 
 This example adds a public function to the module (in the current folder),
@@ -870,7 +870,7 @@ Invoke-FactoryGit -Argument @('config', 'user.name', 'MyName')
 
 Calls git to set user name in the git config.
 
-### `New-SampleModule`
+### `New-FactoryProject`
 
 This command helps you scaffold your PowerShell module project by creating
 the folder structure of your module, and optionally add the pipeline files
@@ -882,12 +882,12 @@ per the DSC Community guidelines.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-New-SampleModule -DestinationPath <String> [-ModuleType <String>] [-ModuleAuthor <String>]
+New-FactoryProject -DestinationPath <String> [-ModuleType <String>] [-ModuleAuthor <String>]
   -ModuleName <String> [-ModuleDescription <String>] [-CustomRepo <String>]
   [-ModuleVersion <String>] [-LicenseType <String>] [-SourceDirectory <String>]
   [<CommonParameters>]
 
-New-SampleModule -DestinationPath <String> [-ModuleAuthor <String>] -ModuleName <String>
+New-FactoryProject -DestinationPath <String> [-ModuleAuthor <String>] -ModuleName <String>
   [-ModuleDescription <String>] [-CustomRepo <String>] [-ModuleVersion <String>]
   [-LicenseType <String>] [-SourceDirectory <String>] [-Features <String[]>]
   [<CommonParameters>]

@@ -4,7 +4,7 @@
         Create a PSFactory scaffolding so you can add samples & build pipeline.
 
     .DESCRIPTION
-        New-FactoryPipeline helps you bootstrap your project pipeline, whether it's for a Chocolatey
+        Add-FactoryPipeline helps you bootstrap your project pipeline, whether it's for a Chocolatey
         package, Azure Policy Guest Configuration packages or just a pipeline for a CI process.
 
     .PARAMETER DestinationPath
@@ -19,13 +19,13 @@
         You can also create a Chocolatey pipeline, preconfigured to build Chocolatey packages, or call a PSFactory pipeline.
 
     .EXAMPLE
-        C:\src> New-FactoryPipeline -DestinationPath . -Pipeline Build -ProjectName MyBuild -License 'true' -LicenseType MIT -SourceDirectory Source  -MainGitBranch main -ModuleDescription 'some desc' -CustomRepo PSGallery -Features All
+        C:\src> Add-FactoryPipeline -DestinationPath . -Pipeline Build -ProjectName MyBuild -License 'true' -LicenseType MIT -SourceDirectory Source  -MainGitBranch main -ModuleDescription 'some desc' -CustomRepo PSGallery -Features All
 
     .NOTES
         Other parameters will be displayed based on the Template used for the pipeline.
-        See Add-Sample to add elements such as functions (private or public), tests, DSC Resources to your project.
+        See Add-FactoryBlueprint to add elements such as functions (private or public), tests, DSC Resources to your project.
 #>
-function New-FactoryPipeline
+function Add-FactoryPipeline
 {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]

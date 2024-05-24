@@ -29,43 +29,45 @@ BeforeDiscovery {
         <#
             If the templates do not define those parameters, Invoke-Plaster will fail and this test will catch it.
             The template integration is done separately, hence why we don't need to test it here.
-            We only test that the New-SampleModule parameters & parameter set work with the template we have defined.
+            We only test that the Add-FactoryBlueprint parameters & parameter set work with the templates we have defined.
         #>
         @{
-            TestCaseName = 'CompleteSample_NoLicense'
-            NewSampleModuleParameters = @{
-                ModuleName      = 'MyModule'
-                ModuleVersion   = '0.0.1'
-                ModuleAuthor    = "test user"
-                LicenseType     = 'None'
-                ModuleType      = 'CompleteSample'
+            TestCaseName = 'classes'
+            AddSampleParameters = @{
+                Sample          = 'Classes'
+                SourceDirectory = 'Source'
             }
         }
         @{
-            TestCaseName = 'SimpleModule_MIT'
-            NewSampleModuleParameters = @{
-                ModuleName      = 'MyModule'
-                ModuleVersion   = '0.0.1'
-                ModuleAuthor    = "test user"
-                LicenseType     = 'MIT'
-                ModuleType      = 'SimpleModule'
+            TestCaseName = 'ClassResource'
+            AddSampleParameters = @{
+                Sample          = 'ClassResource'
+                ResourceName    = 'MyResource'
+                SourceDirectory = 'source'
+            }
+        }
+        @{
+            TestCaseName = 'Examples'
+            AddSampleParameters = @{
+                Kind          = 'Examples'
             }
         }
     )
 }
 
-Describe New-SampleModule {
+Describe Add-FactoryBlueprint {
     Context 'Invoke plaster with correct parameters for template' {
         BeforeAll {
             Mock -CommandName Invoke-Plaster
         }
 
         It 'New-Sample module should call Invoke-Plaster with test case <TestCaseName>' -ForEach $testCases {
-            $NewSampleModuleParameters.DestinationPath = $TestDrive
+            # Test drive does not exist during discovery phase so it needs to be set here.
+            $AddSampleParameters.DestinationPath = $TestDrive
 
-            { PSFactory\New-SampleModule @NewSampleModuleParameters  } | Should -Not -Throw
+            { PSFactory\Add-FactoryBlueprint @AddSampleParameters } | Should -Not -Throw
 
-            Should -Invoke -CommandName Invoke-Plaster -Scope It -Times 1
+            Should -Invoke -CommandName Invoke-Plaster -Exactly -Times 1 -Scope It
         }
     }
 }

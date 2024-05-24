@@ -50,7 +50,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModule Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `SimpleModule_NoBuild`
@@ -68,7 +68,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModuleNoBuild Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `CompleteSample`
@@ -86,7 +86,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyCompleteSample Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `dsccommunity`
@@ -105,7 +105,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyDscModule Description'
 }
 
-New-SampleModule @newSampleModuleParameters
+New-FactoryProject @newSampleModuleParameters
 ```
 
 #### `CustomModule`

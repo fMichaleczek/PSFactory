@@ -47,8 +47,8 @@ Pester:
       Path:
         - tests/QA
         - tests/Unit
-        #- tests/Unit/Public/Add-Sample.tests.ps1
-        #- tests/Unit/Public/New-SampleModule.tests.ps1
+        #- tests/Unit/Public/Add-FactoryBlueprint.tests.ps1
+        #- tests/Unit/Public/New-FactoryProject.tests.ps1
         #- tests/Integration
     Output:
       Verbosity: Detailed

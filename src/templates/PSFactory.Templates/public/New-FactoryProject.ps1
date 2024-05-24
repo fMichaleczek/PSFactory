@@ -4,7 +4,7 @@
         Create a module scaffolding and add samples & build pipeline.
 
     .DESCRIPTION
-        New-SampleModule helps you bootstrap your PowerShell module project by
+        New-FactoryProject helps you bootstrap your PowerShell module project by
         creating a the folder structure of your module, and optionally add the
         pipeline files to help with compiling the module, publishing to PSGallery
         and GitHub and testing quality and style such as per the DSC Community
@@ -49,12 +49,12 @@
         If you'd rather select specific features from this template to build your module, use this parameter instead.
 
     .EXAMPLE
-        C:\src> New-SampleModule -DestinationPath . -ModuleType CompleteSample -ModuleAuthor "Gael Colas" -ModuleName MyModule -ModuleVersion 0.0.1 -ModuleDescription "a sample module" -LicenseType MIT -SourceDirectory Source
+        C:\src> New-FactoryProject -DestinationPath . -ModuleType CompleteSample -ModuleAuthor "Gael Colas" -ModuleName MyModule -ModuleVersion 0.0.1 -ModuleDescription "a sample module" -LicenseType MIT -SourceDirectory Source
 
     .NOTES
-        See Add-Sample to add elements such as functions (private or public), tests, DSC Resources to your project.
+        See Add-FactoryBlueprint to add elements such as functions (private or public), tests, DSC Resources to your project.
 #>
-function New-SampleModule
+function New-FactoryProject
 {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]

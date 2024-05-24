@@ -385,7 +385,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added Pipeline to build chocolatey packages.
 - Added Sample to add Chocolatey Package source files.
-- Added New-FactoryPipeline to create build, PSFactory Module or Chocolatey pipeline.
+- Added Add-FactoryPipeline to create build, PSFactory Module or Chocolatey pipeline.
 - Extra configuration files for passing to Azure Policy Guest Configuration Package on creation.
 
 ### Fixed
@@ -701,7 +701,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- New DSC Community template (`New-SampleModule -ModuleType newDscCommunity`).
+- New DSC Community template (`New-FactoryProject -ModuleType newDscCommunity`).
 
 ### Fixed
 
@@ -727,7 +727,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added the build_guestconfiguration_packages task to create GuestConfig packages using the GuestConfiguration module.
-- Added GCPackage template so that you can use `Add-Sample -Sample GCPackage` to add a GC Package to your PSFactory project.
+- Added GCPackage template so that you can use `Add-FactoryBlueprint -Sample GCPackage` to add a GC Package to your PSFactory project.
 - Added the gcpack meta task to call clean, build, and build_guestconfiguration_packages for you.
 
 ## [0.109.3] - 2021-02-16
@@ -775,7 +775,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updating all azure-pipeline.yaml to change Build Artifacts to Pipeline Artifacts ([issue #159](https://github.com/fmichaleczek/PSFactory/issues/159)).
-- Update plasterManifest.xml call by New-SampleModule :
+- Update plasterManifest.xml call by New-FactoryProject :
   - Add section modify to replace "FunctionsToExport = '*'" by "FunctionsToExport = ''" in new module manifest ([issue #67](https://github.com/fmichaleczek/PSFactory/issues/67)).
   - Add section modify to add "Prerelease = ''" in "PSData" block  in new module manifest ([issue #69](https://github.com/fmichaleczek/PSFactory/issues/69)). 
 - Changing ClassResource.
@@ -867,8 +867,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added New-SampleModule command to invoke the template.
-- Added Add-Sample command to invoke component templates
+- Added New-FactoryProject command to invoke the template.
+- Added Add-FactoryBlueprint command to invoke component templates
 
 ### Fixed
 
