@@ -58,7 +58,7 @@ task Merge_CodeCoverage_Files {
     # Get the vales for task variables, see https://github.com/fmichaleczek/PSFactory#task-variables.
     . Set-FactoryTaskVariable
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $powerShellVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
 
@@ -263,7 +263,7 @@ task Convert_Pester_Coverage {
     $PesterOutputFolder = Get-FactoryAbsolutePath -Path $PesterOutputFolder -RelativeTo $OutputDirectory
     "`tPester Output Folder     = '$PesterOutputFolder'"
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $powerShellVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
 

@@ -7,12 +7,12 @@
         Gets whether the platform is Windows, Linux or MacOS.
 
     .EXAMPLE
-        Get-OperatingSystemShortName # no Parameter needed
+        Get-FactoryOperatingSystemShortName # no Parameter needed
 
     .NOTES
         General notes
 #>
-function Get-OperatingSystemShortName
+function Get-FactoryOperatingSystemShortName
 {
     [CmdletBinding()]
     param ()

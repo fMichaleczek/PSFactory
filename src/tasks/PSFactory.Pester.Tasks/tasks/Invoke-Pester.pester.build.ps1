@@ -199,7 +199,7 @@ task Invoke_Pester_Tests_v4 {
     "`tExclude Cov.  = $($ExcludeFromCodeCoverage -join ', ')"
     "`tModuleVersion = $ModuleVersion"
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $powerShellVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
 
@@ -369,7 +369,7 @@ task Fail_Build_If_Pester_Tests_Failed {
 
     "`tPester Output Folder     = '$PesterOutputFolder'"
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $GetCodeCoverageThresholdParameters = @{
         RuntimeCodeCoverageThreshold = $CodeCoverageThreshold
@@ -454,7 +454,7 @@ task Invoke_Pester_Tests_v5 {
         $null = New-Item -Path $PesterOutputFolder -ItemType 'Directory' -Force -ErrorAction 'Stop'
     }
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $powerShellVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
 
@@ -946,7 +946,7 @@ task Pester_If_Code_Coverage_Under_Threshold {
         $PesterOutputFolder = Join-Path -Path $OutputDirectory -ChildPath $PesterOutputFolder
     }
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $powerShellVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
 
@@ -1037,7 +1037,7 @@ task Upload_Test_Results_To_AppVeyor -If { (property BuildSystem 'unknown') -eq 
         $null = New-Item -Path $PesterOutputFolder -ItemType Directory -Force -ErrorAction 'Stop'
     }
 
-    $osShortName = Get-OperatingSystemShortName
+    $osShortName = Get-FactoryOperatingSystemShortName
 
     $powerShellVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
 
@@ -1094,7 +1094,7 @@ task Pester_Run_Times {
     $getPesterOutputFileFileNameParameters = @{
         ProjectName       = $ProjectName
         ModuleVersion     = $ModuleVersion
-        OsShortName       = Get-OperatingSystemShortName
+        OsShortName       = Get-FactoryOperatingSystemShortName
         PowerShellVersion = ('PSv.{0}' -f $PSVersionTable.PSVersion)
     }
 

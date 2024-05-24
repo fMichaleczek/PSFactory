@@ -139,7 +139,7 @@ task Invoke_DscResource_Tests {
     "`tTags                     = $($DscTestTag -join ', ')"
     "`tExclude Tags             = $($DscTestExcludeTag -join ', ')"
 
-    $os = Get-OperatingSystemShortName
+    $os = Get-FactoryOperatingSystemShortName
 
     $psVersion = 'PSv.{0}' -f $PSVersionTable.PSVersion
     $DscTestOutputFileFileName = "DscTest_{0}_v{1}.{2}.{3}.xml" -f $ProjectName, $ModuleVersion, $os, $psVersion
@@ -246,7 +246,7 @@ task Fail_Build_If_DscResource_Tests_Failed {
 
     $DscTestOutputFolder = Get-FactoryAbsolutePath -Path $DscTestOutputFolder -RelativeTo $OutputDirectory
 
-    $os = Get-OperatingSystemShortName
+    $os = Get-FactoryOperatingSystemShortName
 
     $builtDscResourcesFolder = Get-FactoryAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
 
@@ -284,7 +284,7 @@ task Upload_DscResourceTest_Results_To_AppVeyor -If { (property BuildSystem 'unk
         $null = New-Item -Path $DscTestOutputFolder -ItemType Directory -Force -ErrorAction 'Stop'
     }
 
-    $os = Get-OperatingSystemShortName
+    $os = Get-FactoryOperatingSystemShortName
 
     $builtDscResourcesFolder = Get-FactoryAbsolutePath -Path 'DSCResources' -RelativeTo $builtModuleBase
 

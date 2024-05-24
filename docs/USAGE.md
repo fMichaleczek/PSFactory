@@ -1072,7 +1072,7 @@ Get-MofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
 This example will return a hashtable containing the name and friendly name
 of the MOF-based resource **MyResource**.
 
-### `Get-OperatingSystemShortName`
+### `Get-FactoryOperatingSystemShortName`
 
 This command tells what the platform is; `Windows`, `Linux`, or `MacOS`.
 
@@ -1080,7 +1080,7 @@ This command tells what the platform is; `Windows`, `Linux`, or `MacOS`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-OperatingSystemShortName [<CommonParameters>]
+Get-FactoryOperatingSystemShortName [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1091,7 +1091,7 @@ Get-OperatingSystemShortName [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-OperatingSystemShortName
+Get-FactoryOperatingSystemShortName
 ```
 
 This example will return what platform it is run on.
@@ -1106,7 +1106,7 @@ The file name will be composed in the format:
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-OperatingSystemShortName [<CommonParameters>]
+Get-FactoryOperatingSystemShortName [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
