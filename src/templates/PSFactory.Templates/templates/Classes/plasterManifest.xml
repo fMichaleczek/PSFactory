@@ -6,9 +6,9 @@
     <id>94a2bcc5-e4d1-4c45-8949-f693ad57e99e</id>
     <version>0.0.1</version>
     <title>Enum Template</title>
-    <description>A template to add some classes with inheritence and order to a PSFactory Project</description>
+    <description>A template to add some classes with inheritence and order to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module</tags>
+    <tags>PSnake,Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text" name="SourceDirectory" type="text" prompt="What is your source folder?" default="source" />

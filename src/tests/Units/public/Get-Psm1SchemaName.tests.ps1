@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -24,7 +24,7 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-FactoryPsm1SchemaName' {
+Describe 'Get-SnakePsm1SchemaName' {
     Context 'When cannot determine operating system' {
         BeforeAll {
             InModuleScope -ScriptBlock {
@@ -65,11 +65,11 @@ function MockConfigurationName {
         }
 
         It 'Should not return anything' {
-            PSFactory\Get-FactoryPsm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+            PSnake\Get-SnakePsm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
         }
 
         It 'Should throw' {
-            { PSFactory\Get-FactoryPsm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
+            { PSnake\Get-SnakePsm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
         }
     }
 
@@ -102,11 +102,11 @@ configuration MockConfigurationName2 {
         }
 
         It 'Should not return anything' {
-            PSFactory\Get-FactoryPsm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+            PSnake\Get-SnakePsm1SchemaName -Path $TestDrive -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
         }
 
         It 'Should throw' {
-            { PSFactory\Get-FactoryPsm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
+            { PSnake\Get-SnakePsm1SchemaName -Path $TestDrive -ErrorAction Stop } | Should -Throw
         }
     }
 
@@ -129,7 +129,7 @@ configuration MockConfigurationName {
         }
 
         It 'Should return the correct name of the configuration' {
-            $result = PSFactory\Get-FactoryPsm1SchemaName -Path $TestDrive
+            $result = PSnake\Get-SnakePsm1SchemaName -Path $TestDrive
 
             $result | Should -Be MockConfigurationName
         }

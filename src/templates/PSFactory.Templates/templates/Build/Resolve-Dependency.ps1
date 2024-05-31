@@ -954,7 +954,7 @@ try
                     # Concatenate the module parameters to the Save-PSResource parameters.
                     $savePSResourceParameters += $currentModule
 
-                    # Modules that PSFactory depend on that cannot be refreshed without a new session.
+                    # Modules that PSnake depend on that cannot be refreshed without a new session.
                     $skipModule = @('PowerShell-Yaml')
 
                     if ($savePSResourceParameters.Name -in $skipModule -and (Get-Module -Name $savePSResourceParameters.Name))

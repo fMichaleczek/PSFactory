@@ -1,4 +1,4 @@
-# PSFactory Module
+# PSnake Module
 
 This project is used to scaffold a PowerShell module project, complete with
 PowerShell build and deploy pipeline automation.
@@ -40,7 +40,7 @@ C:\> choco upgrade gitversion.portable
 Creates a module with minimal structure and pipeline automation.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -50,7 +50,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModule Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `SimpleModule_NoBuild`
@@ -58,7 +58,7 @@ New-FactoryProject @newSampleModuleParameters
 Creates a simple module without the build automation.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -68,7 +68,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModuleNoBuild Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `CompleteSample`
@@ -76,7 +76,7 @@ New-FactoryProject @newSampleModuleParameters
 Creates a module with complete structure and example files.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -86,7 +86,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyCompleteSample Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `dsccommunity`
@@ -95,7 +95,7 @@ Creates a DSC module according to the DSC Community baseline with a pipeline
 for build, test, and release automation.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -105,7 +105,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyDscModule Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `CustomModule`
@@ -113,12 +113,12 @@ New-FactoryProject @newSampleModuleParameters
 Will prompt you for more details as to what you'd like to scaffold.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
-$factoryModule = Import-Module -Name PSFactory -PassThru
+$snakeModule = Import-Module -Name PSnake -PassThru
 
 $invokePlasterParameters = @{
-   TemplatePath    = Join-Path -Path $factoryModule.ModuleBase -ChildPath 'Templates/PSFactory'
+   TemplatePath    = Join-Path -Path $snakeModule.ModuleBase -ChildPath 'Templates/PSnake'
    DestinationPath   = 'C:\source'
    ModuleType        = 'CustomModule'
    ModuleName        = 'MyCustomModule'
@@ -214,11 +214,11 @@ This runs all the quality tests:
 
 To run a specific test file, again use the parameter `PesterPath` and
 optionally `CodeCoverageThreshold` set to `0` to turn off code coverage.
-This runs just the specific test file `New-FactoryXmlJaCoCoCounter.tests.ps1`:
+This runs just the specific test file `New-SnakeXmlJaCoCoCounter.tests.ps1`:
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-./build.ps1 -Tasks test -PesterPath ./tests/Unit/Private/New-FactoryXmlJaCoCoCounter.tests.ps1 -CodeCoverageThreshold 0
+./build.ps1 -Tasks test -PesterPath ./tests/Unit/Private/New-SnakeXmlJaCoCoCounter.tests.ps1 -CodeCoverageThreshold 0
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 

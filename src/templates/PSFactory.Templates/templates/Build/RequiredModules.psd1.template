@@ -25,11 +25,11 @@
     Pester                      = 'latest'
     ModuleBuilder               = 'latest'
     ChangelogManagement         = 'latest'
-    PSFactory                     = 'latest'
+    PSnake                     = 'latest'
 <%
     If ($PLASTER_PARAM_ModuleType -in @('dsccommunity','CompleteSample','CompleteModule') -or $PLASTER_PARAM_UseGitHub -eq 'true'  -or $PLASTER_PARAM_Features -Contains ('All') -or $PLASTER_PARAM_Features -Contains ('DSCResources')) {
 @"
-    'PSFactory.GitHubTasks'       = 'latest'
+    'PSnake.GitHubTasks'       = 'latest'
 "@
     }
 %>

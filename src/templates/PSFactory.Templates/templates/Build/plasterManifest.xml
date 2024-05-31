@@ -2,13 +2,13 @@
 <plasterManifest
   schemaVersion="1.0" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
   <metadata>
-    <name>PSFactoryBuild</name>
+    <name>PSnakeBuild</name>
     <id>31cc2e18-3e44-4f22-87c5-e311b1b6b0cd</id>
     <version>0.0.1</version>
-    <title>PSFactory Build Pipeline</title>
-    <description>PSFactory Pipeline (bootstrap only)</description>
+    <title>PSnake Build Pipeline</title>
+    <description>PSnake Pipeline (bootstrap only)</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template</tags>
+    <tags>PSnake,Template</tags>
   </metadata>
   <parameters>
     <parameter store="text" name="ProjectName" type="text" prompt="Name of your Project/folder" />
@@ -145,7 +145,7 @@
     />
 
     <!--   AZURE PIPELINES -->
-    <templateFile source='../PSFactory/azure-pipelines.yml.template'
+    <templateFile source='../PSnake/azure-pipelines.yml.template'
           destination='${PLASTER_PARAM_ProjectName}/azure-pipelines.yml'
           condition='${PLASTER_PARAM_Features} -Contains ("All") -or ${PLASTER_PARAM_Features} -Contains ("Azure-Pipelines")'
     />
@@ -154,13 +154,13 @@
 
     <!-- LICENSE based on type of license MIT/Apache2/CC...-->
     <!--   MIT License -->
-    <templateFile source='../PSFactory/LICENSES/LICENSE.MIT.template'
+    <templateFile source='../PSnake/LICENSES/LICENSE.MIT.template'
                   destination='${PLASTER_PARAM_ProjectName}/LICENSE'
                   condition='(${PLASTER_PARAM_License} -eq "true" -and ${PLASTER_PARAM_LicenseType} -eq "MIT")'
     />
 
     <!--   APACHE License -->
-    <templateFile source='../PSFactory/LICENSES/LICENSE.Apache.template'
+    <templateFile source='../PSnake/LICENSES/LICENSE.Apache.template'
                   destination='${PLASTER_PARAM_ProjectName}/LICENSE'
                   condition='${PLASTER_PARAM_License} -eq "true" -and ${PLASTER_PARAM_LicenseType} -eq "Apache"'
     />

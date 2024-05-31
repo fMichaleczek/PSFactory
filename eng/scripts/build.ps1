@@ -166,9 +166,9 @@ process
     # Execute the Build process from the .build.ps1 path.
     Push-Location -Path $PSScriptRoot -StackName 'BeforeBuild'
 
-    if (Test-Path -Path 'src/core/PSFactory')
+    if (Test-Path -Path 'src/core/PSnake')
     {
-        # We are in the PSFactory project, load functions instead of PSFactory module.
+        # We are in the PSnake project, load functions instead of PSnake module.
         Get-ChildItem -Path "src/tasks/*/tasks/*.ps1" |
             ForEach-Object -Process {
                 . $_.FullName
@@ -545,5 +545,5 @@ begin
         return
     }
 
-    Set-Alias -Name 'Set-FactoryTaskVariable' -Value "$PSScriptRoot/PSFactory/scripts/Set-FactoryTaskVariable.ps1"
+    Set-Alias -Name 'Set-SnakeTaskVariable' -Value "$PSScriptRoot/PSnake/scripts/Set-SnakeTaskVariable.ps1"
 }

@@ -1,15 +1,15 @@
-# PSFactory Module [![Azure DevOps builds](https://img.shields.io/azure-devops/build/Synedgy/524b41a5-5330-4967-b2de-bed8fd44da08/1)](https://synedgy.visualstudio.com/PSFactory/_build?definitionId=1&_a=summary)
+# PSnake Module [![Azure DevOps builds](https://img.shields.io/azure-devops/build/Synedgy/524b41a5-5330-4967-b2de-bed8fd44da08/1)](https://synedgy.visualstudio.com/PSnake/_build?definitionId=1&_a=summary)
 
-[![PowerShell Gallery (with prereleases)](https://img.shields.io/powershellgallery/vpre/PSFactory?label=PSFactory%20Preview)](https://www.powershellgallery.com/packages/PSFactory/)
-[![PowerShell Gallery](https://img.shields.io/powershellgallery/v/PSFactory?label=PSFactory)](https://www.powershellgallery.com/packages/PSFactory/)
-[![Azure DevOps tests](https://img.shields.io/azure-devops/tests/SynEdgy/PSFactory/1)](https://synedgy.visualstudio.com/PSFactory/_test/analytics?definitionId=1&contextType=build)
-![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/Synedgy/PSFactory/1)
-![PowerShell Gallery](https://img.shields.io/powershellgallery/p/PSFactory)
+[![PowerShell Gallery (with prereleases)](https://img.shields.io/powershellgallery/vpre/PSnake?label=PSnake%20Preview)](https://www.powershellgallery.com/packages/PSnake/)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/v/PSnake?label=PSnake)](https://www.powershellgallery.com/packages/PSnake/)
+[![Azure DevOps tests](https://img.shields.io/azure-devops/tests/SynEdgy/PSnake/1)](https://synedgy.visualstudio.com/PSnake/_test/analytics?definitionId=1&contextType=build)
+![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/Synedgy/PSnake/1)
+![PowerShell Gallery](https://img.shields.io/powershellgallery/p/PSnake)
 
 This project is used to scaffold a PowerShell module project, complete with
 PowerShell build and deploy pipeline automation.
 
-The PSFactory module in itself serves several purposes:
+The PSnake module in itself serves several purposes:
 
 - Quickly scaffold a PowerShell module project that can build and enforce some good practices.
 - Provide a minimum set of [InvokeBuild](https://github.com/nightroman/Invoke-Build)
@@ -26,17 +26,17 @@ tasks that help you build, test, pack and publish your module.
 
 Check the video for a quick intro:
 
-> _Note: The video was made when PSFactory was in early stages. Since that time_
+> _Note: The video was made when PSnake was in early stages. Since that time_
 > _there have been a lot of improvements and changes, so please read the_
 > _documentation below._
 
-[![PSFactory demo video](https://img.youtube.com/vi/bbpFBsl8K9k/0.jpg)](https://www.youtube.com/watch?v=bbpFBsl8K9k&ab_channel=DSCCommunity)
+[![PSnake demo video](https://img.youtube.com/vi/bbpFBsl8K9k/0.jpg)](https://www.youtube.com/watch?v=bbpFBsl8K9k&ab_channel=DSCCommunity)
 
 ## Prerequisites
 
 ### Resolving dependencies
 
-The PSFactory templates is configured to use PSResourceGet as the method of
+The PSnake templates is configured to use PSResourceGet as the method of
 resolving dependencies. The property `UsePSResourceGet` is default configured
 to `$true` in the file Resolve-Dependency.psd1. If that configuration is
 removed or disabled (set to `$false`) then resolving dependencies will
@@ -214,7 +214,7 @@ if you plan to use the deploy pipelines in the CI.
 
 ### How to create a new project
 
-To create a new project the command `New-FactoryProject` should be used. Depending
+To create a new project the command `New-SnakeProject` should be used. Depending
 on the template used with the command the content in project will contain
 different sample content while some also adds additional pipeline jobs. But all
 templates (except one) will have the basic tasks to have a working pipeline including
@@ -241,7 +241,7 @@ the file `build.yaml` is where you configure and customize it.
 Creates a module with minimal structure and pipeline automation.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -251,7 +251,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModule Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `SimpleModule_NoBuild`
@@ -259,7 +259,7 @@ New-FactoryProject @newSampleModuleParameters
 Creates a simple module without the build automation.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -269,7 +269,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MySimpleModuleNoBuild Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `CompleteSample`
@@ -277,7 +277,7 @@ New-FactoryProject @newSampleModuleParameters
 Creates a module with complete structure and example files.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -287,7 +287,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyCompleteSample Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `dsccommunity`
@@ -296,7 +296,7 @@ Creates a DSC module according to the DSC Community baseline with a pipeline
 for build, test, and release automation.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
 $newSampleModuleParameters = @{
     DestinationPath   = 'C:\source'
@@ -306,7 +306,7 @@ $newSampleModuleParameters = @{
     ModuleDescription = 'MyDscModule Description'
 }
 
-New-FactoryProject @newSampleModuleParameters
+New-SnakeProject @newSampleModuleParameters
 ```
 
 #### `CustomModule`
@@ -314,12 +314,12 @@ New-FactoryProject @newSampleModuleParameters
 Will prompt you for more details as to what you'd like to scaffold.
 
 ```powershell
-Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
-$factoryModule = Import-Module -Name PSFactory -PassThru
+$snakeModule = Import-Module -Name PSnake -PassThru
 
 $invokePlasterParameters = @{
-   TemplatePath    = Join-Path -Path $factoryModule.ModuleBase -ChildPath 'Templates/PSFactory'
+   TemplatePath    = Join-Path -Path $snakeModule.ModuleBase -ChildPath 'Templates/PSnake'
    DestinationPath   = 'C:\source'
    ModuleType        = 'CustomModule'
    ModuleName        = 'MyCustomModule'
@@ -527,11 +527,11 @@ This runs all the quality tests:
 
 To run a specific test file, again use the parameter `PesterPath` and
 optionally `CodeCoverageThreshold` set to `0` to turn off code coverage.
-This runs just the specific test file `New-FactoryXmlJaCoCoCounter.tests.ps1`:
+This runs just the specific test file `New-SnakeXmlJaCoCoCounter.tests.ps1`:
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-./build.ps1 -Tasks test -PesterPath ./tests/Unit/Private/New-FactoryXmlJaCoCoCounter.tests.ps1 -CodeCoverageThreshold 0
+./build.ps1 -Tasks test -PesterPath ./tests/Unit/Private/New-SnakeXmlJaCoCoCounter.tests.ps1 -CodeCoverageThreshold 0
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -603,15 +603,15 @@ environment like so:
 1. Hand over the task execution to `Invoke-Build` to run the configured
    workflow.
 
-## About PSFactory build workflow
+## About PSnake build workflow
 
-Let's look at the pipeline of the `PSFactory` module itself to better understand
+Let's look at the pipeline of the `PSnake` module itself to better understand
 how the pipeline automation is configured for a project created using a
-template from the PSFactory module.
+template from the PSnake module.
 
-> **NOTE:** Depending on the PSFactory template used when creating a new project
+> **NOTE:** Depending on the PSnake template used when creating a new project
 > there can be additional configuration options - but they can all be added
-> manually when those options are needed. The PSFactory project itself does not use
+> manually when those options are needed. The PSnake project itself does not use
 > all features available (an example is DSC resources documentation generation).
 
 ### Default Workflow Currently configured
@@ -652,13 +652,13 @@ The tasks `build` and `tests` are meta-tasks or workflow calling other tasks:
 ```
 
 Those tasks are imported from a module, in this case from
-the `.build/` folder, from this `PSFactory` module,
+the `.build/` folder, from this `PSnake` module,
 but for another module you would use this line in your `build.yml` config:
 
 ```yaml
 ModuleBuildTasks:
-  PSFactory:
-    - '*.build.PSFactory.ib.tasks' # this means: import (dot source) all aliases ending with .ib.tasks exported by 'PSFactory' module
+  PSnake:
+    - '*.build.PSnake.ib.tasks' # this means: import (dot source) all aliases ending with .ib.tasks exported by 'PSnake' module
 ```
 
 You can edit your `build.yml` to change the workflow, add a custom task,
@@ -684,7 +684,7 @@ _Guest Configuration_. This process will be replaced with a Plaster template.
 1. Start by creating a new project using the template `dsccommunity`.
 
    ```powershell
-   Install-Module -Name 'PSFactory' -Scope 'CurrentUser'
+   Install-Module -Name 'PSnake' -Scope 'CurrentUser'
 
    $newSampleModuleParameters = @{
       DestinationPath   = 'C:\source'
@@ -694,7 +694,7 @@ _Guest Configuration_. This process will be replaced with a Plaster template.
       ModuleDescription = 'MyGCPackages Description'
    }
 
-   New-FactoryProject @newSampleModuleParameters
+   New-SnakeProject @newSampleModuleParameters
    ```
 
 1. In the file `build.yaml` add the following top-level key:
@@ -817,10 +817,10 @@ _Guest Configuration_. This process will be replaced with a Plaster template.
 
 Refer to the comment-based help for more information about these commands.
 
-### `Add-FactoryBlueprint`
+### `Add-SnakeBlueprint`
 
 This command is used to invoke a plaster template built-in the
-PSFactory module. With this function you can bootstrap your module project
+PSnake module. With this function you can bootstrap your module project
 by adding classes, functions and associated tests, examples and configuration
 elements.
 
@@ -828,7 +828,7 @@ elements.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Add-FactoryBlueprint [[-Kind] <String>] [[-DestinationPath] <String>] [<CommonParameters>]
+Add-SnakeBlueprint [[-Kind] <String>] [[-DestinationPath] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -839,13 +839,13 @@ None.
 #### Example
 
 ```powershell
-Add-FactoryBlueprint -Kind PublicFunction -PublicFunctionName Get-MyStuff
+Add-SnakeBlueprint -Kind PublicFunction -PublicFunctionName Get-MyStuff
 ```
 
 This example adds a public function to the module (in the current folder),
 with a sample unit test that test the public function.
 
-### `Invoke-FactoryGit`
+### `Invoke-SnakeGit`
 
 This command executes git with the provided arguments and throws an error
 if the call failed.
@@ -854,7 +854,7 @@ if the call failed.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Invoke-FactoryGit [-Argument] <string[]> [<CommonParameters>]
+Invoke-SnakeGit [-Argument] <string[]> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -865,12 +865,12 @@ Invoke-FactoryGit [-Argument] <string[]> [<CommonParameters>]
 #### Example
 
 ```powershell
-Invoke-FactoryGit -Argument @('config', 'user.name', 'MyName')
+Invoke-SnakeGit -Argument @('config', 'user.name', 'MyName')
 ```
 
 Calls git to set user name in the git config.
 
-### `New-FactoryProject`
+### `New-SnakeProject`
 
 This command helps you scaffold your PowerShell module project by creating
 the folder structure of your module, and optionally add the pipeline files
@@ -882,12 +882,12 @@ per the DSC Community guidelines.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-New-FactoryProject -DestinationPath <String> [-ModuleType <String>] [-ModuleAuthor <String>]
+New-SnakeProject -DestinationPath <String> [-ModuleType <String>] [-ModuleAuthor <String>]
   -ModuleName <String> [-ModuleDescription <String>] [-CustomRepo <String>]
   [-ModuleVersion <String>] [-LicenseType <String>] [-SourceDirectory <String>]
   [<CommonParameters>]
 
-New-FactoryProject -DestinationPath <String> [-ModuleAuthor <String>] -ModuleName <String>
+New-SnakeProject -DestinationPath <String> [-ModuleAuthor <String>] -ModuleName <String>
   [-ModuleDescription <String>] [-CustomRepo <String>] [-ModuleVersion <String>]
   [-LicenseType <String>] [-SourceDirectory <String>] [-Features <String[]>]
   [<CommonParameters>]
@@ -905,11 +905,11 @@ See section [Usage](#usage).
 ## Commands for Build Tasks
 
 These commands are primarily meant to be used in tasks that exist either
-in PSFactory or in third-party modules.
+in PSnake or in third-party modules.
 
 Refer to the comment-based help for more information about these commands.
 
-### `Format-FactoryHashtable`
+### `Format-SnakeHashtable`
 
 Convert a Hashtable to a string representation. For instance, calling the
 function with this hashtable:
@@ -928,7 +928,7 @@ a=1; b=2; c=3; d={dd=abcd}
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Format-FactoryHashtable [[-Hashtable] <Hashtable>] [<CommonParameters>]
+Format-SnakeHashtable [[-Hashtable] <Hashtable>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -939,15 +939,15 @@ Format-FactoryHashtable [[-Hashtable] <Hashtable>] [<CommonParameters>]
 #### Example
 
 ```powershell
-Format-FactoryHashtable -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
+Format-SnakeHashtable -Hashtable @{a=1;b=2; c=3; d=@{dd='abcd'}}
 ```
 
 This example will return the string representation of the provided hashtable.
 
-### `Get-FactoryBuiltModuleVersion`
+### `Get-SnakeBuiltModuleVersion`
 
 Will read the properties `ModuleVersion` and `PrivateData.PSData.Prerelease` tag
-of the module manifest for a module that has been built by PSFactory. The command
+of the module manifest for a module that has been built by PSnake. The command
 looks into the **OutputDirectory** where the project's module should have been
 built.
 
@@ -955,7 +955,7 @@ built.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryBuiltModuleVersion [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
+Get-SnakeBuiltModuleVersion [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
   [-ModuleName] <String> [-VersionedOutputDirectory] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -967,24 +967,24 @@ Get-FactoryBuiltModuleVersion [-OutputDirectory] <String> [[-BuiltModuleSubdirec
 #### Example
 
 ```powershell
-Get-FactoryBuiltModuleVersion -OutputDirectory 'output' -ProjectName 'MyModuleName'
+Get-SnakeBuiltModuleVersion -OutputDirectory 'output' -ProjectName 'MyModuleName'
 ```
 
 This example will return the module version of the built module 'MyModuleName'.
 
-### `Get-FactoryClassBasedResourceName`
+### `Get-SnakeClassBasedResourceName`
 
 This command returns all the class-based DSC resource names in a script file.
 The script file is parsed for classes with the `[DscResource()]` attribute.
 
 > **Note:** For MOF-based DSC resources, look at the command
->[`Get-FactoryMofSchemaName`](#Get-FactoryMofSchemaName).
+>[`Get-SnakeMofSchemaName`](#Get-SnakeMofSchemaName).
 
 #### Syntax
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryClassBasedResourceName [-Path] <String> [<CommonParameters>]
+Get-SnakeClassBasedResourceName [-Path] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -995,7 +995,7 @@ Get-FactoryClassBasedResourceName [-Path] <String> [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-FactoryClassBasedResourceName -Path 'source/Classes/MyDscResource.ps1'
+Get-SnakeClassBasedResourceName -Path 'source/Classes/MyDscResource.ps1'
 ```
 
 This example will return the class-based DSC resource names in the script
@@ -1007,7 +1007,7 @@ Import-Module -Name 'MyResourceModule'
 
 $module = Get-Module -Name 'MyResourceModule'
 
-Get-FactoryClassBasedResourceName -Path (Join-Path -Path $module.ModuleBase -ChildPath $module.RootModule)
+Get-SnakeClassBasedResourceName -Path (Join-Path -Path $module.ModuleBase -ChildPath $module.RootModule)
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1041,7 +1041,7 @@ Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold 0
 This example will override the code coverage threshold in the build
 configuration and return the value pass in the parameter **RuntimeCodeCoverageThreshold**.
 
-### `Get-FactoryMofSchemaName`
+### `Get-SnakeMofSchemaName`
 
 This command looks within a DSC resource's .MOF schema file to find the name
 and friendly name of the class.
@@ -1050,7 +1050,7 @@ and friendly name of the class.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryMofSchemaName [-Path] <String> [<CommonParameters>]
+Get-SnakeMofSchemaName [-Path] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1066,13 +1066,13 @@ FriendlyName | `[System.String]` | The friendly name of the class
 #### Example
 
 ```powershell
-Get-FactoryMofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
+Get-SnakeMofSchemaName -Path Source/DSCResources/MyResource/MyResource.schema.mof
 ```
 
 This example will return a hashtable containing the name and friendly name
 of the MOF-based resource **MyResource**.
 
-### `Get-FactoryOS`
+### `Get-SnakeOS`
 
 This command tells what the platform is; `Windows`, `Linux`, or `MacOS`.
 
@@ -1080,7 +1080,7 @@ This command tells what the platform is; `Windows`, `Linux`, or `MacOS`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryOS [<CommonParameters>]
+Get-SnakeOS [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1091,7 +1091,7 @@ Get-FactoryOS [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-FactoryOS
+Get-SnakeOS
 ```
 
 This example will return what platform it is run on.
@@ -1106,7 +1106,7 @@ The file name will be composed in the format:
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryOS [<CommonParameters>]
+Get-SnakeOS [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1118,13 +1118,13 @@ Get-FactoryOS [<CommonParameters>]
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-PesterOutputFileFileName -ProjectName 'PSFactory' -ModuleVersion '0.110.4-preview001' -OsShortName 'Windows' -PowerShellVersion '5.1'
+Get-PesterOutputFileFileName -ProjectName 'PSnake' -ModuleVersion '0.110.4-preview001' -OsShortName 'Windows' -PowerShellVersion '5.1'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
-This example will return the string `PSFactory_v0.110.4-preview001.Windows.5.1.xml`.
+This example will return the string `PSnake_v0.110.4-preview001.Windows.5.1.xml`.
 
-### `Get-FactoryAbsolutePath`
+### `Get-SnakeAbsolutePath`
 
 This command will resolve the absolute value of a path, whether it's
 potentially relative to another path, relative to the current working
@@ -1141,7 +1141,7 @@ The path does not need to exist, but the command will use the right
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryAbsolutePath [[-Path] <String>] [[-RelativeTo] <String>] [<CommonParameters>]
+Get-SnakeAbsolutePath [[-Path] <String>] [[-RelativeTo] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1152,18 +1152,18 @@ Get-FactoryAbsolutePath [[-Path] <String>] [[-RelativeTo] <String>] [<CommonPara
 #### Example
 
 ```powershell
-Get-FactoryAbsolutePath -Path '/src' -RelativeTo 'C:\Windows'
+Get-SnakeAbsolutePath -Path '/src' -RelativeTo 'C:\Windows'
 ```
 
 This example will return the string `C:\src` on Windows.
 
 ```powershell
-Get-FactoryAbsolutePath -Path 'MySubFolder' -RelativeTo '/src'
+Get-SnakeAbsolutePath -Path 'MySubFolder' -RelativeTo '/src'
 ```
 
 This example will return the string `C:\src\MySubFolder` on Windows.
 
-### `Get-FactoryBuiltModuleBase`
+### `Get-SnakeBuiltModuleBase`
 
 This command returns the module base of the built module.
 
@@ -1171,7 +1171,7 @@ This command returns the module base of the built module.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryBuiltModuleBase [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
+Get-SnakeBuiltModuleBase [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
   [-ModuleName] <String> [-VersionedOutputDirectory] [[-ModuleVersion] <String>]
   [<CommonParameters>]
 ```
@@ -1185,13 +1185,13 @@ Get-FactoryBuiltModuleBase [-OutputDirectory] <String> [[-BuiltModuleSubdirector
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-FactoryBuiltModuleBase -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
+Get-SnakeBuiltModuleBase -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the string `C:\src\output\Module\stuff\3.1.2`.
 
-### `Get-FactoryBuiltModuleManifest`
+### `Get-SnakeBuiltModuleManifest`
 
 This command returns the path to the built module's manifest.
 
@@ -1199,7 +1199,7 @@ This command returns the path to the built module's manifest.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryBuiltModuleManifest [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
+Get-SnakeBuiltModuleManifest [-OutputDirectory] <String> [[-BuiltModuleSubdirectory] <String>]
   [-ModuleName] <String> [-VersionedOutputDirectory] [[-ModuleVersion] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1212,13 +1212,13 @@ Get-FactoryBuiltModuleManifest [-OutputDirectory] <String> [[-BuiltModuleSubdire
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-FactoryBuiltModuleManifest -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
+Get-SnakeBuiltModuleManifest -OutputDirectory 'C:\src\output' -BuiltModuleSubdirectory 'Module' -ModuleName 'stuff' -ModuleVersion '3.1.2-preview001'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the string `C:\src\output\Module\stuff\3.1.2\stuff.psd1`.
 
-### `Get-FactoryCodeCoverageOutputFile`
+### `Get-SnakeCodeCoverageOutputFile`
 
 This command resolves the code coverage output file path from the project's
 build configuration.
@@ -1227,7 +1227,7 @@ build configuration.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryCodeCoverageOutputFile [-BuildInfo] <PSObject> [-PesterOutputFolder] <String>
+Get-SnakeCodeCoverageOutputFile [-BuildInfo] <PSObject> [-PesterOutputFolder] <String>
   [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1240,13 +1240,13 @@ Get-FactoryCodeCoverageOutputFile [-BuildInfo] <PSObject> [-PesterOutputFolder] 
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-FactoryCodeCoverageOutputFile -BuildInfo $buildInfo -PesterOutputFolder 'C:\src\MyModule\Output\testResults'
+Get-SnakeCodeCoverageOutputFile -BuildInfo $buildInfo -PesterOutputFolder 'C:\src\MyModule\Output\testResults'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the code coverage output file path.
 
-### `Get-FactoryCodeCoverageOutputFileEncoding`
+### `Get-SnakeCodeCoverageOutputFileEncoding`
 
 This command resolves the code coverage output file encoding from the project's
 build configuration.
@@ -1255,7 +1255,7 @@ build configuration.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryCodeCoverageOutputFileEncoding [-BuildInfo] <PSObject> [<CommonParameters>]
+Get-SnakeCodeCoverageOutputFileEncoding [-BuildInfo] <PSObject> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1267,13 +1267,13 @@ Get-FactoryCodeCoverageOutputFileEncoding [-BuildInfo] <PSObject> [<CommonParame
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-FactoryCodeCoverageOutputFileEncoding -BuildInfo $buildInfo
+Get-SnakeCodeCoverageOutputFileEncoding -BuildInfo $buildInfo
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the code coverage output file encoding.
 
-### `Get-FactoryModuleInfo`
+### `Get-SnakeModuleInfo`
 
 This command loads a module manifest and returns the hashtable.
 This implementation works around the issue where Windows PowerShell has
@@ -1284,7 +1284,7 @@ _PowerShell extension_.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryModuleInfo [-ModuleManifestPath] <String> [<CommonParameters>]
+Get-SnakeModuleInfo [-ModuleManifestPath] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1296,13 +1296,13 @@ Get-FactoryModuleInfo [-ModuleManifestPath] <String> [<CommonParameters>]
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-FactoryModuleInfo -ModuleManifestPath 'C:\src\MyProject\output\MyProject\MyProject.psd1'
+Get-SnakeModuleInfo -ModuleManifestPath 'C:\src\MyProject\output\MyProject\MyProject.psd1'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the module manifest's hashtable.
 
-### `Get-FactoryModuleRootPath`
+### `Get-SnakeModuleRootPath`
 
 This command reads the module manifest (.psd1) and if the `ModuleRoot` property
 is defined it will resolve its absolute path based on the module manifest's
@@ -1313,7 +1313,7 @@ return `$null`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryModuleRootPath [-ModuleManifestPath] <String> [<CommonParameters>]
+Get-SnakeModuleRootPath [-ModuleManifestPath] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1325,13 +1325,13 @@ Get-FactoryModuleRootPath [-ModuleManifestPath] <String> [<CommonParameters>]
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Get-FactoryModuleRootPath -ModuleManifestPath C:\src\MyModule\output\MyModule\2.3.4\MyModule.psd1
+Get-SnakeModuleRootPath -ModuleManifestPath C:\src\MyModule\output\MyModule\2.3.4\MyModule.psd1
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will return the path to module script file, e.g. `C:\src\MyModule\output\MyModule\2.3.4\MyModule.psm1`.
 
-### `Get-FactoryProjectName`
+### `Get-SnakeProjectName`
 
 This command returns the project name based on the module manifest, if no
 module manifest is available it will return `$null`.
@@ -1340,7 +1340,7 @@ module manifest is available it will return `$null`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactoryProjectName [-BuildRoot] <String> [<CommonParameters>]
+Get-SnakeProjectName [-BuildRoot] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1351,12 +1351,12 @@ Get-FactoryProjectName [-BuildRoot] <String> [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-FactoryProjectName -BuildRoot 'C:\src\MyModule'
+Get-SnakeProjectName -BuildRoot 'C:\src\MyModule'
 ```
 
 This example will return the project name of the module in the path `C:\src\MyModule`.
 
-### `Get-FactorySourcePath`
+### `Get-SnakeSourcePath`
 
 This command returns the project's source path based on the module manifest,
 if no module manifest is available it will return `$null`.
@@ -1365,7 +1365,7 @@ if no module manifest is available it will return `$null`.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Get-FactorySourcePath [-BuildRoot] <String> [<CommonParameters>]
+Get-SnakeSourcePath [-BuildRoot] <String> [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1376,7 +1376,7 @@ Get-FactorySourcePath [-BuildRoot] <String> [<CommonParameters>]
 #### Example
 
 ```powershell
-Get-FactorySourcePath -BuildRoot 'C:\src\MyModule'
+Get-SnakeSourcePath -BuildRoot 'C:\src\MyModule'
 ```
 
 This example will return the project's source path of the module in the
@@ -1413,7 +1413,7 @@ Merge-JaCoCoReport -OriginalDocument 'C:\src\MyModule\Output\JaCoCoRun_linux.xml
 This example will merge the JaCoCo report `JaCoCoRun_windows.xml` into the
 JaCoCo report `JaCoCoRun_linux.xml` and then return the resulting JaCoCo report.
 
-### `New-FactoryJaCoCoDocument`
+### `New-SnakeJaCoCoDocument`
 
 This command creates a new JaCoCo XML document based on the provided missed
 and hit lines. This command is usually used together with the output object
@@ -1424,7 +1424,7 @@ from Pester that also have been passed through ModuleBuilder's command
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-New-FactoryJaCoCoDocument [-MissedCommands] <Object[]> [-HitCommands] <Object[]>
+New-SnakeJaCoCoDocument [-MissedCommands] <Object[]> [-HitCommands] <Object[]>
   [-PackageName] <String> [[-PackageDisplayName] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1446,7 +1446,7 @@ $pesterObject.CodeCoverage.MissedCommands |
 $pesterObject.CodeCoverage.HitCommands |
    Convert-LineNumber -ErrorAction 'Stop' -PassThru | Out-Null
 
-New-FactoryJaCoCoDocument `
+New-SnakeJaCoCoDocument `
    -MissedCommands $pesterObject.CodeCoverage.MissedCommands `
    -HitCommands $pesterObject.CodeCoverage.HitCommands `
    -PackageName 'source'
@@ -1460,7 +1460,7 @@ the built module script file to the source script files.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-New-FactoryJaCoCoDocument `
+New-SnakeJaCoCoDocument `
    -MissedCommands @{
          Class            = 'ResourceBase'
          Function         = 'Compare'
@@ -1482,7 +1482,7 @@ New-FactoryJaCoCoDocument `
 This example will create a new JaCoCo report based on the two hashtables
 containing hit or missed line.
 
-### `Out-FactoryXml`
+### `Out-SnakeXml`
 
 This command outputs an XML document to the file specified in the parameter
 **Path**.
@@ -1491,7 +1491,7 @@ This command outputs an XML document to the file specified in the parameter
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Out-FactoryXml [-XmlDocument] <XmlDocument> [-Path] <String> [[-Encoding] <String>]
+Out-SnakeXml [-XmlDocument] <XmlDocument> [-Path] <String> [[-Encoding] <String>]
   [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
@@ -1504,14 +1504,14 @@ None.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Out-FactoryXml -Path 'C:\temp\my.xml' -XmlDocument '<?xml version="1.0"?><a><b /></a>' -Encoding 'UTF8'
+Out-SnakeXml -Path 'C:\temp\my.xml' -XmlDocument '<?xml version="1.0"?><a><b /></a>' -Encoding 'UTF8'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
 This example will create a new XML file based on the XML document passed
 in the parameter **XmlDocument**.
 
-### `Set-FactoryTaskVariable`
+### `Set-SnakeTaskVariable`
 
 This is an alias that points to a script file that is meant to be dot-sourced
 from (in) a build task. The script will set common task variables for a build
@@ -1519,21 +1519,21 @@ task. This function should normally never be called outside of a build task, but
 an exception can be tests; tests can call the alias to set the values prior to
 running tests.
 
-> **Note:** Running the command `Get-Help -Name 'Set-FactoryTaskVariable'` will
+> **Note:** Running the command `Get-Help -Name 'Set-SnakeTaskVariable'` will
 > only return help for the alias. To see the comment-based help for the script,
 > run:
 >
 > ```powershell
-> Import-Module -Name PSFactory
+> Import-Module -Name PSnake
 >
-> Get-Help -Name (Get-Alias -Name 'Set-FactoryTaskVariable').Definition -Detailed
+> Get-Help -Name (Get-Alias -Name 'Set-SnakeTaskVariable').Definition -Detailed
 > ```
 
 #### Syntax
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Set-FactoryTaskVariable [-AsNewBuild] [<CommonParameters>]
+Set-SnakeTaskVariable [-AsNewBuild] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1546,7 +1546,7 @@ for more information about the variables that are set.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-. Set-FactoryTaskVariable
+. Set-SnakeTaskVariable
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1555,7 +1555,7 @@ by not checking after the module manifest in the built module.
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-. Set-FactoryTaskVariable -AsNewBuild
+. Set-SnakeTaskVariable -AsNewBuild
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1563,7 +1563,7 @@ Call the scriptblock set script variables. The parameter **AsNewBuild** tells
 the script to skip variables that can only be set when the module has been
 built.
 
-### `Split-FactoryModuleVersion`
+### `Split-SnakeModuleVersion`
 
 This command parses a SemVer2 version string, and also a version string returned
 by a certain property of GitVersion (containing additional metadata).
@@ -1572,7 +1572,7 @@ by a certain property of GitVersion (containing additional metadata).
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```plaintext
-Split-FactoryModuleVersion [[-ModuleVersion] <String>] [<CommonParameters>]
+Split-SnakeModuleVersion [[-ModuleVersion] <String>] [<CommonParameters>]
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1590,7 +1590,7 @@ ModuleVersion | `[System.String]` | The full semantic version
 
 <!-- markdownlint-disable MD013 - Line length -->
 ```powershell
-Split-FactoryModuleVersion -ModuleVersion '1.15.0-pr0224-0022+Sha.47ae45eb2cfed02b249f239a7c55e5c71b26ab76.Date.2020-01-07'
+Split-SnakeModuleVersion -ModuleVersion '1.15.0-pr0224-0022+Sha.47ae45eb2cfed02b249f239a7c55e5c71b26ab76.Date.2020-01-07'
 ```
 <!-- markdownlint-enable MD013 - Line length -->
 
@@ -1876,7 +1876,7 @@ of the build task.
 
 ```yaml
 ####################################################
-#           Setting PSFactory PSModulePath           #
+#           Setting PSnake PSModulePath           #
 ####################################################
 SetPSModulePath:
   PSModulePath: C:\Users\Install\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules;c:\Users\Install\.vscode\extensions\ms-vscode.powershell-2022.5.1\modules;

@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,11 +18,11 @@ AfterAll {
 
 Describe 'generateHelp.PlatyPS' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'generateHelp.PlatyPS.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'generateHelp.PlatyPS.build.PSnake.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'generateHelp.PlatyPS.build.PSFactory.ib.tasks'
+        $taskAlias.Name | Should -Be 'generateHelp.PlatyPS.build.PSnake.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'generateHelp.PlatyPS.build.ps1'
-        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]generateHelp\.PlatyPS\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSnake[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]generateHelp\.PlatyPS\.build\.ps1'
     }
 }
 
@@ -36,9 +36,9 @@ Describe 'generateHelp.PlatyPS' {
 # Describe 'Generate_MAML_from_built_module' {
 #     BeforeAll {
 #         # Dot-source mocks
-#         . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+#         . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-#         $taskAlias = Get-Alias -Name 'generateHelp.PlatyPS.build.PSFactory.ib.tasks'
+#         $taskAlias = Get-Alias -Name 'generateHelp.PlatyPS.build.PSnake.ib.tasks'
 
 #         $mockTaskParameters = @{
 #             SourcePath = Join-Path -Path $TestDrive -ChildPath 'MyModule/source'

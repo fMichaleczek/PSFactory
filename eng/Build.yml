@@ -5,7 +5,7 @@
 # prefix and or suffix. The module contain the task must be added as a required
 # module in the file RequiredModules.psd1.
 ModuleBuildTasks:
-  PSFactory.GitHubTasks:
+  PSnake.GitHubTasks:
     - '*.ib.tasks'
   DscResource.Test:
     - 'Task.*'

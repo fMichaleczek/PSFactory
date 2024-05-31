@@ -2,4 +2,4 @@ blank_issues_enabled: false
 contact_links:
   - name: "Virtual PowerShell User Group #DSC channel"
     url: https://dsccommunity.org/community/contact/
-    about: "To talk to the community and maintainers of PSFactory, please visit the #DSC channel."
+    about: "To talk to the community and maintainers of PSnake, please visit the #DSC channel."

@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -27,7 +27,7 @@ AfterAll {
 Describe 'Get-CodeCoverageThreshold' {
     Context 'When passing an integer value for RuntimeCodeCoverageThreshold' {
         It 'Should return the same value as passed' {
-            $result = PSFactory\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold 10
+            $result = PSnake\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold 10
 
             $result | Should -Be 10
         }
@@ -35,7 +35,7 @@ Describe 'Get-CodeCoverageThreshold' {
 
     Context 'When passing a string value for RuntimeCodeCoverageThreshold' {
         It 'Should return the same value as passed' {
-            $result = PSFactory\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold '21'
+            $result = PSnake\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold '21'
 
             $result | Should -Be 21
         }
@@ -44,7 +44,7 @@ Describe 'Get-CodeCoverageThreshold' {
     Context 'When RuntimeCodeCoverageThreshold is $null' {
         Context 'When there is no build configuration value' {
             It 'Should return 0' {
-                $result = PSFactory\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold $null
+                $result = PSnake\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold $null
 
                 $result | Should -Be 0
             }
@@ -52,7 +52,7 @@ Describe 'Get-CodeCoverageThreshold' {
 
         Context 'When using deprecated Pester build configuration value' {
             It 'Should return the configured value' {
-                $result = PSFactory\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold $null -BuildInfo @{
+                $result = PSnake\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold $null -BuildInfo @{
                     Pester = @{
                         CodeCoverageThreshold = 30
                     }
@@ -64,7 +64,7 @@ Describe 'Get-CodeCoverageThreshold' {
 
         Context 'When using advanced Pester build configuration value' {
             It 'Should return the configured value' {
-                $result = PSFactory\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold $null -BuildInfo @{
+                $result = PSnake\Get-CodeCoverageThreshold -RuntimeCodeCoverageThreshold $null -BuildInfo @{
                     Pester = @{
                         Configuration = @{
                             CodeCoverage = @{
@@ -82,7 +82,7 @@ Describe 'Get-CodeCoverageThreshold' {
     Context 'When RuntimeCodeCoverageThreshold is not passed' {
         Context 'When there is no build configuration value' {
             It 'Should return 0' {
-                $result = PSFactory\Get-CodeCoverageThreshold
+                $result = PSnake\Get-CodeCoverageThreshold
 
                 $result | Should -Be 0
             }
@@ -90,7 +90,7 @@ Describe 'Get-CodeCoverageThreshold' {
 
         Context 'When using deprecated Pester build configuration value' {
             It 'Should return the configured value' {
-                $result = PSFactory\Get-CodeCoverageThreshold -BuildInfo @{
+                $result = PSnake\Get-CodeCoverageThreshold -BuildInfo @{
                     Pester = @{
                         CodeCoverageThreshold = 30
                     }
@@ -102,7 +102,7 @@ Describe 'Get-CodeCoverageThreshold' {
 
         Context 'When using advanced Pester build configuration value' {
             It 'Should return the configured value' {
-                $result = PSFactory\Get-CodeCoverageThreshold -BuildInfo @{
+                $result = PSnake\Get-CodeCoverageThreshold -BuildInfo @{
                     Pester = @{
                         Configuration = @{
                             CodeCoverage = @{

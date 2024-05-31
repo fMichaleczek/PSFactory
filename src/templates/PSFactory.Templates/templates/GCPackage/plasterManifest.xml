@@ -8,7 +8,7 @@
     <title>Azure Policy Guest Configuration Package template</title>
     <description>An Azure Policy Guest Configuration Package template to build your packages from DSC configurations, to be used by policies</description>
     <author>Gael Colas</author>
-    <tags>GuestConfiguration, Azure, Policy, Arc, PSFactory, Template, Build, Module</tags>
+    <tags>GuestConfiguration, Azure, Policy, Arc, PSnake, Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text"  name="GCPackageName" type="text" prompt="Name of your GuestConfiguration Package" />

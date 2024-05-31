@@ -1,7 +1,7 @@
 
 <#
     .SYNOPSIS
-        This function is use to generate a dummy object for factory template.
+        This function is use to generate a dummy object for snake template.
         It can be replace by real function.
         Or if you use a .net object, you can rename this function and replace
         this content.

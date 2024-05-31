@@ -8,7 +8,7 @@ BeforeDiscovery {
     if (-not $ProjectName)
     {
         # Assuming project folder name is project name.
-        $ProjectName = Get-FactoryProjectName -BuildRoot $projectPath
+        $ProjectName = Get-SnakeProjectName -BuildRoot $projectPath
     }
 
     $script:moduleName = $ProjectName
@@ -43,7 +43,7 @@ if ($PLASTER_PARAM_UseGit -eq 'true')
     if (-not $ProjectName)
     {
         # Assuming project folder name is project name.
-        $ProjectName = Get-FactoryProjectName -BuildRoot $projectPath
+        $ProjectName = Get-SnakeProjectName -BuildRoot $projectPath
     }
 
     $script:moduleName = $ProjectName

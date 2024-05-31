@@ -56,13 +56,13 @@ Describe 'Resolve dependencies' {
                 Set-Location $using:PWD
 
                 <#
-                    Remove the real PSFactory output folder paths from PSModulePath so that
+                    Remove the real PSnake output folder paths from PSModulePath so that
                     the command Get-FastModulePlan does not find modules installed.
                 #>
                 $env:PSModulePath = (
                     $env:PSModulePath -split [System.IO.Path]::PathSeparator |
                         Where-Object -FilterScript {
-                            $_ -notlike '*PSFactory*'
+                            $_ -notlike '*PSnake*'
                         }
                 ) -join [System.IO.Path]::PathSeparator
 
@@ -129,7 +129,7 @@ Describe 'Resolve dependencies' {
     ModuleBuilder               = 'latest'
     MarkdownLinkCheck           = 'latest'
     ChangelogManagement         = 'latest'
-    'PSFactory.GitHubTasks'       = 'latest'
+    'PSnake.GitHubTasks'       = 'latest'
     'DscResource.Test'          = 'latest'
     'DscResource.AnalyzerRules' = 'latest'
     xDscResourceDesigner        = 'latest'

@@ -6,9 +6,9 @@
     <id>e75b7b6a-6ae5-40b7-8ad8-b0bae0512184</id>
     <version>0.0.1</version>
     <title>Public function function with tests Template</title>
-    <description>A template to add a Public function to a PSFactory Project</description>
+    <description>A template to add a Public function to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module</tags>
+    <tags>PSnake,Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text"  name="PublicFunctionName" type="text" prompt="Name of the Public function" default="Get-Something" />

@@ -1,7 +1,7 @@
 ---
 
 ####################################################
-#       PSFactory Pipeline Configuration             #
+#       PSnake Pipeline Configuration             #
 ####################################################
 
 # Defining 'Workflows' (suite of InvokeBuild tasks) to be run using their alias
@@ -59,7 +59,7 @@ Chocolatey:
       value: $ReleaseNotes  # From the Release Notes built in Create_changelog_release_output
     # packageSourceUrl:
     #   xpath: /nuspec:package/nuspec:metadata/nuspec:packageSourceUrl
-    #   value: https://github.com/gaelcolas/PSFactory
+    #   value: https://github.com/gaelcolas/PSnake
 
 
 ####################################################
@@ -98,9 +98,9 @@ DscTest:
 # prefix and or suffix. The module contain the task must be added as a required
 # module in the file RequiredModules.psd1.
 ModuleBuildTasks:
-  PSFactory:
-    - '*.build.PSFactory.ib.tasks'
-  PSFactory.GitHubTasks:
+  PSnake:
+    - '*.build.PSnake.ib.tasks'
+  PSnake.GitHubTasks:
     - '*.ib.tasks'
 
 # Invoke-Build Header to be used to 'decorate' the terminal output of the tasks.
@@ -119,7 +119,7 @@ TaskHeader: |
 @"
 
 # Below is the GitHub configuration to automatically create a PR to update the Changelog
-# after the release of a version. (see Create_ChangeLog_GitHub_PR task of PSFactory.GitHubTasks)
+# after the release of a version. (see Create_ChangeLog_GitHub_PR task of PSnake.GitHubTasks)
 GitHubConfig:
   GitHubFilesToAdd:
     - 'CHANGELOG.md'

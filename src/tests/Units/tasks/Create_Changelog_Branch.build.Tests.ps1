@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -20,23 +20,23 @@ Describe 'Create_Changelog_Branch' {
     BeforeAll {
         $buildTaskName = 'Create_Changelog_Branch'
 
-        $taskAlias = Get-Alias -Name "$buildTaskName.build.PSFactory.ib.tasks"
+        $taskAlias = Get-Alias -Name "$buildTaskName.build.PSnake.ib.tasks"
     }
 
     It 'Should have exported the alias correct' {
-        $taskAlias.Name | Should -Be 'Create_Changelog_Branch.build.PSFactory.ib.tasks'
+        $taskAlias.Name | Should -Be 'Create_Changelog_Branch.build.PSnake.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'Create_Changelog_Branch.build.ps1'
-        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Create_Changelog_Branch\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSnake[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Create_Changelog_Branch\.build\.ps1'
     }
 
     Context 'When no release tag is found' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-            Mock -CommandName PSFactory\Invoke-FactoryGit
+            Mock -CommandName PSnake\Invoke-SnakeGit
 
-            Mock -CommandName PSFactory\Invoke-FactoryGit -ParameterFilter {
+            Mock -CommandName PSnake\Invoke-SnakeGit -ParameterFilter {
                 $Argument -contains 'rev-parse'
             } -MockWith {
                 return '0c23efc'
@@ -65,17 +65,17 @@ Describe 'Create_Changelog_Branch' {
     Context 'When creating change log PR' {
         BeforeAll {
             # Dot-source mocks
-            . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+            . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-            Mock -CommandName PSFactory\Invoke-FactoryGit
+            Mock -CommandName PSnake\Invoke-SnakeGit
 
-            Mock -CommandName PSFactory\Invoke-FactoryGit -ParameterFilter {
+            Mock -CommandName PSnake\Invoke-SnakeGit -ParameterFilter {
                 $Argument -contains 'rev-parse'
             } -MockWith {
                 return '0c23efc'
             }
 
-            Mock -CommandName PSFactory\Invoke-FactoryGit -ParameterFilter {
+            Mock -CommandName PSnake\Invoke-SnakeGit -ParameterFilter {
                 $Argument -contains 'tag'
             } -MockWith {
                 return 'v2.0.0'

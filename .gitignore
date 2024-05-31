@@ -6,4 +6,4 @@ output/*
 
 !**/README.md
 DscResource.tests
-PSFactory/Modules/DscResource.Common
+PSnake/Modules/DscResource.Common

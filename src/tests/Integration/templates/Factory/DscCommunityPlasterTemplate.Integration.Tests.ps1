@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -79,7 +79,7 @@ Describe 'DSC Community Plaster Template' {
 
         It 'Should create a new module without throwing' {
             $invokePlasterParameters = @{
-                TemplatePath         = Join-Path -Path $importedModule.ModuleBase -ChildPath 'Templates/PSFactory'
+                TemplatePath         = Join-Path -Path $importedModule.ModuleBase -ChildPath 'Templates/PSnake'
                 DestinationPath      = $TestDrive
                 SourceDirectory      = 'source'
                 NoLogo               = $true

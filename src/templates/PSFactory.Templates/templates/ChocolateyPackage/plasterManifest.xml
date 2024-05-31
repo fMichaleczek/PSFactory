@@ -7,7 +7,7 @@
     <title>Chocolatey Package Template</title>
     <description>A template to create a chocolatey package.</description>
     <author>Gael Colas</author>
-    <tags>Chocolatey, PSFactory, Template, Build, Module</tags>
+    <tags>Chocolatey, PSnake, Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text"  name="SourceDirectory" type="text" prompt="What is your source folder?" default="source" />

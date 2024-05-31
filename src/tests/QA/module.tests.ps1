@@ -8,7 +8,7 @@ BeforeDiscovery {
     if (-not $ProjectName)
     {
         # Assuming project folder name is project name.
-        $ProjectName = Get-FactoryProjectName -BuildRoot $projectPath
+        $ProjectName = Get-SnakeProjectName -BuildRoot $projectPath
     }
 
     $script:moduleName = $ProjectName
@@ -31,7 +31,7 @@ BeforeAll {
     if (-not $ProjectName)
     {
         # Assuming project folder name is project name.
-        $ProjectName = Get-FactoryProjectName -BuildRoot $projectPath
+        $ProjectName = Get-SnakeProjectName -BuildRoot $projectPath
     }
 
     $script:moduleName = $ProjectName

@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,20 +18,20 @@ AfterAll {
 
 Describe 'release.module' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'release.module.build.PSnake.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'release.module.build.PSFactory.ib.tasks'
+        $taskAlias.Name | Should -Be 'release.module.build.PSnake.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'release.module.build.ps1'
-        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]release\.module\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSnake[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]release\.module\.build\.ps1'
     }
 }
 
 Describe 'Create_changelog_release_output' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-        $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'release.module.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -65,7 +65,7 @@ Describe 'Create_changelog_release_output' {
             } -MockWith {
                 <#
                     The variable $BuiltModuleManifest will be set in the task
-                    (mocked by MockSetPSFactoryTaskVariable) with a path to the
+                    (mocked by MockSetPSnakeTaskVariable) with a path to the
                     $TestDrive.
                     Here we make sure the path exist so that WriteAllLines() works
                     that is called in the task.
@@ -151,7 +151,7 @@ Describe 'Create_changelog_release_output' {
             } -MockWith {
                 <#
                     The variable $BuiltModuleManifest will be set in the task
-                    (mocked by MockSetPSFactoryTaskVariable) with a path to the
+                    (mocked by MockSetPSnakeTaskVariable) with a path to the
                     $TestDrive.
                     Here we make sure the path exist so that WriteAllLines() works
                     that is called in the task.
@@ -213,7 +213,7 @@ Describe 'Create_changelog_release_output' {
             } -MockWith {
                 <#
                     The variable $BuiltModuleManifest will be set in the task
-                    (mocked by MockSetPSFactoryTaskVariable) with a path to the
+                    (mocked by MockSetPSnakeTaskVariable) with a path to the
                     $TestDrive.
                     Here we make sure the path exist so that WriteAllLines() works
                     that is called in the task.
@@ -245,9 +245,9 @@ Describe 'Create_changelog_release_output' {
 Describe 'publish_nupkg_to_gallery' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-        $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'release.module.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -316,9 +316,9 @@ Describe 'publish_nupkg_to_gallery' {
 Describe 'package_module_nupkg' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-        $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'release.module.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -344,7 +344,7 @@ Describe 'package_module_nupkg' {
             } -MockWith {
                 <#
                     The variable $BuiltModuleManifest will be set in the task
-                    (mocked by MockSetPSFactoryTaskVariable) with a path to the
+                    (mocked by MockSetPSnakeTaskVariable) with a path to the
                     $TestDrive.
                     Here we make sure the path exist so that WriteAllLines() works
                     that is called in the task.
@@ -354,7 +354,7 @@ Describe 'package_module_nupkg' {
                 return '# ReleaseNotes ='
             }
 
-            Mock -CommandName Get-FactoryModuleInfo -MockWith {
+            Mock -CommandName Get-SnakeModuleInfo -MockWith {
                 return @{
                     RequiredModules = @()
                 }
@@ -390,7 +390,7 @@ Describe 'package_module_nupkg' {
             } -MockWith {
                 <#
                     The variable $BuiltModuleManifest will be set in the task
-                    (mocked by MockSetPSFactoryTaskVariable) with a path to the
+                    (mocked by MockSetPSnakeTaskVariable) with a path to the
                     $TestDrive.
                     Here we make sure the path exist so that WriteAllLines() works
                     that is called in the task.
@@ -400,7 +400,7 @@ Describe 'package_module_nupkg' {
                 return '# ReleaseNotes ='
             }
 
-            Mock -CommandName Get-FactoryModuleInfo -MockWith {
+            Mock -CommandName Get-SnakeModuleInfo -MockWith {
                 return @{
                     RequiredModules = @('MyDependentModule')
                 }
@@ -449,9 +449,9 @@ Describe 'package_module_nupkg' {
 Describe 'publish_module_to_gallery' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-        $taskAlias = Get-Alias -Name 'release.module.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'release.module.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'output'
@@ -467,7 +467,7 @@ Describe 'publish_module_to_gallery' {
             } -MockWith {
                 <#
                     The variable $BuiltModuleManifest will be set in the task
-                    (mocked by MockSetPSFactoryTaskVariable) with a path to the
+                    (mocked by MockSetPSnakeTaskVariable) with a path to the
                     $TestDrive.
                     Here we make sure the path exist so that WriteAllLines() works
                     that is called in the task.

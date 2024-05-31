@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -24,9 +24,9 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-FactoryBuiltModuleVersion' {
+Describe 'Get-SnakeBuiltModuleVersion' {
     BeforeAll {
-        Mock -CommandName Get-FactoryBuiltModuleManifest -MockWith {
+        Mock -CommandName Get-SnakeBuiltModuleManifest -MockWith {
             return (Join-Path -Path $TestDrive -ChildPath 'MyModule.psd1')
         }
     }
@@ -41,7 +41,7 @@ Describe 'Get-FactoryBuiltModuleVersion' {
         }
 
         It 'Should return the correct semantic version' {
-            $result = PSFactory\Get-FactoryBuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
+            $result = PSnake\Get-SnakeBuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
 
             $result | Should -Be '2.1.1'
         }
@@ -62,7 +62,7 @@ Describe 'Get-FactoryBuiltModuleVersion' {
         }
 
         It 'Should return the correct semantic version' {
-            $result = PSFactory\Get-FactoryBuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
+            $result = PSnake\Get-SnakeBuiltModuleVersion -OutputDirectory $TestDrive -ModuleName 'MyModule'
 
             $result | Should -Be '2.1.1-preview.1'
         }

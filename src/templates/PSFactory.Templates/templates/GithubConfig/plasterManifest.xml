@@ -6,9 +6,9 @@
     <id>56036e8d-ce2e-4b9c-82e4-156443cd0a25</id>
     <version>0.0.1</version>
     <title>GithubConfig Template</title>
-    <description>A template to add a .github config to a PSFactory Project</description>
+    <description>A template to add a .github config to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module, github</tags>
+    <tags>PSnake,Template, Build, Module, github</tags>
   </metadata>
   <parameters>
   </parameters>

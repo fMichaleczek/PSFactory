@@ -6,9 +6,9 @@
     <id>48fd55d5-306a-4f98-b65f-a516f652d228</id>
     <version>0.0.2</version>
     <title>VscodeConfig Template</title>
-    <description>A template to add a .vscode config with settings, Analyzersettings and tasks to a PSFactory Project</description>
+    <description>A template to add a .vscode config with settings, Analyzersettings and tasks to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module, vscode</tags>
+    <tags>PSnake,Template, Build, Module, vscode</tags>
   </metadata>
   <parameters>
   </parameters>

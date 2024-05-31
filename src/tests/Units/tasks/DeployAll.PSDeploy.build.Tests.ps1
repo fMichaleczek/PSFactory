@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,20 +18,20 @@ AfterAll {
 
 Describe 'DeployAll.PSDeploy' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'DeployAll.PSDeploy.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'DeployAll.PSDeploy.build.PSnake.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'DeployAll.PSDeploy.build.PSFactory.ib.tasks'
+        $taskAlias.Name | Should -Be 'DeployAll.PSDeploy.build.PSnake.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'DeployAll.PSDeploy.build.ps1'
-        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]DeployAll\.PSDeploy\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSnake[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]DeployAll\.PSDeploy\.build\.ps1'
     }
 }
 
 Describe 'Deploy_with_PSDeploy' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-        $taskAlias = Get-Alias -Name 'DeployAll.PSDeploy.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'DeployAll.PSDeploy.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             BuildOutput = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -40,7 +40,7 @@ Describe 'Deploy_with_PSDeploy' {
     }
 
     It 'Should run the build task without throwing' {
-        # Stub for Invoke-PSDeploy since the module is not part of PSFactory build process.
+        # Stub for Invoke-PSDeploy since the module is not part of PSnake build process.
         function Invoke-PSDeploy {}
 
         Mock -CommandName Import-Module

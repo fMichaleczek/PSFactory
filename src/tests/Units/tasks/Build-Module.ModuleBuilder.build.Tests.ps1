@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -18,18 +18,18 @@ AfterAll {
 
 Describe 'Build-Module.ModuleBuilder' {
     It 'Should have exported the alias correct' {
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSnake.ib.tasks'
 
-        $taskAlias.Name | Should -Be 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
+        $taskAlias.Name | Should -Be 'Build-Module.ModuleBuilder.build.PSnake.ib.tasks'
         $taskAlias.ReferencedCommand | Should -Be 'Build-Module.ModuleBuilder.build.ps1'
-        $taskAlias.Definition | Should -Match 'PSFactory[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Build-Module\.ModuleBuilder\.build\.ps1'
+        $taskAlias.Definition | Should -Match 'PSnake[\/|\\]\d+\.\d+\.\d+[\/|\\]tasks[\/|\\]Build-Module\.ModuleBuilder\.build\.ps1'
     }
 }
 
 Describe 'Build_ModuleOutput_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
         $BuildInfo = @{
             CopyPaths = @('folder1','folder2')
@@ -97,7 +97,7 @@ Describe 'Build_ModuleOutput_ModuleBuilder' {
 
         Mock -CommandName Update-Metadata -RemoveParameterValidation 'Path'
 
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -116,13 +116,13 @@ Describe 'Build_ModuleOutput_ModuleBuilder' {
 Describe 'Build_NestedModules_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
         $BuildInfo = @{
             CopyPaths = @('folder1','folder2')
         }
 
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -133,7 +133,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
 
     Context 'When build configuration does not contain nested module' {
         BeforeAll {
-            Mock -CommandName Get-FactoryModuleInfo -MockWith {
+            Mock -CommandName Get-SnakeModuleInfo -MockWith {
                 return @{
                     NestedModules = @()
                 }
@@ -159,7 +159,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                    Mock -CommandName Get-SnakeModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -190,7 +190,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                    Mock -CommandName Get-SnakeModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -222,7 +222,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                    Mock -CommandName Get-SnakeModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -250,7 +250,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                    Mock -CommandName Get-SnakeModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -279,7 +279,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                    Mock -CommandName Get-SnakeModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -316,7 +316,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                             }
                         }
 
-                        Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                        Mock -CommandName Get-SnakeModuleInfo -MockWith {
                             return @{
                                 NestedModules = @()
                             }
@@ -372,7 +372,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                             }
                         }
 
-                        Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                        Mock -CommandName Get-SnakeModuleInfo -MockWith {
                             return @{
                                 NestedModules = @()
                             }
@@ -434,7 +434,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                         }
                     }
 
-                    Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                    Mock -CommandName Get-SnakeModuleInfo -MockWith {
                         return @{
                             NestedModules = @()
                         }
@@ -491,7 +491,7 @@ Describe 'Build_NestedModules_ModuleBuilder' {
                     }
                 }
 
-                Mock -CommandName Get-FactoryModuleInfo -MockWith {
+                Mock -CommandName Get-SnakeModuleInfo -MockWith {
                     return @{
                         NestedModules = @('PreviousNestedModule')
                     }
@@ -543,9 +543,9 @@ Describe 'Build_NestedModules_ModuleBuilder' {
 Describe 'Build_DscResourcesToExport_ModuleBuilder' {
     BeforeAll {
         # Dot-source mocks
-        . $PSScriptRoot/../helpers/MockSetPSFactoryTaskVariable
+        . $PSScriptRoot/../helpers/MockSetPSnakeTaskVariable
 
-        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSFactory.ib.tasks'
+        $taskAlias = Get-Alias -Name 'Build-Module.ModuleBuilder.build.PSnake.ib.tasks'
 
         $mockTaskParameters = @{
             OutputDirectory = Join-Path -Path $TestDrive -ChildPath 'MyModule/output'
@@ -561,7 +561,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
             # Need to create the folder so mock for Get-ChildItem work.
             New-Item -Path $mockModuleDSCResourcePath -ItemType Directory -Force | Out-Null
 
-            Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
+            Mock -CommandName Get-SnakeAbsolutePath -ParameterFilter {
                 $Path -eq 'DSCResources'
             } -MockWith {
                 return $mockModuleDSCResourcePath
@@ -581,14 +581,14 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 }
             }
 
-            Mock -CommandName Get-FactoryMofSchemaName -MockWith {
+            Mock -CommandName Get-SnakeMofSchemaName -MockWith {
                 return @{
                     Name = 'MyResource'
                     FriendlyName = 'MyResourceFriendlyName'
                 }
             }
 
-            Mock -CommandName Get-FactoryModuleInfo -MockWith {
+            Mock -CommandName Get-SnakeModuleInfo -MockWith {
                 return @{
                     DscResourcesToExport = @()
                 }
@@ -622,7 +622,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
             # Need to create the folder so mock for Get-ChildItem work.
             New-Item -Path $mockModuleDSCResourcePath -ItemType Directory -Force | Out-Null
 
-            Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
+            Mock -CommandName Get-SnakeAbsolutePath -ParameterFilter {
                 $Path -eq 'DSCResources'
             } -MockWith {
                 return $mockModuleDSCResourcePath
@@ -642,11 +642,11 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 }
             }
 
-            Mock -CommandName Get-FactoryPsm1SchemaName -MockWith {
+            Mock -CommandName Get-SnakePsm1SchemaName -MockWith {
                 'MyResource'
             }
 
-            Mock -CommandName Get-FactoryModuleInfo -MockWith {
+            Mock -CommandName Get-SnakeModuleInfo -MockWith {
                 return @{
                     DscResourcesToExport = @()
                 }
@@ -678,7 +678,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
             # Mock a path that does not exist
             $mockModuleDSCResourcePath = $TestDrive | Join-Path -ChildPath 'NoModule' | Join-Path -ChildPath 'DSCResources'
 
-            Mock -CommandName Get-FactoryAbsolutePath -ParameterFilter {
+            Mock -CommandName Get-SnakeAbsolutePath -ParameterFilter {
                 $Path -eq 'DSCResources'
             } -MockWith {
                 return $mockModuleDSCResourcePath
@@ -686,7 +686,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
 
             <#
                 Be careful to make sure this only mock Test-Path in the task, not
-                any Test-Path that exist in Set-FactoryTaskVariable
+                any Test-Path that exist in Set-SnakeTaskVariable
             #>
             Mock -CommandName Test-Path -MockWith {
                 return $true
@@ -694,7 +694,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 $Path -match 'MyModule\.psm1'
             }
 
-            Mock -CommandName Get-FactoryClassBasedResourceName -MockWith {
+            Mock -CommandName Get-SnakeClassBasedResourceName -MockWith {
                 return 'MyClassDscResource'
             }
 
@@ -704,7 +704,7 @@ Describe 'Build_DscResourcesToExport_ModuleBuilder' {
                 return $null
             }
 
-            Mock -CommandName Get-FactoryModuleInfo -MockWith {
+            Mock -CommandName Get-SnakeModuleInfo -MockWith {
                 return @{
                     DscResourcesToExport = @()
                 }

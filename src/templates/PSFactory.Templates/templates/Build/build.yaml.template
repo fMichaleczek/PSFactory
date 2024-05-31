@@ -6,9 +6,9 @@
     if ($PLASTER_PARAM_ModuleType -notin ('dsccommunity', 'SimpleModule')) {
 @"
 # Path to the Module Manifest to build (where path will be resolved from)
-# SourcePath: ./PSFactory/PSFactory.psd1
+# SourcePath: ./PSnake/PSnake.psd1
 # Output Directory where ModuleBuilder will build the Module, relative to module manifest
-# OutputDirectory: ../output/PSFactory
+# OutputDirectory: ../output/PSnake
 "@
     }
 %>
@@ -89,7 +89,7 @@ NestedModule:
 %>
 
 ####################################################
-#       PSFactory Pipeline Configuration             #
+#       PSnake Pipeline Configuration             #
 ####################################################
 <%
     if ($PLASTER_PARAM_ModuleType -eq 'dsccommunity') {
@@ -281,12 +281,12 @@ DscTest:
 # prefix and or suffix. The module contain the task must be added as a required
 # module in the file RequiredModules.psd1.
 ModuleBuildTasks:
-  PSFactory:
-    - '*.build.PSFactory.ib.tasks'
+  PSnake:
+    - '*.build.PSnake.ib.tasks'
 <%
     if($PLASTER_PARAM_ModuleType -in @('dsccommunity', 'CompleteSample') -or $PLASTER_PARAM_UseGitHub -eq 'true' -or $PLASTER_PARAM_Features -Contains ("All") -or $PLASTER_PARAM_Features -Contains ("GitHub")) {
 @"
-  PSFactory.GitHubTasks:
+  PSnake.GitHubTasks:
     - '*.ib.tasks'
 "@
     }
@@ -327,7 +327,7 @@ GitHubConfig:
 @"
 
 # Below is the GitHub configuration to automatically create a PR to update the Changelog
-# after the release of a version. (see Create_ChangeLog_GitHub_PR task of PSFactory.GitHubTasks)
+# after the release of a version. (see Create_ChangeLog_GitHub_PR task of PSnake.GitHubTasks)
 # GitHubConfig:
 #   GitHubFilesToAdd:
 #     - 'CHANGELOG.md'
@@ -361,7 +361,7 @@ DscResource.DocGenerator:
     if ($PLASTER_PARAM_ModuleType -eq 'dsccommunity' -or $PLASTER_PARAM_Features -Contains ("All")) {
 @"
 ####################################################
-#           Setting PSFactory PSModulePath           #
+#           Setting PSnake PSModulePath           #
 ####################################################
 #SetPSModulePath:
   #PSModulePath: C:\Users\Install\OneDrive\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules;c:\Users\Install\.vscode\extensions\ms-vscode.powershell-2022.5.1\modules;

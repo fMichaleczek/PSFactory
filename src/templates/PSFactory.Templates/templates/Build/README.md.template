@@ -7,7 +7,7 @@
 ## Make it yours
 
 ---
-Generated with Plaster and the PSFactory template
+Generated with Plaster and the PSnake template
 
 "@ -f $PLASTER_PARAM_ProjectName,$PLASTER_PARAM_ModuleDescription
 %>

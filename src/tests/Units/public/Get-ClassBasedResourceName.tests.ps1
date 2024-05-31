@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -24,7 +24,7 @@ AfterAll {
     Remove-Module -Name $script:moduleName
 }
 
-Describe 'Get-FactoryClassBasedResourceName' {
+Describe 'Get-SnakeClassBasedResourceName' {
     BeforeAll {
         $classScriptFilePath = Join-Path -Path $TestDrive -ChildPath 'MockClassBasedResource.ps1'
 
@@ -63,7 +63,7 @@ class MockResourceName
 
     It 'Should return the correct resource name' {
 
-        $result = PSFactory\Get-FactoryClassBasedResourceName -Path $classScriptFilePath
+        $result = PSnake\Get-SnakeClassBasedResourceName -Path $classScriptFilePath
 
         $result | Should -Be 'MockResourceName'
     }

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Update template for SECURITY.md and add it to PSFactory repository as well.
+- Update template for SECURITY.md and add it to PSnake repository as well.
 - Built module is now built in a separate folder. This is to split the paths
   for the built module and all required modules, to avoid returning duplicate
   modules when using `Get-Module -ListAvailable`. The templates already has
@@ -31,13 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Update template for module.tests.ps1. Fixes [#465](https://github.com/fmichaleczek/PSFactory/issues/465)
-- Now the tasks work when using `Set-FactoryTaskVariable` with tasks that
+- Update template for module.tests.ps1. Fixes [#465](https://github.com/fmichaleczek/PSnake/issues/465)
+- Now the tasks work when using `Set-SnakeTaskVariable` with tasks that
   do not have the parameter `ChocolateyBuildOutput`.
 - Remove duplicate SECURITY.md template files, and fix templates to
   point to the single version.
 - Correct description of the parameter `GalleryApiToken` in the build task
-  script release.module.build.ps1. Fixes [#442](https://github.com/fmichaleczek/PSFactory/issues/442)
+  script release.module.build.ps1. Fixes [#442](https://github.com/fmichaleczek/PSnake/issues/442)
 - ModuleFast now supports resolving individual pre-release dependencies
   that is part of _RequiredModules.psd1_. It is also possible to specify
   [NuGet version ranges](https://learn.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges)
@@ -81,7 +81,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Task `publish_nupkg_to_gallery`
-  - Add support for publishing a NuGet package to a gallery using the .NET SDK in addition to using nuget.exe. Fixes [#433](https://github.com/fmichaleczek/PSFactory/issues/433)
+  - Add support for publishing a NuGet package to a gallery using the .NET SDK in addition to using nuget.exe. Fixes [#433](https://github.com/fmichaleczek/PSnake/issues/433)
 - Split up unit tests and integration tests in separate pipeline jobs since
   integration tests could change state on a developers machine, and in the
   current PowerShell session. Integration tests no longer run when running
@@ -91,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   _SimpleModule_ so that it is possible to run task `test` without it failing.
 - Sample Private function tests updated to Pester 5.
 - Sample Public function tests updated to Pester 5.
-- PSFactory's build.ps1 and the template build.ps1 was aligned.
+- PSnake's build.ps1 and the template build.ps1 was aligned.
 - PowerShell Team will release the PSResourceGet compatibility module
   (previously known as CompatPowerShellGet) as PowerShellGet v2.9.0 (or
   higher). The resolve dependency script, when PowerShellGet is used, will
@@ -111,7 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   in two `Prerelease` keys when creating a module under PowerShell 7.x.
   Now it will add a commented `Perelease` key and then next `modify` statement
   will remove the comment, making it work on all version of PowerShell.
-  Fixes [#436](https://github.com/fmichaleczek/PSFactory/issues/436).
+  Fixes [#436](https://github.com/fmichaleczek/PSnake/issues/436).
 - The QA test template was updated so that it is possible to run the tests
   without the need to add a git remote (remote `origin`).
 
@@ -119,14 +119,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix Azure Pipeline bug to resolve errors and delays during the build process. Shallow fetch has been disabled to ensure complete repository cloning. Fixes [#424](https://github.com/fmichaleczek/PSFactory/issues/424)
+- Fix Azure Pipeline bug to resolve errors and delays during the build process. Shallow fetch has been disabled to ensure complete repository cloning. Fixes [#424](https://github.com/fmichaleczek/PSnake/issues/424)
 
 ## [0.116.4] - 2023-04-06
 
 ### Fixed
 
 - Fix a bug that prevented downloading of dependent modules that has a
-  dependency on the module _PowerShell-Yaml_. Fixes [#421](https://github.com/fmichaleczek/PSFactory/issues/421).
+  dependency on the module _PowerShell-Yaml_. Fixes [#421](https://github.com/fmichaleczek/PSnake/issues/421).
 
 ## [0.116.3] - 2023-04-01
 
@@ -160,10 +160,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `UseVSCode` - This parameter adds project files that helps when using
       Visual Studio Code as the project code editor. The template will ask
       if  Visual Studio Code should be used, default is No.
-  - The file `build.yaml` will only contain tasks from `PSFactory.GitHubTasks`
+  - The file `build.yaml` will only contain tasks from `PSnake.GitHubTasks`
     if template parameter `UseGitHub` is set to true (the answer to the
     template question is Yes).
-  - The file `RequiredModules.psd1` will only contain the module `PSFactory.GitHubTasks`
+  - The file `RequiredModules.psd1` will only contain the module `PSnake.GitHubTasks`
     if template parameter `UseGitHub` is set to true (the answer to the
     template question is Yes).
   - If Git is not used (`UseGit` is false) the QA test that uses Git is
@@ -171,7 +171,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed module Plaster from the template file `RequiredModules.psd1.template`
   since it is not direct requirement for any project. _It will still be saved_
   _to `output/RequiredModules` for a project as it is defined as a required_
-  _module in PSFactory's module manifest, and PSFactory is still a required modul._
+  _module in PSnake's module manifest, and PSnake is still a required modul._
 - Pipeline script for resolving dependencies improved.
   - Evaluating PowerShellGet version now supports parameter `AllowOldPowerShellGetModule`
     (still not recommended to use this parameter).
@@ -187,9 +187,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix typo in the file `about_ModuleName.help.template` and in `module.template`.
 - Integration tests clean up the test drive after each test.
 - Update generated module manifest to have recommended values for properties.
-  Fixes [#326](https://github.com/fmichaleczek/PSFactory/issues/326).
+  Fixes [#326](https://github.com/fmichaleczek/PSnake/issues/326).
 - Now correctly uses the key `CodeCoverage` in the file `build.yaml.template`.
-  Fixes [#359](https://github.com/fmichaleczek/PSFactory/issues/359).
+  Fixes [#359](https://github.com/fmichaleczek/PSnake/issues/359).
 - Pipeline script for resolving dependencies improved.
   - `Get-PackageProvider` no longer throws an exception when NuGet provider
     is missing (in Windows PowerShell in a clean Windows install).
@@ -219,7 +219,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Script `Set-FactoryTaskVariable.ps1`
+- Script `Set-SnakeTaskVariable.ps1`
   - Added debug output of PSModulePath
 
 ## [0.116.1] - 2023-01-09
@@ -228,21 +228,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Task `Build_ModuleOutput_ModuleBuilder`
   - Fixed #402: Using parameter `Filter` instead of `Include` to get MOF files.
-- `Get-FactoryMofSchemaName`
+- `Get-SnakeMofSchemaName`
   - Permanently skipped a test that the build worker `ubuntu-latest` were
     unable to run due to missing shared library 'libmi'.
 - Now the QA test that verifies that the Unreleased section header is present
   in the CHANGELOG.md correctly supports ChangelogManagement v3.0.1.
 - Task `Convert_Pester_Coverage`
   - No longer throws an exception when there was just one missed command
-    for a test suite. Fixes [#407](https://github.com/fmichaleczek/PSFactory/issues/407).
+    for a test suite. Fixes [#407](https://github.com/fmichaleczek/PSnake/issues/407).
 
 ### Added
 
 - Task `Build_ModuleOutput_ModuleBuilder`
   - Proper support for DSC composite resources (*.schema.psm1).
 - Added task `Set_PSModulePath`.
-  - Added function `Set-FactoryPSModulePath`.
+  - Added function `Set-SnakePSModulePath`.
   - Added tests for the task and function.
   - Added task `Set_PSModulePath` to `build.yml` Plaster template for project
     type `dsccommunity`.
@@ -258,7 +258,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Removed the task `Set_Build_Environment_Variables` since it is not used,
-  and build helpers are not in use anymore. Fixes [#376](https://github.com/fmichaleczek/PSFactory/issues/376).
+  and build helpers are not in use anymore. Fixes [#376](https://github.com/fmichaleczek/PSnake/issues/376).
 - Removed MOF based DSC resources from the CompleteModule sample.
 
 ### Added
@@ -277,17 +277,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `Get-FactoryMofSchemaName`
+- `Get-SnakeMofSchemaName`
   - Correctly throws an error if the schema MOF cannot be parsed.
 - Task `Convert_Pester_Coverage`
   - Removed one unused line of code.
   - Moved one line of code so that code coverage threshold value
     will output correctly in some circumstances.
-- `Set-FactoryTaskVariable`
+- `Set-SnakeTaskVariable`
   - Reverted code that was removed in pull request #383. The code is
-    necessary because how the commands `Get-FactoryBuiltModuleVersion`,
-    `Get-FactoryBuiltModuleManifest`, `Get-FactoryBuiltModuleBase`, and
-    `Get-FactoryModuleRootPath` are currently built. The code that was
+    necessary because how the commands `Get-SnakeBuiltModuleVersion`,
+    `Get-SnakeBuiltModuleManifest`, `Get-SnakeBuiltModuleBase`, and
+    `Get-SnakeModuleRootPath` are currently built. The code that was
     reverted handles resolving the wildcard (`*`) in the returned paths
     from the mentioned commands.
 - `RequiredModules.psd1.template`
@@ -307,9 +307,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Now supports getting module version from `dotnet-gitversion` if it is available.
 - Tests now run in Pester 5.
 - Added task `Create_Release_Git_Tag` to create a Git tag for a preview release.
-  Fixes [#351](https://github.com/fmichaleczek/PSFactory/issues/351)
+  Fixes [#351](https://github.com/fmichaleczek/PSnake/issues/351)
 - Added task `Create_Release_Branch` to push a branch containing the updated
-  change log after release. Fixes [#351](https://github.com/fmichaleczek/PSFactory/issues/351)
+  change log after release. Fixes [#351](https://github.com/fmichaleczek/PSnake/issues/351)
 
 ### Changed
 
@@ -321,15 +321,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Task `package_module_nupkg` now correctly adds the release notes to the
-  Nuget package. Fixes [#373](https://github.com/fmichaleczek/PSFactory/issues/373)
+  Nuget package. Fixes [#373](https://github.com/fmichaleczek/PSnake/issues/373)
 - Task `publish_module_to_gallery` now correctly adds the release notes to
-  the published module. Fixes [#373](https://github.com/fmichaleczek/PSFactory/issues/373)
-- Fix a evaluation in the script `Set-FactoryTaskVariable` so it can be tested
+  the published module. Fixes [#373](https://github.com/fmichaleczek/PSnake/issues/373)
+- Fix a evaluation in the script `Set-SnakeTaskVariable` so it can be tested
   individually outside of the pipeline (using `Invoke-Pester`).
 - Fix all source files to UTF8 to comply with the HQRM tests (_due to a bug_
   _in the HQRM tests that runs in Pester 4 this has not been detected until_
   _moving to Pester 5_).
-- Remove HQRM rule suppression in source file for `New-FactoryJaCoCoDocument`
+- Remove HQRM rule suppression in source file for `New-SnakeJaCoCoDocument`
   since it no longer required.
 - Fixed QA test that was breaking release.
 - Fixed #384: It not tag is defined, `Create_Release_Git_Tag` throws an error.
@@ -343,17 +343,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fixed a problem which occurred on certain machined when using PSFactory in
-  Windows PowerShell. Fixes [#350](https://github.com/fmichaleczek/PSFactory/issues/350)
+- Fixed a problem which occurred on certain machined when using PSnake in
+  Windows PowerShell. Fixes [#350](https://github.com/fmichaleczek/PSnake/issues/350)
 - The module manifest is now correctly updated with release notes from the
-  changelog. Fixes [#358](https://github.com/fmichaleczek/PSFactory/issues/358)
+  changelog. Fixes [#358](https://github.com/fmichaleczek/PSnake/issues/358)
 
 ## [0.112.3] - 2022-03-31
 
 ### Fixed
 
 - The task `Invoke_Pester_Tests_v5` generated a unexpected filename for the
-  test results, compared to the Pester 4 task. Fixes [#355](https://github.com/fmichaleczek/PSFactory/issues/355)
+  test results, compared to the Pester 4 task. Fixes [#355](https://github.com/fmichaleczek/PSnake/issues/355)
 
 ## [0.112.2] - 2022-03-20
 
@@ -363,11 +363,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed explicit parameter value in `build.ps1` while calling `.\Resolve-Dependency.ps1`
 - When running test using Pester 5, and the build configuration (`build.yaml`)
   do not specify the location of tests in the key `Path`, the pipeline will
-  no longer run the tests twice. Fixes [#337](https://github.com/fmichaleczek/PSFactory/issues/337)
+  no longer run the tests twice. Fixes [#337](https://github.com/fmichaleczek/PSnake/issues/337)
 
 ### Changed
 
-- Switch to installing GitVersion using `dotnet tool install`. Fixes [#348](https://github.com/fmichaleczek/PSFactory/issues/348)
+- Switch to installing GitVersion using `dotnet tool install`. Fixes [#348](https://github.com/fmichaleczek/PSnake/issues/348)
 - Updated pipeline to use the build worker image 'ubuntu-latest'.
 - Updated pipeline to use the build worker image 'windows-latest'.
 - Updated the Plaster templates
@@ -385,30 +385,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added Pipeline to build chocolatey packages.
 - Added Sample to add Chocolatey Package source files.
-- Added Add-FactoryPipeline to create build, PSFactory Module or Chocolatey pipeline.
+- Added Add-SnakePipeline to create build, PSnake Module or Chocolatey pipeline.
 - Extra configuration files for passing to Azure Policy Guest Configuration Package on creation.
 
 ### Fixed
 
-- Fixed `Resolve-Dependency.ps1` to not fail when `PowerShell-yaml` module was specified but already loaded (handle on dll). Fixes [#335](https://github.com/fmichaleczek/PSFactory/issues/335)
+- Fixed `Resolve-Dependency.ps1` to not fail when `PowerShell-yaml` module was specified but already loaded (handle on dll). Fixes [#335](https://github.com/fmichaleczek/PSnake/issues/335)
 - Fixed default source folder to source and not src.
-- Fixed failed loading when there's no project name (when calling `Set-FactoryTaskVariable`). Fixes [#331](https://github.com/fmichaleczek/PSFactory/issues/331).
-- Fixed `Get-FactoryAbsolutePath` returning the wrong path in PowerShell and ISE. Fixes [#341](https://github.com/fmichaleczek/PSFactory/issues/341).
+- Fixed failed loading when there's no project name (when calling `Set-SnakeTaskVariable`). Fixes [#331](https://github.com/fmichaleczek/PSnake/issues/331).
+- Fixed `Get-SnakeAbsolutePath` returning the wrong path in PowerShell and ISE. Fixes [#341](https://github.com/fmichaleczek/PSnake/issues/341).
 - The templates was using the task `Create_ChangeLog_GitHub_PR` in the meta task
   publish that is also specifically run in a separate Azure Pipelines task. This
   made the task to run twice.
 - Fixed missing full stop (`.`) in the CONTRIBUTING.md and the template file.
-  Fixes [#333](https://github.com/fmichaleczek/PSFactory/issues/333).
+  Fixes [#333](https://github.com/fmichaleczek/PSnake/issues/333).
 
 ### Changed
 
-- Making sure the `Set-FactoryTaskVariable` does not fail when there's no
-  Module manifest (i.e. when using PSFactory for other reasons than building
+- Making sure the `Set-SnakeTaskVariable` does not fail when there's no
+  Module manifest (i.e. when using PSnake for other reasons than building
   a module).
 - Switched the pipeline to use Ubuntu 18.04 instead of Ubuntu 16.04 as the build
   worker for some tasks.
 - Template `SimpleModule` have been modified to remove unnecessary configuration
-  ([issue #277](https://github.com/fmichaleczek/PSFactory/issues/277)).
+  ([issue #277](https://github.com/fmichaleczek/PSnake/issues/277)).
 - Template files are updated.
   - Module script file no longer contain code that is irrelevant.
   - Now asks if GitVersion should be used.
@@ -425,7 +425,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Removed `PesterOutputFormat` parameter in `DeployAll.PSDeploy.build.ps1`
- fix ([issue #292](https://github.com/fmichaleczek/PSFactory/issues/292)).
+ fix ([issue #292](https://github.com/fmichaleczek/PSnake/issues/292)).
 - Removed the template `newDscCommunity` which is replaced by the template
   `dsccommunity`.
 
@@ -438,7 +438,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Merged both templates `dsccommunity` and `newDscCommunity` into the
   template `dsccommunity`.
 - All templates now defaults to using `main` as the default branch.
-- Updated PSFactory documentation in README.md.
+- Updated PSnake documentation in README.md.
 
 ### Fixed
 
@@ -449,7 +449,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Fixed GitHub templates for the PSFactory repository.
+- Fixed GitHub templates for the PSnake repository.
 - Fixed GitHub templates in the DSC Community Plaster template.
 
 ### Fixed
@@ -461,20 +461,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added pester tests for `Set-FactoryVariableTask.ps1`.
+- Added pester tests for `Set-SnakeVariableTask.ps1`.
 
 ### Changed
 
-- Changed Plaster Template (`PSFactory/Templates/PSFactory/plasterManifest.xml`), so
+- Changed Plaster Template (`PSnake/Templates/PSnake/plasterManifest.xml`), so
   that all functions will be exported by default, which in turn correlates with
-  the template code in `PSFactory/PSFactory.psm1`, which uses
+  the template code in `PSnake/PSnake.psm1`, which uses
   `Export-ModuleMember` to export all functions loaded from the
   `Public` (sub-)folder.
 
 ### Fixed
 
 - Removed `$BuiltModuleSubdirectory` definition in the `begin` bloc of `build.ps1`
- template ([issue #299](https://github.com/fmichaleczek/PSFactory/issues/299)).
+ template ([issue #299](https://github.com/fmichaleczek/PSnake/issues/299)).
 - Replaced `$ModudulePath` with `$BuiltModuleBase` for the `release.module.build.ps1` task file.
 
 ## [0.111.5] - 2021-06-25
@@ -482,14 +482,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added support of `BuiltSubDirectoryDirectory` in build configuration files
- ([issue #299](https://github.com/fmichaleczek/PSFactory/issues/299))
+ ([issue #299](https://github.com/fmichaleczek/PSnake/issues/299))
 
 ### Fixed
 
 - The task `Invoke_Pester_Tests_v5` no longer fails when using Pester 
-  v5.3.0-alpha5 ([issue #307](https://github.com/fmichaleczek/PSFactory/issues/307)).
+  v5.3.0-alpha5 ([issue #307](https://github.com/fmichaleczek/PSnake/issues/307)).
 - The task `Convert_Pester_Coverage` no longer fails when using a preview
-  version of Pester ([issue #301](https://github.com/fmichaleczek/PSFactory/issues/301)).
+  version of Pester ([issue #301](https://github.com/fmichaleczek/PSnake/issues/301)).
 
 ## [0.111.4] - 2021-06-03
 
@@ -497,7 +497,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Task `Invoke_Pester_Tests_v4`
   - It now once again works using a hashtable together with parameter
-    `PesterScript` ([issue #303](https://github.com/fmichaleczek/PSFactory/issues/303)).
+    `PesterScript` ([issue #303](https://github.com/fmichaleczek/PSnake/issues/303)).
 
 ## [0.111.3] - 2021-05-21
 
@@ -533,28 +533,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added new public command `New-FactoryJaCoCoDocument`.
-- Added new public command `Out-FactoryXml`.
-- Added new private function `New-FactoryXmlJaCoCoCounter`.
-- Added new build task `Import_Pester` ([issue #223](https://github.com/fmichaleczek/PSFactory/issues/223)).
-- Added new build task `Invoke_Pester_Tests_v5` ([issue #223](https://github.com/fmichaleczek/PSFactory/issues/223)).
+- Added new public command `New-SnakeJaCoCoDocument`.
+- Added new public command `Out-SnakeXml`.
+- Added new private function `New-SnakeXmlJaCoCoCounter`.
+- Added new build task `Import_Pester` ([issue #223](https://github.com/fmichaleczek/PSnake/issues/223)).
+- Added new build task `Invoke_Pester_Tests_v5` ([issue #223](https://github.com/fmichaleczek/PSnake/issues/223)).
   - Task `Invoke_Pester_Tests_v5` will not run if Pester 4 is used in the pipeline.
 - Added unit test for public command `Get-BuildVersion`.
 
 ### Changed
 
-- Renamed default branch to `main` ([issue #235](https://github.com/fmichaleczek/PSFactory/issues/235)).
-- Added a public alias `Set-FactoryTaskVariable` that points to the script
-  `Set-FactoryTaskVariable.ps1` in the tasks folder. This alias is used to
+- Renamed default branch to `main` ([issue #235](https://github.com/fmichaleczek/PSnake/issues/235)).
+- Added a public alias `Set-SnakeTaskVariable` that points to the script
+  `Set-SnakeTaskVariable.ps1` in the tasks folder. This alias is used to
   dot-source task variables for re-use over multiple build tasks.
 - Moved code from build task `Convert_Pester_Coverage` into a public function
-  `New-FactoryJaCoCoDocument`.
+  `New-SnakeJaCoCoDocument`.
 - It is now possible to specify module's semantic version in the build.yml using
   the key `SemVer`, e.g. `SemVer: '99.0.0-preview1'`. This can be used if the
   preferred method of using GitVersion is not available, and it is not possible
   to set the session environment variable `$env:ModuleVersion`, nor setting the
   variable `$ModuleVersion` in the PowerShell session (parent scope) before
-  running the task `build` ([issue #279](https://github.com/fmichaleczek/PSFactory/issues/279)).
+  running the task `build` ([issue #279](https://github.com/fmichaleczek/PSnake/issues/279)).
 - Templates
   - build.yaml
     - Comment Pester tag exclusion for all templates so that the default is
@@ -586,7 +586,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Pester 5 code coverage.
 - The function `Get-CodeCoverageThreshold` was changed to support Pester 5
   advanced build configuration.
-- The function `Get-FactoryCodeCoverageOutputFile` was changed to support Pester 5
+- The function `Get-SnakeCodeCoverageOutputFile` was changed to support Pester 5
   advanced build configuration.
 
 ### Fixed
@@ -595,7 +595,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move task _Convert_Pester_Coverage_ to task file `JaCoCo.coverage.build.ps1`.
 - Resolve-Dependency.ps1: fix MinimumPSDependVersion comparison.
 - Resolve-Dependency.ps1: add -Force to all Save-Module.
-- `New-FactoryJaCoCoDocument`
+- `New-SnakeJaCoCoDocument`
   - Fixed counters when a method only had either one hit line or one missed line.
 - Now unit tests properly test the function in the built module, not the
   ones that the pipeline dot-sources into session to be able to dogfooding
@@ -687,21 +687,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Made Format-FactoryHashtable public function.
-- Refactored a lot of Path resolution into PSFactory public function for consitency and re-usability.
-- Updated the Tasks to use those PSFactory functions.
-- Updated Get-FactoryBuiltModuleVersion to support $BuiltModuleSubdirectory as per #239.
+- Made Format-SnakeHashtable public function.
+- Refactored a lot of Path resolution into PSnake public function for consitency and re-usability.
+- Updated the Tasks to use those PSnake functions.
+- Updated Get-SnakeBuiltModuleVersion to support $BuiltModuleSubdirectory as per #239.
 
 ### Added
 
-- Added Get-FactoryAbsolutePath, Get-FactoryBuiltModuleBase, Get-FactoryModuleInfo,
-  Get-FactoryBuiltModuleManifest, Get-FactoryModuleRootPath.
+- Added Get-SnakeAbsolutePath, Get-SnakeBuiltModuleBase, Get-SnakeModuleInfo,
+  Get-SnakeBuiltModuleManifest, Get-SnakeModuleRootPath.
 
 ## [0.109.5] - 2021-03-10
 
 ### Added
 
-- New DSC Community template (`New-FactoryProject -ModuleType newDscCommunity`).
+- New DSC Community template (`New-SnakeProject -ModuleType newDscCommunity`).
 
 ### Fixed
 
@@ -713,21 +713,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Extracted the Common functions to be within the main PSFactory module to enable re-usability.
-- Updated this project's `build.ps1` to load the Private/Public *.ps1 so it can build itselves without impacting PSFactory templates.
+- Extracted the Common functions to be within the main PSnake module to enable re-usability.
+- Updated this project's `build.ps1` to load the Private/Public *.ps1 so it can build itselves without impacting PSnake templates.
 - Added empty functions' Unit test files (for subsequent PR when writing moving to Pester 5).
 - Added Comment-based help for the extracted functions.
 - Dropped the CodeCoverage Threshold of the project to reflect the newly discovered code (`Common.Functions.psm1` wasn't counted for code coverage).
 
 ### Removed
 
-- Removed the GitHub functions to publish them in the `PSFactory.GitHubTasks` module.
+- Removed the GitHub functions to publish them in the `PSnake.GitHubTasks` module.
 
 ## [0.109.4] - 2021-03-06
 ### Added
 
 - Added the build_guestconfiguration_packages task to create GuestConfig packages using the GuestConfiguration module.
-- Added GCPackage template so that you can use `Add-FactoryBlueprint -Sample GCPackage` to add a GC Package to your PSFactory project.
+- Added GCPackage template so that you can use `Add-SnakeBlueprint -Sample GCPackage` to add a GC Package to your PSnake project.
 - Added the gcpack meta task to call clean, build, and build_guestconfiguration_packages for you.
 
 ## [0.109.3] - 2021-02-16
@@ -759,7 +759,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix issue in DscResourcesToExport task to properly process DscResource schema ([issue #230](https://github.com/fmichaleczek/PSFactory/issues/230)).
+- Fix issue in DscResourcesToExport task to properly process DscResource schema ([issue #230](https://github.com/fmichaleczek/PSnake/issues/230)).
 - Fix uploading of code coverage when using the DSC Community template.
 
 ## [0.109.1] - 2021-01-06
@@ -768,16 +768,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update the Readme.md to fix a few typos.
 - Fix wrong resource name is added in module manifest property DscResourcesToExport
-([issue #220](https://github.com/fmichaleczek/PSFactory/issues/220))
+([issue #220](https://github.com/fmichaleczek/PSnake/issues/220))
 
 ## [0.109.0] - 2020-11-24
 
 ### Changed
 
-- Updating all azure-pipeline.yaml to change Build Artifacts to Pipeline Artifacts ([issue #159](https://github.com/fmichaleczek/PSFactory/issues/159)).
-- Update plasterManifest.xml call by New-FactoryProject :
-  - Add section modify to replace "FunctionsToExport = '*'" by "FunctionsToExport = ''" in new module manifest ([issue #67](https://github.com/fmichaleczek/PSFactory/issues/67)).
-  - Add section modify to add "Prerelease = ''" in "PSData" block  in new module manifest ([issue #69](https://github.com/fmichaleczek/PSFactory/issues/69)). 
+- Updating all azure-pipeline.yaml to change Build Artifacts to Pipeline Artifacts ([issue #159](https://github.com/fmichaleczek/PSnake/issues/159)).
+- Update plasterManifest.xml call by New-SnakeProject :
+  - Add section modify to replace "FunctionsToExport = '*'" by "FunctionsToExport = ''" in new module manifest ([issue #67](https://github.com/fmichaleczek/PSnake/issues/67)).
+  - Add section modify to add "Prerelease = ''" in "PSData" block  in new module manifest ([issue #69](https://github.com/fmichaleczek/PSnake/issues/69)). 
 - Changing ClassResource.
   - Add generic content in the class.
   - Add pester tests.
@@ -785,7 +785,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Update plasterManifest.xml.
   - Add private functions.
   - Add pester tests.
-  - Update PSFactory integration tests.
+  - Update PSnake integration tests.
 - Changing the Reasons property in the classes based resource template. It's now NotConfigurable.
 - Renamed Build_Module_ModuleBuilder task to Build_ModuleOutPut_ModuleBuilder.
   Build_Module_ModuleBuilder is now a metatask that calls
@@ -794,14 +794,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added new template ClassFolderResource
-- Added new function Get-FactoryClassBasedResourceName on Common.Functions.psm1 module.
+- Added new function Get-SnakeClassBasedResourceName on Common.Functions.psm1 module.
   It's used to find the class-based resource defined in psm1 file.
 - Added new task Build_DscResourcesToExport_ModuleBuilder.
   On build, it adds DscResources (class or Mof) in DscResourcesToExport manifest key.
 
 ### Fixed
 
-- Fixed Test-ModuleManifest ([issue #208](https://github.com/fmichaleczek/PSFactory/issues/208)) 
+- Fixed Test-ModuleManifest ([issue #208](https://github.com/fmichaleczek/PSnake/issues/208)) 
   in tasks.
 
 ## [0.108.0] - 2020-09-14
@@ -867,8 +867,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added New-FactoryProject command to invoke the template.
-- Added Add-FactoryBlueprint command to invoke component templates
+- Added New-SnakeProject command to invoke the template.
+- Added Add-SnakeBlueprint command to invoke component templates
 
 ### Fixed
 
@@ -896,7 +896,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Enum
 - Added integration tests for the Plaster templates.
 - Added support to use an alternate name for the trunk branch in
-  `New-Release.GitHub.build.ps1` ([issue #182](https://github.com/fmichaleczek/PSFactory/issues/182)).
+  `New-Release.GitHub.build.ps1` ([issue #182](https://github.com/fmichaleczek/PSnake/issues/182)).
 - Added additional log output to `New-Release.GitHub.build.ps1`.
 - Corrected markdown format in CHANGELOG.md to remove linting messages.
 
@@ -931,7 +931,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   until this repo is converted to Pester 5.
 - Update build task to pass the full path to the module manifest to
   `Build-Module` to be able to build without a build manifest.
-- Remove the build manifest from PSFactory and Plaster template.
+- Remove the build manifest from PSnake and Plaster template.
 - Change the build.yaml to use `CopyPaths` instead of `CopyDirectories`.
 
 ## [0.105.3] - 2020-05-09
@@ -954,23 +954,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated README.md with a section `Task Variables` and described each of
   the build task `Build-Module.ModuleBuilder`'s task variables.
 - When there are multiple module manifest found in the repository the build
-  now fails with a a better error error message ([issue #155](https://github.com/fmichaleczek/PSFactory/issues/155)).
+  now fails with a a better error error message ([issue #155](https://github.com/fmichaleczek/PSnake/issues/155)).
 - Now the the module does not export the helper function modules as tasks
-  aliases ([issue #161](https://github.com/fmichaleczek/PSFactory/issues/161)).
+  aliases ([issue #161](https://github.com/fmichaleczek/PSnake/issues/161)).
 - Fixed so module version can be detected using GitVersion on macOS and
   Linux.
 
 ### Changed
 
-- Update tasks to reduce code duplication ([issue #125](https://github.com/fmichaleczek/PSFactory/issues/125)).
+- Update tasks to reduce code duplication ([issue #125](https://github.com/fmichaleczek/PSnake/issues/125)).
 - Task 'Merge_CodeCoverage_Files' did not use the parameter `ProjectName`
   to that parameter was removed.
 - Tasks that are not setting the version in the module manifest or otherwise
   need to evaluate the module version are now using the the module version
-  from the built module's module manifest ([issue #160](https://github.com/fmichaleczek/PSFactory/issues/160)).
+  from the built module's module manifest ([issue #160](https://github.com/fmichaleczek/PSnake/issues/160)).
 - The helper function `Get-ModuleVersion` was split into two cmdlets. A
   new helper function `Get-BuildVersion` that evaluates and returns the
-  next module version, and `Get-FactoryBuiltModuleVersion` that always returns the
+  next module version, and `Get-SnakeBuiltModuleVersion` that always returns the
   module's version from the built module manifest.
 
 ## [0.105.1] - 2020-04-24
@@ -1041,7 +1041,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   reduce code duplication.
 - Changed each build task so that the default value of the parameter
   `ModuleVersion` always returns the sematic version (x.y.z-prerelease),
-  and not the informational version ([issue #130](https://github.com/fmichaleczek/PSFactory/issues/130)).
+  and not the informational version ([issue #130](https://github.com/fmichaleczek/PSnake/issues/130)).
 
 ## [0.102.0] - 2020-02-14
 
@@ -1062,7 +1062,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Added
 
-- Add conceptual build step for DSC resources [issue #122](https://github.com/fmichaleczek/PSFactory/issues/122).
+- Add conceptual build step for DSC resources [issue #122](https://github.com/fmichaleczek/PSnake/issues/122).
 
 ## [0.100.0] - 2020-02-01
 

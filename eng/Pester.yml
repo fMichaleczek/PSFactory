@@ -12,8 +12,8 @@ Pester:
       Path:
         - tests/QA
         - tests/Unit
-        #- tests/Unit/Public/Add-FactoryBlueprint.tests.ps1
-        #- tests/Unit/Public/New-FactoryProject.tests.ps1
+        #- tests/Unit/Public/Add-SnakeBlueprint.tests.ps1
+        #- tests/Unit/Public/New-SnakeProject.tests.ps1
         #- tests/Integration
     Output:
       Verbosity: Detailed

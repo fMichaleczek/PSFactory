@@ -2,13 +2,13 @@
 <plasterManifest
   schemaVersion="1.0" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
   <metadata>
-    <name>PSFactory</name>
+    <name>PSnake</name>
     <id>01ff2349-1b77-46dd-a247-ce056aae043c</id>
     <version>0.0.1</version>
-    <title>PSFactory Module Template</title>
-    <description>PSFactory Module Template with bootstrap</description>
+    <title>PSnake Module Template</title>
+    <description>PSnake Module Template with bootstrap</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module</tags>
+    <tags>PSnake,Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter name="ModuleType" type="choice" default='1' prompt="Select the type of Module you would like to create:">

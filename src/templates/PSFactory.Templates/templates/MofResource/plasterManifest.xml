@@ -6,9 +6,9 @@
     <id>740f0631-a6bd-42f2-a7b4-9488b83d2fab</id>
     <version>0.0.1</version>
     <title>DSC MOF based Resource Template</title>
-    <description>A template to add a MOF based resource to a PSFactory Project</description>
+    <description>A template to add a MOF based resource to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module</tags>
+    <tags>PSnake,Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text"  name="ResourceName" type="text" prompt="Name of your Resource" />

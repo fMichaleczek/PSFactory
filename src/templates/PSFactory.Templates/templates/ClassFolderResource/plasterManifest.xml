@@ -6,9 +6,9 @@
     <id>a5cbc533-2add-4652-ad43-62d44c3eae5f</id>
     <version>0.0.1</version>
     <title>DSC_ClassFolder Resource Template</title>
-    <description>A template to add DSC_ClassFolder resource to a PSFactory Project</description>
+    <description>A template to add DSC_ClassFolder resource to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module</tags>
+    <tags>PSnake,Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text" name="SourceDirectory" type="text" prompt="What is your source folder?" default="source" />

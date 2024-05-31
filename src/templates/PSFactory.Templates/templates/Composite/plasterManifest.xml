@@ -6,9 +6,9 @@
     <id>d784c581-4659-4864-92b5-656d5c172cb1</id>
     <version>0.0.1</version>
     <title>DSC Composite Resource Template</title>
-    <description>A template to add a Composite resource (aka Configuration) to a PSFactory Project</description>
+    <description>A template to add a Composite resource (aka Configuration) to a PSnake Project</description>
     <author>Gael Colas</author>
-    <tags>PSFactory,Template, Build, Module</tags>
+    <tags>PSnake,Template, Build, Module</tags>
   </metadata>
   <parameters>
     <parameter store="text"  name="ModuleAuthor" type="text" prompt="Author's name" default="$Env:Username" />

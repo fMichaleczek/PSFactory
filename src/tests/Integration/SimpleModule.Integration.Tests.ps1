@@ -1,5 +1,5 @@
 BeforeAll {
-    $script:moduleName = 'PSFactory'
+    $script:moduleName = 'PSnake'
 
     # If the module is not found, run the build task 'noop'.
     if (-not (Get-Module -Name $script:moduleName -ListAvailable))
@@ -29,7 +29,7 @@ Describe 'SimpleModule' {
 
     It 'Should create MySimpleModule without throwing' {
         $invokePlasterParameters = @{
-            TemplatePath         = Join-Path -Path $importedModule.ModuleBase -ChildPath 'Templates/PSFactory'
+            TemplatePath         = Join-Path -Path $importedModule.ModuleBase -ChildPath 'Templates/PSnake'
             DestinationPath      = $TestDrive
             NoLogo               = $true
             Force                = $true
@@ -40,7 +40,7 @@ Describe 'SimpleModule' {
             # Template properties
             ModuleName           = $mockModuleName
             SourceDirectory      = 'source'
-            ModuleAuthor         = 'PSFactoryTestUser'
+            ModuleAuthor         = 'PSnakeTestUser'
             ModuleDescription    = 'Module description'
             ModuleVersion        = '1.0.0'
             CustomRepo           = 'PSGallery'
@@ -67,8 +67,8 @@ Describe 'SimpleModule' {
 
             git init --initial-branch=main
 
-            git config --local user.name "PSFactoryIntegrationTester"
-            git config --local user.email "PSFactoryIntegrationTester@company.local"
+            git config --local user.name "PSnakeIntegrationTester"
+            git config --local user.email "PSnakeIntegrationTester@company.local"
 
             <#
                 Use 2>&1 to avoid the warning messages
